@@ -3,375 +3,771 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amrit Singh Bedi</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Amrit Singh Bedi — UCF</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    html {
-      scroll-behavior: smooth;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #1a1814;
+      --ink-mid:   #4a4640;
+      --ink-faint: #8a8480;
+      --paper:     #faf9f7;
+      --cream:     #f2efe9;
+      --rule:      #dedad4;
+      --blue:      #1a3a6e;
+      --blue-lt:   #e8eef8;
+      --gold:      #b8880a;
+      --serif:     'EB Garamond', Georgia, serif;
+      --sans:      'DM Sans', system-ui, sans-serif;
+      --max:       1080px;
+      --col-gap:   3rem;
     }
+
+    html { scroll-behavior: smooth; font-size: 17px; }
 
     body {
-      font-family: "Inter", Aptos, "Segoe UI", Roboto, Arial, sans-serif;
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.65;
     }
 
-    .section-title {
+    /* ── HEADER ── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,249,247,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .header-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-name {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    nav { display: flex; gap: 2rem; }
+    nav a {
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--ink-mid);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.15s;
+    }
+    nav a:hover { color: var(--blue); }
+
+    #menuBtn {
+      display: none;
+      background: none; border: 1px solid var(--rule);
+      border-radius: 6px; padding: 6px 14px;
+      font-family: var(--sans); font-size: 0.82rem;
+      color: var(--ink-mid); cursor: pointer;
+    }
+    #mobileNav {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      border-top: 1px solid var(--rule);
+      background: var(--paper);
+    }
+    #mobileNav a {
+      padding: 0.9rem 2rem;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--ink-mid);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    #mobileNav a:hover { color: var(--blue); background: var(--cream); }
+
+    /* ── MAIN LAYOUT ── */
+    main { max-width: var(--max); margin: 0 auto; padding: 0 2rem 6rem; }
+
+    section { padding-top: 5rem; }
+    section:first-child { padding-top: 4rem; }
+
+    /* ── SECTION HEADERS ── */
+    .sec-head {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .sec-head h2 {
+      font-family: var(--serif);
+      font-size: 1.75rem;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .sec-meta {
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-left: auto;
+    }
+    .sec-meta a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+    .sec-meta a:hover { text-decoration: underline; }
+
+    /* ── HOME / PROFILE ── */
+    #home {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: var(--col-gap);
+      align-items: start;
+    }
+    .profile-photo {
+      width: 220px;
+      height: 270px;
+      object-fit: cover;
+      border-radius: 4px;
+      border: 1px solid var(--rule);
+      display: block;
+      background: var(--cream);
+    }
+    .profile-photo-placeholder {
+      width: 220px; height: 270px;
+      background: var(--cream);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--ink-faint); font-size: 0.8rem;
+    }
+
+    .profile-text h1 {
+      font-family: var(--serif);
+      font-size: 2.6rem;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.15;
       letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+    }
+    .profile-title {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--ink-mid);
+      letter-spacing: 0.01em;
+      margin-bottom: 0.25rem;
+    }
+    .profile-dept {
+      font-size: 0.85rem;
+      color: var(--ink-faint);
+      margin-bottom: 1.5rem;
     }
 
-    .soft-card {
-      border: 1px solid rgb(229 231 235);
-      border-radius: 1rem;
-      background: white;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+    .divider {
+      width: 40px; height: 2px;
+      background: var(--gold);
+      margin-bottom: 1.5rem;
     }
 
-    .news-card:hover,
-    .pub-card:hover,
-    .link-card:hover {
-      transform: translateY(-2px);
-      transition: all 0.2s ease;
-      box-shadow: 0 14px 36px rgba(0,0,0,0.07);
+    .profile-links {
+      display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .profile-links a {
+      font-size: 0.82rem;
+      color: var(--blue);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 500;
+      border-bottom: 1px solid var(--blue-lt);
+      padding-bottom: 1px;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .profile-links a:hover { border-color: var(--blue); }
+
+    .bio p {
+      font-size: 0.97rem;
+      color: var(--ink-mid);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .bio p:last-child { margin-bottom: 0; }
+
+    /* ── NEWS ── */
+    .news-list { display: flex; flex-direction: column; gap: 0; }
+    .news-item {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 1.5rem;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--rule);
+      transition: background 0.15s;
+    }
+    .news-item:first-child { border-top: none; }
+    .news-year {
+      font-family: var(--serif);
+      font-size: 0.85rem;
+      color: var(--ink-faint);
+      font-style: italic;
+      padding-top: 3px;
+    }
+    .news-content h3 {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+      line-height: 1.4;
+    }
+    .news-content p {
+      font-size: 0.88rem;
+      color: var(--ink-mid);
+      line-height: 1.65;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 3px;
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+    .tag-conf { background: var(--blue-lt); color: var(--blue); }
+    .tag-award { background: #fdf3e0; color: var(--gold); }
+    .tag-talk  { background: #edf7f0; color: #1a6e40; }
+    .tag-service { background: #f5edf7; color: #6e1a8e; }
+
+    /* ── PUBLICATIONS ── */
+    .pub-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .pub-item {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 1.5rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .pub-venue {
+      text-align: right;
+      padding-top: 3px;
+    }
+    .pub-venue-name {
+      font-family: var(--serif);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--blue);
+      display: block;
+    }
+    .pub-venue-year {
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+      display: block;
+      margin-top: 2px;
+    }
+    .pub-badge {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 3px;
+      background: #fdf3e0;
+      color: var(--gold);
+      margin-top: 4px;
+    }
+    .pub-content h3 {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.45;
+      margin-bottom: 0.4rem;
+    }
+    .pub-authors {
+      font-size: 0.83rem;
+      color: var(--ink-faint);
+      line-height: 1.6;
+    }
+    .pub-authors strong {
+      color: var(--ink-mid);
+      font-weight: 500;
     }
 
-    .accent-line {
-      width: 56px;
-      height: 4px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #1d4ed8, #60a5fa);
+    /* ── TEACHING ── */
+    .teaching-block {
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 2rem 2.5rem;
+      background: var(--cream);
+    }
+    .teaching-block p {
+      font-size: 0.93rem;
+      color: var(--ink-mid);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .teaching-block ul {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 0.4rem;
+    }
+    .teaching-block li {
+      font-size: 0.93rem;
+      color: var(--ink-mid);
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .teaching-block li::before {
+      content: "—";
+      position: absolute; left: 0;
+      color: var(--rule);
     }
 
-    .muted {
-      color: rgb(107 114 128);
+    /* ── LINKS ── */
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--rule);
+    }
+    .link-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.1rem 1.5rem;
+      background: var(--paper);
+      text-decoration: none;
+      color: var(--ink-mid);
+      font-size: 0.88rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      transition: background 0.15s, color 0.15s;
+    }
+    .link-item:hover { background: var(--cream); color: var(--blue); }
+    .link-icon {
+      width: 28px; height: 28px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: var(--cream);
+      flex-shrink: 0;
+    }
+    .link-icon svg { width: 14px; height: 14px; fill: var(--ink-faint); }
+    .link-item:hover .link-icon { background: var(--blue-lt); }
+    .link-item:hover .link-icon svg { fill: var(--blue); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      background: var(--cream);
+      margin-top: 6rem;
+    }
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-inner p { font-size: 0.8rem; color: var(--ink-faint); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      #home {
+        grid-template-columns: 1fr;
+      }
+      .profile-photo, .profile-photo-placeholder {
+        width: 160px; height: 200px;
+      }
+      .profile-text h1 { font-size: 2rem; }
+      nav { display: none; }
+      #menuBtn { display: block; }
+      .links-grid { grid-template-columns: repeat(2, 1fr); }
+      .pub-item { grid-template-columns: 72px 1fr; gap: 1rem; }
+      .news-item { grid-template-columns: 44px 1fr; gap: 1rem; }
+      .sec-meta { display: none; }
     }
   </style>
 </head>
-<body class="bg-[#fcfcfd] text-gray-900">
+<body>
 
   <!-- Header -->
-  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-gray-200">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="#home" class="text-2xl md:text-2xl font-semibold tracking-tight">
-        Amrit Singh Bedi
-      </a>
-
-      <nav class="hidden md:flex items-center gap-7 text-[1rem] font-medium">
-        <a href="#home" class="hover:text-blue-700 transition">Home</a>
-        <a href="#news" class="hover:text-blue-700 transition">News</a>
-        <a href="#publications" class="hover:text-blue-700 transition">Publications</a>
-        <a href="#teaching" class="hover:text-blue-700 transition">Teaching</a>
-        <a href="#links" class="hover:text-blue-700 transition">Links</a>
+  <header>
+    <div class="header-inner">
+      <a class="site-name" href="#home">Amrit Singh Bedi</a>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#news">News</a>
+        <a href="#publications">Publications</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#links">Links</a>
       </nav>
-
-      <button id="menuButton" class="md:hidden text-sm border border-gray-300 rounded-lg px-3 py-2">
-        Menu
-      </button>
+      <button id="menuBtn" onclick="toggleMenu()">Menu</button>
     </div>
-
-    <div id="mobileMenu" class="hidden md:hidden border-t border-gray-200 bg-white">
-      <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-4 text-[1rem] font-medium">
-        <a href="#home" class="hover:text-blue-700">Home</a>
-        <a href="#news" class="hover:text-blue-700">News</a>
-        <a href="#publications" class="hover:text-blue-700">Publications</a>
-        <a href="#teaching" class="hover:text-blue-700">Teaching</a>
-        <a href="#links" class="hover:text-blue-700">Links</a>
-      </div>
+    <div id="mobileNav">
+      <a href="#home" onclick="closeMenu()">Home</a>
+      <a href="#news" onclick="closeMenu()">News</a>
+      <a href="#publications" onclick="closeMenu()">Publications</a>
+      <a href="#teaching" onclick="closeMenu()">Teaching</a>
+      <a href="#links" onclick="closeMenu()">Links</a>
     </div>
   </header>
 
-  <!-- Main -->
-  <main class="max-w-6xl mx-auto px-6 py-12 md:py-16">
+  <main>
 
     <!-- Home -->
-    <section id="home" class="grid md:grid-cols-[260px_minmax(0,1fr)] gap-10 md:gap-14 items-start">
+    <section id="home">
       <div>
-        <img
-          src="profile.jpg"
-          alt="Amrit Singh Bedi"
-          class="w-60 h-72 object-cover rounded-2xl border border-gray-200 shadow-sm"
-        />
+        <img src="profile.jpg" alt="Amrit Singh Bedi" class="profile-photo"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="profile-photo-placeholder" style="display:none;">Photo</div>
       </div>
+      <div class="profile-text">
+        <h1>Amrit Singh Bedi</h1>
+        <p class="profile-title">Assistant Professor, Department of Computer Science</p>
+        <p class="profile-dept">Joint Appointment, Electrical &amp; Computer Engineering &nbsp;·&nbsp; University of Central Florida</p>
 
-      <div>
-        <h1 class="text-3xl md:text-5xl font-semibold tracking-tight mb-3">Amrit Singh Bedi</h1>
+        <div class="divider"></div>
 
-        <p class="text-lg md:text-xl text-gray-700 mb-2">
-          Assistant Professor, Department of Computer Science
-        </p>
-        <p class="text-base md:text-lg text-gray-600 mb-6">
-          Joint Appointment with Electrical and Computer Engineering · University of Central Florida
-        </p>
-
-        <div class="accent-line mb-6"></div>
-
-        <div class="flex flex-wrap gap-4 text-sm md:text-[0.95rem] mb-8">
-          <a href="mailto:amritbedi@ucf.edu" class="underline underline-offset-4 hover:text-blue-700">Email</a>
-          <a href="#" class="underline underline-offset-4 hover:text-blue-700">Google Scholar</a>
-          <a href="#" class="underline underline-offset-4 hover:text-blue-700">CV</a>
-          <a href="#" class="underline underline-offset-4 hover:text-blue-700">LinkedIn</a>
-          <a href="#" class="underline underline-offset-4 hover:text-blue-700">Twitter</a>
-          <a href="#" class="underline underline-offset-4 hover:text-blue-700">SafeRR AI Lab</a>
+        <div class="profile-links">
+          <a href="mailto:amritbedi@ucf.edu">Email</a>
+          <a href="#">Google Scholar</a>
+          <a href="#">CV</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Twitter / X</a>
+          <a href="#">SafeRR AI Lab</a>
         </div>
 
-        <div class="space-y-5 text-[1.04rem] md:text-[1.08rem] leading-8 text-gray-800 max-w-4xl">
+        <div class="bio">
           <p>
-            I am an Assistant Professor in the Department of Computer Science, with a joint appointment in Electrical and Computer Engineering, at the University of Central Florida. I lead the SafeRR AI Lab, where we develop trustworthy, adaptive, and efficient AI systems, with a focus on AI alignment, reinforcement learning, safe generative AI, and multi-agent decision-making.
+            I am an Assistant Professor in the Department of Computer Science, with a joint appointment in
+            Electrical and Computer Engineering, at the University of Central Florida. I lead the
+            <strong>SafeRR AI Lab</strong>, where we develop trustworthy, adaptive, and efficient AI systems,
+            with a focus on AI alignment, reinforcement learning, safe generative AI, and multi-agent decision-making.
           </p>
-
           <p>
-            My research combines machine learning, optimization, and control to build AI systems that are robust, reliable, and deployable in real-world settings. I am particularly interested in alignment with human feedback, inference-time safeguards, and embodied and multi-agent intelligence.
+            My research combines machine learning, optimization, and control to build AI systems that are robust,
+            reliable, and deployable in real-world settings. I am particularly interested in alignment with human
+            feedback, inference-time safeguards, and embodied and multi-agent intelligence.
           </p>
-
           <p>
-            Before joining UCF, I was at the University of Maryland, College Park, and the U.S. Army Research Laboratory. I received my Ph.D. in Electrical Engineering from IIT Kanpur.
+            Before joining UCF, I was at the University of Maryland, College Park, and the U.S. Army Research
+            Laboratory. I received my Ph.D. in Electrical Engineering from IIT Kanpur.
           </p>
         </div>
       </div>
     </section>
 
     <!-- News -->
-    <section id="news" class="pt-20 md:pt-24">
-      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-6">
-        <div>
-          <h2 class="section-title text-3xl md:text-4xl font-semibold">Selected Recent News</h2>
-          <div class="accent-line mt-3"></div>
-        </div>
-        <p class="text-sm muted">Research updates, talks, awards, and service</p>
+    <section id="news">
+      <div class="sec-head">
+        <h2>Selected Recent News</h2>
+        <span class="sec-meta">Research updates, talks, awards &amp; service</span>
       </div>
 
-      <div class="space-y-5">
-        <article class="news-card soft-card p-6">
-          <div class="text-sm muted mb-1">2026</div>
-          <h3 class="text-xl font-semibold leading-8">Two papers accepted to ICLR 2026</h3>
-          <p class="text-gray-700 mt-2 leading-7">
-            Two papers from our group were accepted to ICLR 2026 in Rio de Janeiro, Brazil.
-          </p>
-        </article>
+      <div class="news-list">
 
-        <article class="news-card soft-card p-6">
-          <div class="text-sm muted mb-1">2026</div>
-          <h3 class="text-xl font-semibold leading-8">Paper accepted to EACL 2026</h3>
-          <p class="text-gray-700 mt-2 leading-7">
-            Our paper <em>LIAR: Leveraging Inference Time Alignment (Best-of-N) to Jailbreak LLMs in Seconds</em> was accepted to EACL 2026.
-          </p>
-        </article>
+        <div class="news-item">
+          <div class="news-year">2026</div>
+          <div class="news-content">
+            <span class="tag tag-conf">ICLR</span>
+            <h3>Two papers accepted to ICLR 2026</h3>
+            <p>Two papers from our group were accepted to ICLR 2026 in Rio de Janeiro, Brazil.</p>
+          </div>
+        </div>
 
-        <article class="news-card soft-card p-6">
-          <div class="text-sm muted mb-1">2026</div>
-          <h3 class="text-xl font-semibold leading-8">Paper on safety of VLMs accepted to AAAI 2026</h3>
-          <p class="text-gray-700 mt-2 leading-7">
-            Recent work on safety for vision-language models was accepted to AAAI 2026.
-          </p>
-        </article>
+        <div class="news-item">
+          <div class="news-year">2026</div>
+          <div class="news-content">
+            <span class="tag tag-conf">EACL</span>
+            <h3>Paper accepted to EACL 2026</h3>
+            <p><em>LIAR: Leveraging Inference Time Alignment (Best-of-N) to Jailbreak LLMs in Seconds</em> was accepted to EACL 2026.</p>
+          </div>
+        </div>
 
-        <article class="news-card soft-card p-6">
-          <div class="text-sm muted mb-1">2025</div>
-          <h3 class="text-xl font-semibold leading-8">Three papers accepted to NeurIPS 2025</h3>
-          <p class="text-gray-700 mt-2 leading-7">
-            Our recent work on reasoning models, theoretical reinforcement learning, and LLM alignment was accepted to NeurIPS 2025.
-          </p>
-        </article>
+        <div class="news-item">
+          <div class="news-year">2026</div>
+          <div class="news-content">
+            <span class="tag tag-conf">AAAI</span>
+            <h3>Paper on safety of VLMs accepted to AAAI 2026</h3>
+            <p>Recent work on safety for vision-language models was accepted to AAAI 2026.</p>
+          </div>
+        </div>
 
-        <article class="news-card soft-card p-6">
-          <div class="text-sm muted mb-1">2025</div>
-          <h3 class="text-xl font-semibold leading-8">Invited talk at Asilomar 2025</h3>
-          <p class="text-gray-700 mt-2 leading-7">
-            Gave an invited talk on satisficing alignment at Asilomar 2025.
-          </p>
-        </article>
+        <div class="news-item">
+          <div class="news-year">2025</div>
+          <div class="news-content">
+            <span class="tag tag-conf">NeurIPS</span>
+            <h3>Three papers accepted to NeurIPS 2025</h3>
+            <p>Our recent work on reasoning models, theoretical reinforcement learning, and LLM alignment was accepted to NeurIPS 2025.</p>
+          </div>
+        </div>
 
-        <article class="news-card soft-card p-6">
-          <div class="text-sm muted mb-1">2025</div>
-          <h3 class="text-xl font-semibold leading-8">Paper accepted to IEEE RAL 2025</h3>
-          <p class="text-gray-700 mt-2 leading-7">
-            Our work on multi-robot coordination via multi-agent actor-critic was accepted to IEEE Robotics and Automation Letters.
-          </p>
-        </article>
+        <div class="news-item">
+          <div class="news-year">2025</div>
+          <div class="news-content">
+            <span class="tag tag-talk">Talk</span>
+            <h3>Invited talk at Asilomar 2025</h3>
+            <p>Gave an invited talk on satisficing alignment at Asilomar 2025.</p>
+          </div>
+        </div>
 
-        <article class="news-card soft-card p-6">
-          <div class="text-sm muted mb-1">2025</div>
-          <h3 class="text-xl font-semibold leading-8">Workshop and conference papers in 2025</h3>
-          <p class="text-gray-700 mt-2 leading-7">
-            Papers were accepted to EMNLP 2025, CDC 2025, IROS 2025, and ICML 2025, and we are organizing the first NeurIPS Workshop on Biosecurity Safeguards for Generative AI.
-          </p>
-        </article>
+        <div class="news-item">
+          <div class="news-year">2025</div>
+          <div class="news-content">
+            <span class="tag tag-conf">IEEE RAL</span>
+            <h3>Paper accepted to IEEE Robotics and Automation Letters</h3>
+            <p>Our work on multi-robot coordination via multi-agent actor-critic was accepted to IEEE RAL 2025.</p>
+          </div>
+        </div>
 
-        <article class="news-card soft-card p-6">
-          <div class="text-sm muted mb-1">2025</div>
-          <h3 class="text-xl font-semibold leading-8">CVPR 2025 and academic service</h3>
-          <p class="text-gray-700 mt-2 leading-7">
-            Our paper <em>Immune: Improving Safety Against Jailbreaks in Multi-modal LLMs via Inference-Time Alignment</em> was accepted to CVPR 2025. I also served as Area Chair for ACL 2025 and for Transactions of Machine Learning Research.
-          </p>
-        </article>
+        <div class="news-item">
+          <div class="news-year">2025</div>
+          <div class="news-content">
+            <span class="tag tag-conf">EMNLP</span><span class="tag tag-conf">ICML</span>
+            <h3>Workshop and conference papers in 2025</h3>
+            <p>Papers accepted to EMNLP 2025, CDC 2025, IROS 2025, and ICML 2025. Also organizing the first NeurIPS Workshop on Biosecurity Safeguards for Generative AI.</p>
+          </div>
+        </div>
 
-        <article class="news-card soft-card p-6">
-          <div class="text-sm muted mb-1">2024</div>
-          <h3 class="text-xl font-semibold leading-8">NeurIPS 2024, ICML 2024, and invited talks</h3>
-          <p class="text-gray-700 mt-2 leading-7">
-            Two papers were accepted to NeurIPS 2024, five papers were accepted to ICML 2024, and I presented recent AI alignment work at IBM Research, Google DeepMind NYC, and Amazon.
-          </p>
-        </article>
+        <div class="news-item">
+          <div class="news-year">2025</div>
+          <div class="news-content">
+            <span class="tag tag-conf">CVPR</span><span class="tag tag-service">Service</span>
+            <h3>CVPR 2025 and academic service</h3>
+            <p><em>Immune: Improving Safety Against Jailbreaks in Multi-modal LLMs via Inference-Time Alignment</em> accepted to CVPR 2025. Served as Area Chair for ACL 2025 and TMLR.</p>
+          </div>
+        </div>
 
-        <article class="news-card soft-card p-6">
-          <div class="text-sm muted mb-1">2024</div>
-          <h3 class="text-xl font-semibold leading-8">Joined UCF in January 2024</h3>
-          <p class="text-gray-700 mt-2 leading-7">
-            I joined the University of Central Florida as an Assistant Professor and began recruiting Ph.D. students and postdocs.
-          </p>
-        </article>
+        <div class="news-item">
+          <div class="news-year">2024</div>
+          <div class="news-content">
+            <span class="tag tag-conf">NeurIPS</span><span class="tag tag-conf">ICML</span><span class="tag tag-talk">Talk</span>
+            <h3>NeurIPS 2024, ICML 2024, and invited talks</h3>
+            <p>Two papers at NeurIPS 2024, five papers at ICML 2024. Presented AI alignment work at IBM Research, Google DeepMind NYC, and Amazon.</p>
+          </div>
+        </div>
+
+        <div class="news-item">
+          <div class="news-year">2024</div>
+          <div class="news-content">
+            <h3>Joined UCF in January 2024</h3>
+            <p>Joined the University of Central Florida as an Assistant Professor and began recruiting Ph.D. students and postdocs.</p>
+          </div>
+        </div>
+
       </div>
     </section>
 
     <!-- Publications -->
-    <section id="publications" class="pt-20 md:pt-24">
-      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-6">
-        <div>
-          <h2 class="section-title text-3xl md:text-4xl font-semibold">Selected Publications</h2>
-          <div class="accent-line mt-3"></div>
-        </div>
-        <a href="#" class="text-sm underline underline-offset-4 hover:text-blue-700">Full publication list</a>
+    <section id="publications">
+      <div class="sec-head">
+        <h2>Selected Publications</h2>
+        <span class="sec-meta"><a href="#">Full list →</a></span>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-6">
-        <article class="pub-card soft-card p-6">
-          <div class="text-sm muted mb-2">IEEE Robotics and Automation Letters · 2025</div>
-          <h3 class="text-xl font-semibold leading-8">
-            Learning Multi-Robot Coordination through Locality-Based Factorized Multi-Agent Actor-Critic Algorithm
-          </h3>
-          <p class="text-gray-700 mt-3 leading-7">
-            C. L. Shek, A. S. Bedi, A. Basak, E. Novoseller, N. Waytowich, P. Narayanan, D. Manocha, and P. Tokekar
-          </p>
-        </article>
+      <div class="pub-grid">
 
-        <article class="pub-card soft-card p-6">
-          <div class="text-sm muted mb-2">NeurIPS · 2025</div>
-          <h3 class="text-xl font-semibold leading-8">
-            Does Thinking More Always Help? Mirage of Test-Time Scaling in Reasoning Models
-          </h3>
-          <p class="text-gray-700 mt-3 leading-7">
-            S. S. Ghosal, S. Chakraborty, A. Reddy, Y. Lu, M. Wang, D. Manocha, F. Huang, M. Ghavamzadeh, and A. S. Bedi
-          </p>
-        </article>
+        <div class="pub-item">
+          <div class="pub-venue">
+            <span class="pub-venue-name">IEEE RAL</span>
+            <span class="pub-venue-year">2025</span>
+          </div>
+          <div class="pub-content">
+            <h3>Learning Multi-Robot Coordination through Locality-Based Factorized Multi-Agent Actor-Critic Algorithm</h3>
+            <p class="pub-authors">C. L. Shek, <strong>A. S. Bedi</strong>, A. Basak, E. Novoseller, N. Waytowich, P. Narayanan, D. Manocha, and P. Tokekar</p>
+          </div>
+        </div>
 
-        <article class="pub-card soft-card p-6">
-          <div class="text-sm muted mb-2">ICML · 2025</div>
-          <h3 class="text-xl font-semibold leading-8">
-            Bounded Rationality for LLMs: Satisficing Alignment at Inference-Time
-          </h3>
-          <p class="text-gray-700 mt-3 leading-7">
-            El Hajj Chehade, M. F., Ghosal, S. S., Chakraborty, S., Reddy, A., Manocha, D., Zhu, H., and A. S. Bedi
-          </p>
-        </article>
+        <div class="pub-item">
+          <div class="pub-venue">
+            <span class="pub-venue-name">NeurIPS</span>
+            <span class="pub-venue-year">2025</span>
+          </div>
+          <div class="pub-content">
+            <h3>Does Thinking More Always Help? Mirage of Test-Time Scaling in Reasoning Models</h3>
+            <p class="pub-authors">S. S. Ghosal, S. Chakraborty, A. Reddy, Y. Lu, M. Wang, D. Manocha, F. Huang, M. Ghavamzadeh, and <strong>A. S. Bedi</strong></p>
+          </div>
+        </div>
 
-        <article class="pub-card soft-card p-6">
-          <div class="text-sm muted mb-2">CVPR · 2025</div>
-          <h3 class="text-xl font-semibold leading-8">
-            Immune: Improving Safety Against Jailbreaks in Multi-modal LLMs via Inference-Time Alignment
-          </h3>
-          <p class="text-gray-700 mt-3 leading-7">
-            S. S. Ghosal, S. Chakraborty, V. Singh, T. Guan, M. Wang, A. Beirami, F. Huang, A. Velasquez, D. Manocha, and A. S. Bedi
-          </p>
-        </article>
+        <div class="pub-item">
+          <div class="pub-venue">
+            <span class="pub-venue-name">ICML</span>
+            <span class="pub-venue-year">2025</span>
+          </div>
+          <div class="pub-content">
+            <h3>Bounded Rationality for LLMs: Satisficing Alignment at Inference-Time</h3>
+            <p class="pub-authors">El Hajj Chehade M. F., Ghosal S. S., Chakraborty S., Reddy A., Manocha D., Zhu H., and <strong>A. S. Bedi</strong></p>
+          </div>
+        </div>
 
-        <article class="pub-card soft-card p-6">
-          <div class="text-sm muted mb-2">NeurIPS · 2024</div>
-          <h3 class="text-xl font-semibold leading-8">
-            Transfer Q⋆: Principled Decoding for LLM Alignment
-          </h3>
-          <p class="text-gray-700 mt-3 leading-7">
-            S. Chakraborty, S. Ghoshal, M. Yin, D. Manocha, M. Wang, A. S. Bedi, and F. Huang
-          </p>
-        </article>
+        <div class="pub-item">
+          <div class="pub-venue">
+            <span class="pub-venue-name">CVPR</span>
+            <span class="pub-venue-year">2025</span>
+          </div>
+          <div class="pub-content">
+            <h3>Immune: Improving Safety Against Jailbreaks in Multi-modal LLMs via Inference-Time Alignment</h3>
+            <p class="pub-authors">S. S. Ghosal, S. Chakraborty, V. Singh, T. Guan, M. Wang, A. Beirami, F. Huang, A. Velasquez, D. Manocha, and <strong>A. S. Bedi</strong></p>
+          </div>
+        </div>
 
-        <article class="pub-card soft-card p-6">
-          <div class="text-sm muted mb-2">ICML · 2024</div>
-          <h3 class="text-xl font-semibold leading-8">
-            MaxMin-RLHF: Towards Equitable Alignment of Large Language Models with Diverse Human Preferences
-          </h3>
-          <p class="text-gray-700 mt-3 leading-7">
-            S. Chakraborty, J. Qiu, H. Yuan, A. Koppel, F. Huang, D. Manocha, A. S. Bedi, and M. Wang
-          </p>
-        </article>
+        <div class="pub-item">
+          <div class="pub-venue">
+            <span class="pub-venue-name">NeurIPS</span>
+            <span class="pub-venue-year">2024</span>
+          </div>
+          <div class="pub-content">
+            <h3>Transfer Q*: Principled Decoding for LLM Alignment</h3>
+            <p class="pub-authors">S. Chakraborty, S. Ghoshal, M. Yin, D. Manocha, M. Wang, <strong>A. S. Bedi</strong>, and F. Huang</p>
+          </div>
+        </div>
 
-        <article class="pub-card soft-card p-6">
-          <div class="text-sm muted mb-2">ICML · 2024 · Spotlight</div>
-          <h3 class="text-xl font-semibold leading-8">
-            Closing the Gap: Achieving Global Convergence (Last Iterate) of Actor-Critic under Markovian Sampling with Neural Network Parametrization
-          </h3>
-          <p class="text-gray-700 mt-3 leading-7">
-            M. Gaur, A. S. Bedi, D. Wang, and V. Aggarwal
-          </p>
-        </article>
+        <div class="pub-item">
+          <div class="pub-venue">
+            <span class="pub-venue-name">ICML</span>
+            <span class="pub-venue-year">2024</span>
+          </div>
+          <div class="pub-content">
+            <h3>MaxMin-RLHF: Towards Equitable Alignment of Large Language Models with Diverse Human Preferences</h3>
+            <p class="pub-authors">S. Chakraborty, J. Qiu, H. Yuan, A. Koppel, F. Huang, D. Manocha, <strong>A. S. Bedi</strong>, and M. Wang</p>
+          </div>
+        </div>
 
-        <article class="pub-card soft-card p-6">
-          <div class="text-sm muted mb-2">ICLR · 2024</div>
-          <h3 class="text-xl font-semibold leading-8">
-            PARL: A Unified Framework for Policy Alignment in Reinforcement Learning
-          </h3>
-          <p class="text-gray-700 mt-3 leading-7">
-            S. Chakraborty, A. S. Bedi, A. Koppel, D. Manocha, H. Wang, M. Wang, and F. Huang
-          </p>
-        </article>
+        <div class="pub-item">
+          <div class="pub-venue">
+            <span class="pub-venue-name">ICML</span>
+            <span class="pub-venue-year">2024</span>
+            <span class="pub-badge">Spotlight</span>
+          </div>
+          <div class="pub-content">
+            <h3>Closing the Gap: Achieving Global Convergence (Last Iterate) of Actor-Critic under Markovian Sampling with Neural Network Parametrization</h3>
+            <p class="pub-authors">M. Gaur, <strong>A. S. Bedi</strong>, D. Wang, and V. Aggarwal</p>
+          </div>
+        </div>
+
+        <div class="pub-item">
+          <div class="pub-venue">
+            <span class="pub-venue-name">ICLR</span>
+            <span class="pub-venue-year">2024</span>
+          </div>
+          <div class="pub-content">
+            <h3>PARL: A Unified Framework for Policy Alignment in Reinforcement Learning</h3>
+            <p class="pub-authors">S. Chakraborty, <strong>A. S. Bedi</strong>, A. Koppel, D. Manocha, H. Wang, M. Wang, and F. Huang</p>
+          </div>
+        </div>
+
       </div>
     </section>
 
     <!-- Teaching -->
-    <section id="teaching" class="pt-20 md:pt-24">
-      <h2 class="section-title text-3xl md:text-4xl font-semibold mb-3">Teaching</h2>
-      <div class="accent-line mb-6"></div>
-
-      <div class="soft-card p-6 md:p-7 text-[1.02rem] leading-8 text-gray-800">
-        <p class="mb-4">
-          Teaching information will be updated here. This section can include current and past courses, course webpages, lecture notes, and student-related information.
-        </p>
-        <ul class="list-disc pl-6 space-y-1">
+    <section id="teaching">
+      <div class="sec-head">
+        <h2>Teaching</h2>
+      </div>
+      <div class="teaching-block">
+        <p>This section will be updated with current and past courses, lecture notes, and student resources.</p>
+        <ul>
           <li>Current courses</li>
           <li>Past courses</li>
-          <li>Course webpages or lecture notes</li>
+          <li>Course webpages and lecture notes</li>
         </ul>
       </div>
     </section>
 
     <!-- Links -->
-    <section id="links" class="pt-20 md:pt-24">
-      <h2 class="section-title text-3xl md:text-4xl font-semibold mb-3">Links</h2>
-      <div class="accent-line mb-6"></div>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 text-[1.02rem]">
-        <a href="mailto:amritbedi@ucf.edu" class="link-card soft-card px-5 py-5 hover:border-blue-500 hover:text-blue-700 transition">Email</a>
-        <a href="#" class="link-card soft-card px-5 py-5 hover:border-blue-500 hover:text-blue-700 transition">Google Scholar</a>
-        <a href="#" class="link-card soft-card px-5 py-5 hover:border-blue-500 hover:text-blue-700 transition">Curriculum Vitae</a>
-        <a href="#" class="link-card soft-card px-5 py-5 hover:border-blue-500 hover:text-blue-700 transition">LinkedIn</a>
-        <a href="#" class="link-card soft-card px-5 py-5 hover:border-blue-500 hover:text-blue-700 transition">Twitter</a>
-        <a href="#" class="link-card soft-card px-5 py-5 hover:border-blue-500 hover:text-blue-700 transition">SafeRR AI Lab</a>
+    <section id="links">
+      <div class="sec-head">
+        <h2>Links</h2>
+      </div>
+      <div class="links-grid">
+        <a href="mailto:amritbedi@ucf.edu" class="link-item">
+          <div class="link-icon">
+            <svg viewBox="0 0 16 16"><path d="M1 3h14v10H1V3zm1 1v.8l6 3.8 6-3.8V4H2zm0 2.2V12h12V6.2L8 9.8 2 6.2z"/></svg>
+          </div>
+          Email
+        </a>
+        <a href="#" class="link-item">
+          <div class="link-icon">
+            <svg viewBox="0 0 16 16"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zm0 2a1 1 0 100 2 1 1 0 000-2zm-.75 3h1.5v5h-1.5V7.5z"/></svg>
+          </div>
+          Google Scholar
+        </a>
+        <a href="#" class="link-item">
+          <div class="link-icon">
+            <svg viewBox="0 0 16 16"><path d="M3 1h10a1 1 0 011 1v12a1 1 0 01-1 1H3a1 1 0 01-1-1V2a1 1 0 011-1zm1 2v10h8V3H4zm1 2h6v1H5V5zm0 2h6v1H5V7zm0 2h4v1H5V9z"/></svg>
+          </div>
+          Curriculum Vitae
+        </a>
+        <a href="#" class="link-item">
+          <div class="link-icon">
+            <svg viewBox="0 0 16 16"><path d="M8 1a4 4 0 100 8A4 4 0 008 1zM2 13c0-2.2 2.7-4 6-4s6 1.8 6 4v1H2v-1z"/></svg>
+          </div>
+          LinkedIn
+        </a>
+        <a href="#" class="link-item">
+          <div class="link-icon">
+            <svg viewBox="0 0 16 16"><path d="M13.5 2h-2.3L8 6.4 4.8 2H2.5l4.7 6.3L2 14h2.3l3.6-4.8L11.5 14h2.3l-5-6.7L13.5 2z"/></svg>
+          </div>
+          Twitter / X
+        </a>
+        <a href="#" class="link-item">
+          <div class="link-icon">
+            <svg viewBox="0 0 16 16"><path d="M8 1l2.5 5 5.5.8-4 3.9.9 5.3L8 13.5l-4.9 2.5.9-5.3L0 6.8 5.5 6 8 1z"/></svg>
+          </div>
+          SafeRR AI Lab
+        </a>
       </div>
     </section>
+
   </main>
 
-  <!-- Footer -->
-  <footer class="mt-20 border-t border-gray-200 bg-white">
-    <div class="max-w-6xl mx-auto px-6 py-8 text-sm text-gray-500">
-      © 2026 Amrit Singh Bedi
+  <footer>
+    <div class="footer-inner">
+      <p>© 2026 Amrit Singh Bedi &nbsp;·&nbsp; University of Central Florida</p>
+      <p>Department of Computer Science</p>
     </div>
   </footer>
 
   <script>
-    const menuButton = document.getElementById("menuButton");
-    const mobileMenu = document.getElementById("mobileMenu");
-
-    menuButton.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
-    });
-
-    document.querySelectorAll('#mobileMenu a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-      });
-    });
+    function toggleMenu() {
+      const m = document.getElementById('mobileNav');
+      m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
+      m.style.flexDirection = 'column';
+    }
+    function closeMenu() {
+      document.getElementById('mobileNav').style.display = 'none';
+    }
   </script>
+
 </body>
 </html>
