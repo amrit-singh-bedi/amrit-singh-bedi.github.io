@@ -40,6 +40,13 @@
     .profile-links a:hover{border-color:var(--blue)}
     .bio p{font-size:0.97rem;color:var(--ink-mid);line-height:1.8;margin-bottom:1rem}
     .bio p:last-child{margin-bottom:0}
+
+    /* ── RESEARCH LIST — flexbox, no absolute positioning ── */
+    .research-list{list-style:none;margin:0.85rem 0 1rem 0;display:flex;flex-direction:column;gap:0.5rem}
+    .research-list li{display:flex;gap:0.65rem;align-items:baseline;font-size:0.93rem;color:var(--ink-mid);line-height:1.6}
+    .research-list li .dash{color:var(--gold);flex-shrink:0;line-height:inherit}
+    .research-list li .body{flex:1}
+
     .news-list{display:flex;flex-direction:column;gap:0}
     .news-item{display:grid;grid-template-columns:56px 1fr;gap:1.5rem;padding:1.2rem 0;border-bottom:1px solid var(--rule)}
     .news-year{font-family:var(--serif);font-size:0.85rem;color:var(--ink-faint);font-style:italic;padding-top:3px}
@@ -128,31 +135,32 @@
           <p>
             I am an Assistant Professor in the Department of Computer Science at the University of Central Florida,
             where I lead the <strong>SafeRR AI Lab</strong>. The modern generative AI development cycle has three
-            stages: <strong><em>pre-training</em></strong>, <strong><em>post-training</em></strong>, and <strong><em>deployment</em></strong>,  and our lab focuses on the latter two, targeting
-            cutting-edge problems across LLMs, VLMs, vision-language-action models, diffusion LLMs, and agentic AI.
+            stages: <strong><em>pre-training</em></strong>, <strong><em>post-training</em></strong>, and
+            <strong><em>deployment</em></strong> — and our lab focuses on the latter two, targeting cutting-edge
+            problems across LLMs, VLMs, vision-language-action models, diffusion LLMs, and agentic AI.
           </p>
           <p>
             At the <strong>post-training</strong> stage, we develop novel fine-tuning and reinforcement learning
             methods that align AI systems with human values and safety constraints. At the
             <strong>deployment</strong> stage, we design inference-time algorithms that make models safer, more
-            robust, and more reliable — without retraining. Our key research focuses include: 
+            robust, and more reliable — without retraining. Our key research themes include:
           </p>
-          <ul style="list-style:none;margin:0.85rem 0 1rem 0;display:flex;flex-direction:column;gap:0.4rem;">
-            <li style="font-size:0.93rem;color:var(--ink-mid);padding-left:1.1rem;position:relative;">
-              <span style="position:absolute;left:0;color:var(--gold);">—</span>
-              <strong style="color:var(--ink);font-weight:500;">AI Alignment</strong> — RLHF, preference learning, and reward modeling
+          <ul class="research-list">
+            <li>
+              <span class="dash">—</span>
+              <span class="body"><strong style="color:var(--ink);font-weight:500;">AI Alignment</strong> — RLHF, preference learning, and reward modeling</span>
             </li>
-            <li style="font-size:0.93rem;color:var(--ink-mid);padding-left:1.1rem;position:relative;">
-              <span style="position:absolute;left:0;color:var(--gold);">—</span>
-              <strong style="color:var(--ink);font-weight:500;">Safety &amp; Trustworthiness</strong> — inference-time safeguards, jailbreak defenses, and robustness in generative AI
+            <li>
+              <span class="dash">—</span>
+              <span class="body"><strong style="color:var(--ink);font-weight:500;">Safety &amp; Trustworthiness</strong> — inference-time safeguards, jailbreak defenses, and robustness in generative AI</span>
             </li>
-            <li style="font-size:0.93rem;color:var(--ink-mid);padding-left:1.1rem;position:relative;">
-              <span style="position:absolute;left:0;color:var(--gold);">—</span>
-              <strong style="color:var(--ink);font-weight:500;">Reinforcement Learning</strong> — multi-agent RL, hierarchical RL, and embodied intelligence
+            <li>
+              <span class="dash">—</span>
+              <span class="body"><strong style="color:var(--ink);font-weight:500;">Reinforcement Learning</strong> — multi-agent RL, hierarchical RL, and embodied intelligence</span>
             </li>
-            <li style="font-size:0.93rem;color:var(--ink-mid);padding-left:1.1rem;position:relative;">
-              <span style="position:absolute;left:0;color:var(--gold);">—</span>
-              <strong style="color:var(--ink);font-weight:500;">Optimization &amp; Theory</strong> — bilevel, non-convex, and federated methods for modern ML
+            <li>
+              <span class="dash">—</span>
+              <span class="body"><strong style="color:var(--ink);font-weight:500;">Optimization &amp; Theory</strong> — bilevel, non-convex, and federated methods for modern ML</span>
             </li>
           </ul>
           <p>
