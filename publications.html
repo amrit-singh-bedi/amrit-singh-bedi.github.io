@@ -26,7 +26,7 @@
     .page-head-meta a{color:var(--blue);text-decoration:none}
     .page-head-meta a:hover{text-decoration:underline}
     .filter-bar{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
-    .fbtn{font-family:var(--sans);font-size:0.72rem;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;padding:5px 13px;border-radius:3px;border:1px solid var(--rule);background:var(--paper);color:var(--ink-mid);cursor:pointer;transition:all 0.14s}
+    .fbtn{font-family:var(--sans);font-size:0.72rem;font-weight:500;letter-spacing:0.07em;padding:5px 13px;border-radius:3px;border:1px solid var(--rule);background:var(--paper);color:var(--ink-mid);cursor:pointer;transition:all 0.14s}
     .fbtn:hover{background:var(--cream)}
     .fbtn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
     .pub-section{margin-bottom:3.5rem}
@@ -34,8 +34,10 @@
     .section-head{display:flex;align-items:baseline;gap:1rem;padding-bottom:0.65rem;margin-bottom:0;border-bottom:2px solid var(--ink)}
     .section-head h2{font-family:var(--serif);font-size:1.25rem;font-weight:500;color:var(--ink);letter-spacing:-0.01em}
     .section-count{font-size:0.78rem;color:var(--ink-faint);letter-spacing:0.04em}
-    .pub-item{display:grid;grid-template-columns:auto 1fr;gap:1.25rem;padding:1.15rem 0;border-bottom:1px solid var(--rule)}
-    .pub-num{font-size:0.68rem;font-weight:500;color:var(--blue);background:var(--blue-lt);padding:3px 8px;border-radius:3px;text-align:center;align-self:start;margin-top:4px;letter-spacing:0.04em;line-height:1.5;white-space:nowrap;width:fit-content}
+    .pub-item{display:grid;grid-template-columns:88px 1fr;gap:1.25rem;padding:1.15rem 0;border-bottom:1px solid var(--rule)}
+    .pub-venue-col{text-align:right;padding-top:3px;min-width:80px}
+    .pub-venue-col .vshort{font-family:var(--serif);font-size:0.88rem;font-weight:600;color:var(--blue);display:block}
+    .pub-venue-col .vyear{font-size:0.75rem;color:var(--ink-faint);display:block;margin-top:1px}
     .pub-body h3{font-family:var(--serif);font-size:1.02rem;font-weight:500;color:var(--ink);line-height:1.42;margin-bottom:0.3rem}
     .pub-authors{font-size:0.82rem;color:var(--ink-faint);line-height:1.6;margin-bottom:0.25rem}
     .pub-authors strong{color:var(--ink-mid);font-weight:500}
@@ -76,7 +78,10 @@
   <div class="pub-section" id="sec-journals">
     <div class="section-head"><h2>Journal Articles</h2></div>
     <div class="pub-item">
-      <div class="pub-num">RAL</div>
+      <div class="pub-venue-col">
+        <span class="vshort">RAL</span>
+        <span class="vyear">2025</span>
+      </div>
       <div class="pub-body">
         <h3>Learning Multi-Robot Coordination through Locality-Based Factorized Multi-Agent Actor-Critic Algorithm</h3>
         <p class="pub-authors">C. L. Shek, <strong>A. S. Bedi</strong>, A. Basak, E. Novoseller, N. Waytowich, P. Narayanan, D. Manocha, and P. Tokekar</p>
@@ -84,7 +89,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">TMLR</div>
+      <div class="pub-venue-col">
+        <span class="vshort">TMLR</span>
+        <span class="vyear">2025</span>
+      </div>
       <div class="pub-body">
         <h3>Beyond Joint Demonstrations: Personalized Expert Guidance for Efficient Multi-Agent Reinforcement Learning</h3>
         <p class="pub-authors">P. Yu, M. Mishra, A. Koppel, C. Busart, P. Narayan, D. Manocha, <strong>A. S. Bedi</strong>, and P. Tokekar</p>
@@ -92,7 +100,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">TMLR</div>
+      <div class="pub-venue-col">
+        <span class="vshort">TMLR</span>
+        <span class="vyear">2024</span>
+      </div>
       <div class="pub-body">
         <h3>Beyond Text: Utilizing Vocal Cues to Improve Decision Making in LLMs for Robot Navigation Tasks</h3>
         <p class="pub-authors">X. Sun, H. Meng, S. Chakraborty, <strong>A. S. Bedi</strong>, and A. Bera</p>
@@ -100,7 +111,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">TMLR</div>
+      <div class="pub-venue-col">
+        <span class="vshort">TMLR</span>
+        <span class="vyear">2024</span>
+      </div>
       <div class="pub-body">
         <h3>A Survey on the Possibilities &amp; Impossibilities of AI-Generated Text Detection</h3>
         <p class="pub-authors">S. S. Ghosal, S. Chakraborty, J. Geiping, F. Huang, D. Manocha, and <strong>A. S. Bedi</strong></p>
@@ -108,7 +122,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">JMLR</div>
+      <div class="pub-venue-col">
+        <span class="vshort">JMLR</span>
+        <span class="vyear">2024</span>
+      </div>
       <div class="pub-body">
         <h3>On the Sample Complexity and Metastability of Heavy-tailed Policy Search in Continuous Control</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong>, A. Parayil, J. Zhang, M. Wang, and A. Koppel</p>
@@ -116,7 +133,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IEEE TAI</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IEEE TAI</span>
+        <span class="vyear">2023</span>
+      </div>
       <div class="pub-body">
         <h3>Efficient Gaussian Process Bandits by Believing only Informative Actions</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong>, D. Peddireddy, V. Aggarwal, and A. Koppel</p>
@@ -124,7 +144,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">JAIR</div>
+      <div class="pub-venue-col">
+        <span class="vshort">JAIR</span>
+        <span class="vyear">2023</span>
+      </div>
       <div class="pub-body">
         <h3>Achieving Zero Constraint Violation for Constrained Reinforcement Learning via Primal-Dual Approach</h3>
         <p class="pub-authors">Q. Bai, <strong>A. S. Bedi</strong>, M. Agarwal, A. Koppel, and V. Aggarwal</p>
@@ -132,7 +155,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IEEE TSP</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IEEE TSP</span>
+        <span class="vyear">2022</span>
+      </div>
       <div class="pub-body">
         <h3>Projection-Free Algorithm for Stochastic Bi-level Optimization</h3>
         <p class="pub-authors">Z. Akhtar, <strong>A. S. Bedi</strong>, S. T. Thomdapu, and K. Rajawat</p>
@@ -140,7 +166,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IEEE TSP</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IEEE TSP</span>
+        <span class="vyear">2021</span>
+      </div>
       <div class="pub-body">
         <h3>Escaping Saddle Points with the Successive Convex Approximation Algorithm</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong>, K. Rajawat, V. Aggarwal, and A. Koppel</p>
@@ -148,7 +177,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IEEE TSP</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IEEE TSP</span>
+        <span class="vyear">2021</span>
+      </div>
       <div class="pub-body">
         <h3>Approximate Shannon Sampling in Importance Sampling: Nearly Consistent Finite Particle Estimates</h3>
         <p class="pub-authors">A. Koppel*, <strong>A. S. Bedi*</strong>, B. M. Sadler, and V. Elvira</p>
@@ -156,7 +188,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">JSAIT</div>
+      <div class="pub-venue-col">
+        <span class="vshort">JSAIT</span>
+        <span class="vyear">2021</span>
+      </div>
       <div class="pub-body">
         <h3>Cautious Reinforcement Learning via Distributional Risk in the Dual Domain</h3>
         <p class="pub-authors">J. Zhang*, <strong>A. S. Bedi*</strong>, M. Wang, and A. Koppel</p>
@@ -164,7 +199,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IEEE TSP</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IEEE TSP</span>
+        <span class="vyear">2021</span>
+      </div>
       <div class="pub-body">
         <h3>Conservative Stochastic Optimization with Expectation Constraints</h3>
         <p class="pub-authors">Z. Akhtar, <strong>A. S. Bedi</strong>, and K. Rajawat</p>
@@ -172,7 +210,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">TSIPN</div>
+      <div class="pub-venue-col">
+        <span class="vshort">TSIPN</span>
+        <span class="vyear">2021</span>
+      </div>
       <div class="pub-body">
         <h3>Adaptive Kernel Learning in Heterogeneous Networks</h3>
         <p class="pub-authors">H. Pradhan, <strong>A. S. Bedi</strong>, A. Koppel, and K. Rajawat</p>
@@ -180,7 +221,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IEEE TSP</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IEEE TSP</span>
+        <span class="vyear">2020</span>
+      </div>
       <div class="pub-body">
         <h3>Dynamic Online Learning via Frank-Wolfe Algorithm</h3>
         <p class="pub-authors">D. Kalhan, <strong>A. S. Bedi</strong>, A. Koppel, K. Rajawat, H. Hassani, A. Gupta, and A. Banerjee</p>
@@ -188,7 +232,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IEEE TAC</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IEEE TAC</span>
+        <span class="vyear">2021</span>
+      </div>
       <div class="pub-body">
         <h3>Online Learning over Dynamic Graphs via Distributed Proximal Gradient Algorithm</h3>
         <p class="pub-authors">R. Dixit, <strong>A. S. Bedi</strong>, and K. Rajawat</p>
@@ -196,7 +243,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IEEE TCOM</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IEEE TCOM</span>
+        <span class="vyear">2020</span>
+      </div>
       <div class="pub-body">
         <h3>Q-GADMM: Quantized Group ADMM for Communication Efficient Decentralized Machine Learning</h3>
         <p class="pub-authors">A. Elgabli, J. Park, <strong>A. S. Bedi</strong>, C. Ben Issaid, M. Bennis, and V. Aggarwal</p>
@@ -204,7 +254,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">RAL</div>
+      <div class="pub-venue-col">
+        <span class="vshort">RAL</span>
+        <span class="vyear">2020</span>
+      </div>
       <div class="pub-body">
         <h3>Asynchronous and Parallel Distributed Pose Graph Optimization</h3>
         <p class="pub-authors">Y. Tian, A. Koppel, <strong>A. S. Bedi</strong>, and J. How</p>
@@ -212,7 +265,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">JMLR</div>
+      <div class="pub-venue-col">
+        <span class="vshort">JMLR</span>
+        <span class="vyear">2020</span>
+      </div>
       <div class="pub-body">
         <h3>GADMM: Fast and Communication Efficient Framework for Distributed Machine Learning</h3>
         <p class="pub-authors">A. Elgabli, J. Park, <strong>A. S. Bedi</strong>, M. Bennis, and V. Aggarwal</p>
@@ -220,7 +276,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IEEE SPM</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IEEE SPM</span>
+        <span class="vyear">2020</span>
+      </div>
       <div class="pub-body">
         <h3>Optimally Compressed Nonparametric Online Learning</h3>
         <p class="pub-authors">A. Koppel, <strong>A. S. Bedi</strong>, K. Rajawat, and B. M. Sadler</p>
@@ -228,7 +287,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IEEE TSP</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IEEE TSP</span>
+        <span class="vyear">2020</span>
+      </div>
       <div class="pub-body">
         <h3>Online Trajectory Optimization Using Inexact Gradient Feedback for Time-Varying Environments</h3>
         <p class="pub-authors">M. Krishna, <strong>A. S. Bedi</strong>, K. Rajawat, and M. Coupechoux</p>
@@ -236,7 +298,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IEEE TSP</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IEEE TSP</span>
+        <span class="vyear">2020</span>
+      </div>
       <div class="pub-body">
         <h3>Nonparametric Compositional Stochastic Optimization for Risk-Sensitive Kernel Learning</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong>, A. Koppel, K. Rajawat, and P. Sanyal</p>
@@ -244,7 +309,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">TSIPN</div>
+      <div class="pub-venue-col">
+        <span class="vshort">TSIPN</span>
+        <span class="vyear">2019</span>
+      </div>
       <div class="pub-body">
         <h3>Asynchronous Online Learning in Multi-Agent Systems with Proximity Constraints</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong>, A. Koppel, and K. Rajawat</p>
@@ -252,7 +320,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IEEE TSP</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IEEE TSP</span>
+        <span class="vyear">2019</span>
+      </div>
       <div class="pub-body">
         <h3>Online Learning with Inexact Proximal Online Gradient Descent Algorithms</h3>
         <p class="pub-authors">R. Dixit, <strong>A. S. Bedi</strong>, R. Tripathi, and K. Rajawat</p>
@@ -260,7 +331,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IEEE TSP</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IEEE TSP</span>
+        <span class="vyear">2019</span>
+      </div>
       <div class="pub-body">
         <h3>Asynchronous Saddle Point Algorithm for Stochastic Optimization in Heterogeneous Networks</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong>, A. Koppel, and K. Rajawat</p>
@@ -268,7 +342,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IEEE TSP</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IEEE TSP</span>
+        <span class="vyear">2018</span>
+      </div>
       <div class="pub-body">
         <h3>Asynchronous Incremental Stochastic Dual Descent Algorithm for Network Resource Allocation</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong> and K. Rajawat</p>
@@ -276,7 +353,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">JEPES</div>
+      <div class="pub-venue-col">
+        <span class="vshort">JEPES</span>
+        <span class="vyear">2018</span>
+      </div>
       <div class="pub-body">
         <h3>Online Algorithms for Storage Utilization under Real-Time Pricing in Smart Grid</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong>, P. V. A. Prasad, M. W. Ahmad, S. Shinde, K. Rajawat, and S. Anand</p>
@@ -284,7 +364,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">JSTSP</div>
+      <div class="pub-venue-col">
+        <span class="vshort">JSTSP</span>
+        <span class="vyear">2018</span>
+      </div>
       <div class="pub-body">
         <h3>Tracking Moving Agents via Inexact Online Gradient Descent Algorithm</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong>, P. Sarma, and K. Rajawat</p>
@@ -292,7 +375,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IEEE TCOM</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IEEE TCOM</span>
+        <span class="vyear">2018</span>
+      </div>
       <div class="pub-body">
         <h3>Network Resource Allocation via Stochastic Subgradient Descent: Convergence Rate</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong> and K. Rajawat</p>
@@ -300,7 +386,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IEEE CL</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IEEE CL</span>
+        <span class="vyear">2016</span>
+      </div>
       <div class="pub-body">
         <h3>BER-Optimized Precoders for OFDM Systems with Insufficient Cyclic Prefix</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong>, J. Akhtar, K. Rajawat, and A. K. Jagannatham</p>
@@ -313,7 +402,10 @@
   <div class="pub-section" id="sec-conferences">
     <div class="section-head"><h2>Conference Papers</h2></div>
     <div class="pub-item">
-      <div class="pub-num">NeurIPS</div>
+      <div class="pub-venue-col">
+        <span class="vshort">NeurIPS</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Does Thinking More Always Help? Mirage of Test-Time Scaling in Reasoning Models</h3>
         <p class="pub-authors">S. S. Ghosal, S. Chakraborty, A. Reddy, Y. Lu, M. Wang, D. Manocha, F. Huang, M. Ghavamzadeh, and <strong>A. S. Bedi</strong></p>
@@ -321,7 +413,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">NeurIPS</div>
+      <div class="pub-venue-col">
+        <span class="vshort">NeurIPS</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>On the Sample Complexity Bounds of Bilevel Reinforcement Learning</h3>
         <p class="pub-authors">M. Gaur, U. Singh, <strong>A. S. Bedi*</strong>, R. Pasupathy*, and V. Aggarwal*</p>
@@ -329,7 +424,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">NeurIPS</div>
+      <div class="pub-venue-col">
+        <span class="vshort">NeurIPS</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>On the Global Optimality of Policy Gradient Methods in General Utility Reinforcement Learning</h3>
         <p class="pub-authors">A. Barakat, S. Chakraborty, P. Yu, P. Tokekar, and <strong>A. S. Bedi</strong></p>
@@ -337,7 +435,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">EMNLP</div>
+      <div class="pub-venue-col">
+        <span class="vshort">EMNLP</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Uncertainty-Aware Answer Selection for Improved Reasoning in Multi-LLM Systems</h3>
         <p class="pub-authors">A. Agrawal, R. Aralikatti, A. Satheesh, S. Chakraborty, <strong>A. S. Bedi</strong>, and F. Huang</p>
@@ -345,7 +446,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IROS</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IROS</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>EfficientEQA: An Efficient Approach to Open Vocabulary Embodied Question Answering for Robotic Assistants</h3>
         <p class="pub-authors">K. Cheng, Z. Li, X. Sun, B.-C. Min, <strong>A. S. Bedi</strong>, and A. Bera</p>
@@ -353,7 +457,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IROS</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IROS</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>On the Vulnerability of LLM/VLM-Controlled Robotics</h3>
         <p class="pub-authors">X. Wu, S. Chakraborty, R. Xian, J. Liang, T. Guan, F. Liu, B. Sadler, D. Manocha, and <strong>A. S. Bedi</strong></p>
@@ -361,7 +468,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IROS</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IROS</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Confidence-Controlled Exploration: Efficient Sparse-Reward Policy Learning for Robotic Navigation</h3>
         <p class="pub-authors">B. Patel, K. W. K. Mudiyanselage, W. A. Suttle, A. Koppel, B. Sadler, T. Zhou, D. Manocha, and <strong>A. S. Bedi</strong></p>
@@ -369,7 +479,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ICML</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ICML</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Bounded Rationality for LLMs: Satisficing Alignment at Inference-Time</h3>
         <p class="pub-authors">El Hajj Chehade M. F., Ghosal S. S., Chakraborty S., Reddy A., Manocha D., Zhu H., and <strong>A. S. Bedi</strong></p>
@@ -377,7 +490,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">CVPR</div>
+      <div class="pub-venue-col">
+        <span class="vshort">CVPR</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Immune: Improving Safety Against Jailbreaks in Multi-modal LLMs via Inference-Time Alignment</h3>
         <p class="pub-authors">S. S. Ghosal, S. Chakraborty, V. Singh, T. Guan, M. Wang, A. Beirami, F. Huang, A. Velasquez, D. Manocha, and <strong>A. S. Bedi</strong></p>
@@ -385,7 +501,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">AAAI</div>
+      <div class="pub-venue-col">
+        <span class="vshort">AAAI</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Align-Pro: A Principled Approach to Prompt Optimization for LLM Alignment</h3>
         <p class="pub-authors">P. Trivedi, S. Chakraborty, A. Reddy, V. Aggarwal, <strong>A. S. Bedi</strong>, and G. K. Atia</p>
@@ -393,7 +512,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">NeurIPS</div>
+      <div class="pub-venue-col">
+        <span class="vshort">NeurIPS</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>FACT or Fiction: Can Truthful Mechanisms Eliminate Federated Free Riding?</h3>
         <p class="pub-authors">M. Bornstein, <strong>A. S. Bedi</strong>, A. Mohamed, and F. Huang</p>
@@ -401,7 +523,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">NeurIPS</div>
+      <div class="pub-venue-col">
+        <span class="vshort">NeurIPS</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Transfer Q*: Principled Decoding for LLM Alignment</h3>
         <p class="pub-authors">S. Chakraborty, S. Ghoshal, M. Yin, D. Manocha, M. Wang, <strong>A. S. Bedi</strong>, and F. Huang</p>
@@ -409,7 +534,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IROS</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IROS</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>When, What, and with Whom to Communicate: Enhancing RL-based Multi-Robot Navigation through Selective Communication</h3>
         <p class="pub-authors">S. H. Arul, <strong>A. S. Bedi</strong>, and D. Manocha</p>
@@ -417,7 +545,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IROS</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IROS</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>LANCAR: Leveraging Language for Context-Aware Robot Locomotion in Unstructured Environments</h3>
         <p class="pub-authors">C. L. Shek, X. Wu, W. A. Suttle, C. Busart, E. Zaroukian, D. Manocha, P. Tokekar, and <strong>A. S. Bedi</strong></p>
@@ -425,7 +556,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IROS</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IROS</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>TrustNavGPT: Trust-Driven Audio-Guided Robot Navigation under Uncertainty with Large Language Models</h3>
         <p class="pub-authors">X. Sun, Y. Zhang, X. Tang, <strong>A. S. Bedi</strong>, and A. Bera</p>
@@ -433,7 +567,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ICML</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ICML</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Global Optimality without Mixing Time Oracles in Average-Reward RL via Multi-level Actor-Critic</h3>
         <p class="pub-authors">B. Patel, W. A. Suttle, A. Koppel, V. Aggarwal, B. M. Sadler, D. Manocha, and <strong>A. S. Bedi</strong></p>
@@ -441,7 +578,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ICML</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ICML</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>PIPER: Primitive-Informed Preference-based Hierarchical Reinforcement Learning via Hindsight Relabeling</h3>
         <p class="pub-authors">U. Singh, W. A. Suttle, B. M. Sadler, V. P. Namboodiri, and <strong>A. S. Bedi</strong></p>
@@ -449,7 +589,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ICML</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ICML</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>MaxMin-RLHF: Towards Equitable Alignment of Large Language Models with Diverse Human Preferences</h3>
         <p class="pub-authors">S. Chakraborty, J. Qiu, H. Yuan, A. Koppel, F. Huang, D. Manocha, <strong>A. S. Bedi</strong>, and M. Wang</p>
@@ -457,7 +600,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ICML</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ICML</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>On the Possibilities of AI-Generated Text Detection</h3>
         <p class="pub-authors">S. Chakraborty*, <strong>A. S. Bedi*</strong>, S. Zhu, B. An, D. Manocha, and F. Huang</p>
@@ -465,7 +611,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ICML</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ICML</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Closing the Gap: Achieving Global Convergence (Last Iterate) of Actor-Critic under Markovian Sampling with Neural Network Parametrization</h3>
         <p class="pub-authors">M. Gaur, <strong>A. S. Bedi</strong>, D. Wang, and V. Aggarwal</p>
@@ -473,7 +622,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ICLR</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ICLR</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>PARL: A Unified Framework for Policy Alignment in Reinforcement Learning</h3>
         <p class="pub-authors">S. Chakraborty, <strong>A. S. Bedi</strong>, A. Koppel, D. Manocha, H. Wang, M. Wang, and F. Huang</p>
@@ -481,7 +633,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">CoRL</div>
+      <div class="pub-venue-col">
+        <span class="vshort">CoRL</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>iPLAN: Intent-Aware Planning in Heterogeneous Traffic via Distributed Multi-Agent Reinforcement Learning</h3>
         <p class="pub-authors">X. Wu, R. Chandra, T. Guan, <strong>A. S. Bedi</strong>, and D. Manocha</p>
@@ -489,7 +644,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">CASE</div>
+      <div class="pub-venue-col">
+        <span class="vshort">CASE</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Bi-Level Nonstationary Kernels for Online Gaussian Process Regression</h3>
         <p class="pub-authors">H. J. He, A. Koppel, <strong>A. S. Bedi</strong>, M. Farhood, and D. J. Stilwell</p>
@@ -497,7 +655,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ICML</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ICML</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>STEERING: Stein Information Directed Exploration for Model-Based Reinforcement Learning</h3>
         <p class="pub-authors">S. Chakraborty, <strong>A. S. Bedi</strong>, A. Koppel, M. Wang, F. Huang, and D. Manocha</p>
@@ -505,7 +666,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ICML</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ICML</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Beyond Exponentially Fast Mixing in Average-Reward Reinforcement Learning via Multi-Level Monte Carlo Actor-Critic</h3>
         <p class="pub-authors"><strong>A. S. Bedi*</strong>, W. Suttle*, B. Patel, B. Sadler, A. Koppel, and D. Manocha</p>
@@ -513,7 +677,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ICLR</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ICLR</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>SWIFT: Rapid Decentralized Federated Learning via Wait-Free Model Communication</h3>
         <p class="pub-authors">M. Bornstein, T. Rabbani, E. Wang, <strong>A. S. Bedi</strong>, and F. Huang</p>
@@ -521,7 +688,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ICRA</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ICRA</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Dealing with Sparse Rewards in Continuous Control Robotics via Heavy-Tailed Policy Optimization</h3>
         <p class="pub-authors">S. Chakraborty, <strong>A. S. Bedi</strong>, K. Weerakoon, P. Poddar, A. Koppel, P. Tokekar, and D. Manocha</p>
@@ -529,7 +699,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ICRA</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ICRA</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>RTAW: An Attention Inspired Reinforcement Learning Method for Multi-Robot Task Allocation in Warehouse Environments</h3>
         <p class="pub-authors">A. Aggarwal, <strong>A. S. Bedi</strong>, and D. Manocha</p>
@@ -537,7 +710,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ICRA</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ICRA</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Decentralized Multi-agent Exploration with Limited Inter-agent Communications</h3>
         <p class="pub-authors">H. He, A. Koppel, <strong>A. S. Bedi</strong>, D. Stilwell, and M. Farhood</p>
@@ -545,7 +721,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">AAAI</div>
+      <div class="pub-venue-col">
+        <span class="vshort">AAAI</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Achieving Zero Constraint Violation for Constrained Reinforcement Learning via Conservative Natural Policy Gradient Primal-Dual Algorithm</h3>
         <p class="pub-authors">Q. Bai, <strong>A. S. Bedi</strong>, and V. Aggarwal</p>
@@ -553,7 +732,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">AAAI</div>
+      <div class="pub-venue-col">
+        <span class="vshort">AAAI</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Posterior Coreset Construction with Kernelized Stein Discrepancy for Model-Based Reinforcement Learning</h3>
         <p class="pub-authors">S. Chakraborty, <strong>A. S. Bedi</strong>, A. Koppel, B. Sadler, F. Huang, P. Tokekar, and D. Manocha</p>
@@ -561,7 +743,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">CDC</div>
+      <div class="pub-venue-col">
+        <span class="vshort">CDC</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Convergence Rates of Average-Reward Multi-Agent Reinforcement Learning via Randomized Linear Programming</h3>
         <p class="pub-authors">A. Koppel*, <strong>A. S. Bedi*</strong>, B. Ganguly, and V. Aggarwal</p>
@@ -569,7 +754,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">CoRL</div>
+      <div class="pub-venue-col">
+        <span class="vshort">CoRL</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>HTRON: Efficient Outdoor Navigation with Sparse Rewards via Heavy Tailed Adaptive Reinforce Algorithm</h3>
         <p class="pub-authors">K. Weerakoon, S. Chakraborty, N. Karapetyan, A. J. Sathyamoorthy, <strong>A. S. Bedi</strong>, and D. Manocha</p>
@@ -577,7 +765,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">Asilomar</div>
+      <div class="pub-venue-col">
+        <span class="vshort">Asilomar</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Fast Distributed Beamforming without Receiver Feedback</h3>
         <p class="pub-authors">K. Chakrabarti, <strong>A. S. Bedi</strong>, F. T. Dagefu, J. N. Twigg, and N. Chopra</p>
@@ -585,7 +776,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IROS</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IROS</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Distributed Riemannian Optimization with Lazy Communication for Collaborative Geometric Estimation</h3>
         <p class="pub-authors">Y. Tian, <strong>A. S. Bedi</strong>, A. Koppel, M. C. Fullana, D. Rosen, and J. How</p>
@@ -593,7 +787,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IROS</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IROS</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>DC-MRTA: Decentralized Multi-Robot Task Allocation and Navigation in Complex Environments</h3>
         <p class="pub-authors">A. Agrawal, S. H. Arul, <strong>A. S. Bedi</strong>, and D. Manocha</p>
@@ -601,7 +798,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ICML</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ICML</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>FedNew: A Communication-Efficient and Privacy-Preserving Newton-Type Method for Federated Learning</h3>
         <p class="pub-authors">A. Elgabli, C. B. Issaid, <strong>A. S. Bedi</strong>, K. Rajawat, M. Bennis, and V. Aggarwal</p>
@@ -609,7 +809,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ICML</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ICML</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>On the Hidden Biases of Policy Mirror Ascent in Continuous Action Spaces</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong>, S. Chakraborty, A. Parayil, B. Sadler, P. Tokekar, and A. Koppel</p>
@@ -617,7 +820,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">AAAI</div>
+      <div class="pub-venue-col">
+        <span class="vshort">AAAI</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Achieving Zero Constraint Violation for Constrained Reinforcement Learning via Primal-Dual Approach</h3>
         <p class="pub-authors">Q. Bai, <strong>A. S. Bedi</strong>, M. Agarwal, A. Koppel, and V. Aggarwal</p>
@@ -625,7 +831,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">AAAI</div>
+      <div class="pub-venue-col">
+        <span class="vshort">AAAI</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>MARL with General Utilities via Decentralized Shadow Reward Actor-Critic</h3>
         <p class="pub-authors">J. Zhang, <strong>A. S. Bedi</strong>, M. Wang, and A. Koppel</p>
@@ -633,7 +842,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">Globecom</div>
+      <div class="pub-venue-col">
+        <span class="vshort">Globecom</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Energy-Efficient and Federated Meta-Learning via Projected Stochastic Gradient Ascent</h3>
         <p class="pub-authors">A. Elgabli, C. B. Issaid, <strong>A. S. Bedi</strong>, M. Bennis, and V. Aggarwal</p>
@@ -641,7 +853,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">Asilomar</div>
+      <div class="pub-venue-col">
+        <span class="vshort">Asilomar</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Randomized Linear Programming for Tabular Average-Cost Multi-agent Reinforcement Learning</h3>
         <p class="pub-authors">A. Koppel, <strong>A. S. Bedi</strong>, B. Ganguly, and V. Aggarwal</p>
@@ -649,7 +864,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">CDC</div>
+      <div class="pub-venue-col">
+        <span class="vshort">CDC</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Intermittent Communications in Decentralized Shadow Reward Actor-Critic</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong>, A. Koppel, M. Wang, and J. Zhang</p>
@@ -657,7 +875,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IROS</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IROS</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Wasserstein-Splitting Gaussian Process Regression for Heterogeneous Online Bayesian Inference</h3>
         <p class="pub-authors">M. E. Kepler, A. Koppel, <strong>A. S. Bedi</strong>, and D. J. Stilwell</p>
@@ -665,7 +886,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ICASSP</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ICASSP</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>On the Convergence Theory of Online Bayesian Nonparametric Estimators with Adaptive Hyperparameters</h3>
         <p class="pub-authors">A. Koppel, <strong>A. S. Bedi</strong>, and V. Krishnamurthy</p>
@@ -673,7 +897,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">NeurIPS</div>
+      <div class="pub-venue-col">
+        <span class="vshort">NeurIPS</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Variational Policy Gradient Method for Reinforcement Learning with General Utilities</h3>
         <p class="pub-authors">J. Zhang, A. Koppel, <strong>A. S. Bedi</strong>, C. Szepesvari, and M. Wang</p>
@@ -681,7 +908,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ACC</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ACC</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Joint Position and Beamforming Control via Alternating Nonlinear Least-Squares with a Hierarchical Gamma Prior</h3>
         <p class="pub-authors">A. Parayil, <strong>A. S. Bedi</strong>, and A. Koppel</p>
@@ -689,7 +919,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ACC</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ACC</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Beyond Cumulative Returns via Reinforcement Learning over State-Action Occupancy Measures</h3>
         <p class="pub-authors">J. Zhang*, <strong>A. S. Bedi*</strong>, M. Wang, and A. Koppel</p>
@@ -697,7 +930,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ACC</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ACC</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Conservative Stochastic Optimization: O(T⁻¹/²) Optimality Gap with Zero Constraint Violation</h3>
         <p class="pub-authors">Z. Akhtar, <strong>A. S. Bedi</strong>, and K. Rajawat</p>
@@ -705,7 +941,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">Asilomar</div>
+      <div class="pub-venue-col">
+        <span class="vshort">Asilomar</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Conservative Multi-agent Online Kernel Learning in Heterogeneous Networks</h3>
         <p class="pub-authors">H. Pradhan, <strong>A. S. Bedi</strong>, A. Koppel, and K. Rajawat</p>
@@ -713,7 +952,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">IROS</div>
+      <div class="pub-venue-col">
+        <span class="vshort">IROS</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Asynchronous and Parallel Distributed Pose Graph Optimization</h3>
         <p class="pub-authors">Y. Tian, A. Koppel, <strong>A. S. Bedi</strong>, and J. How</p>
@@ -721,7 +963,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">L4DC</div>
+      <div class="pub-venue-col">
+        <span class="vshort">L4DC</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Efficient Large-Scale Gaussian Process Bandits by Believing only Informative Actions</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong>, D. Peddireddy, V. Aggarwal, and A. Koppel</p>
@@ -729,7 +974,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">NeurIPS WS</div>
+      <div class="pub-venue-col">
+        <span class="vshort">NeurIPS WS</span>
+        <span class="vyear">2019</span>
+      </div>
       <div class="pub-body">
         <h3>A Projection Operator to Balance Consistency and Complexity in Importance Sampling</h3>
         <p class="pub-authors">A. Koppel*, <strong>A. S. Bedi*</strong>, B. M. Sadler, and V. Elvira</p>
@@ -737,7 +985,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ICASSP</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ICASSP</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Projection Free Dynamic Online Learning</h3>
         <p class="pub-authors">D. Kalhan, <strong>A. S. Bedi</strong>, A. Koppel, K. Rajawat, A. Gupta, and A. Banerjee</p>
@@ -745,7 +996,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ICASSP</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ICASSP</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Q-GADMM: Quantized Group ADMM for Communication Efficient Decentralized Machine Learning</h3>
         <p class="pub-authors">A. Elgabli, J. Park, <strong>A. S. Bedi</strong>, M. Bennis, and V. Aggarwal</p>
@@ -753,7 +1007,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ACC</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ACC</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Nonparametric Dynamic Online Learning</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong>, A. Koppel, K. Rajawat, and B. M. Sadler</p>
@@ -761,7 +1018,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">Asilomar</div>
+      <div class="pub-venue-col">
+        <span class="vshort">Asilomar</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Approximate Shannon Sampling in Importance Sampling</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong>, A. Koppel, B. M. Sadler, and V. Elvira</p>
@@ -769,7 +1029,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ICCOPT</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ICCOPT</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Nonstationary Nonparametric Optimization: Online Kernel Learning against Dynamic Comparators</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong>, A. Koppel, and K. Rajawat</p>
@@ -777,7 +1040,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">L4DC</div>
+      <div class="pub-venue-col">
+        <span class="vshort">L4DC</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Compressed Online Non-parametric Learning</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong>, A. Koppel, and K. Rajawat</p>
@@ -785,7 +1051,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">CDC</div>
+      <div class="pub-venue-col">
+        <span class="vshort">CDC</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Online Learning over Time-varying Graphs via Proximal Gradient Descent</h3>
         <p class="pub-authors">R. Dixit, <strong>A. S. Bedi</strong>, and K. Rajawat</p>
@@ -793,7 +1062,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ACC</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ACC</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Controlling the Bias-Variance Tradeoff via Coherent Risk for Robust Learning with Kernels</h3>
         <p class="pub-authors">A. Koppel, <strong>A. S. Bedi</strong>, and K. Rajawat</p>
@@ -801,7 +1073,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ANTS</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ANTS</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>On Socially Optimal Traffic Flow in the Presence of Random Users</h3>
         <p class="pub-authors">A. Chopra, D. S. Kalhan, <strong>A. S. Bedi</strong>, A. K. Gupta, and K. Rajawat</p>
@@ -809,7 +1084,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">GlobalSIP</div>
+      <div class="pub-venue-col">
+        <span class="vshort">GlobalSIP</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Exact Nonparametric Decentralized Online Optimization</h3>
         <p class="pub-authors">H. Pradhan, <strong>A. S. Bedi</strong>, A. Koppel, and K. Rajawat</p>
@@ -817,7 +1095,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">Asilomar</div>
+      <div class="pub-venue-col">
+        <span class="vshort">Asilomar</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Time Varying Optimization via Inexact Proximal Online Gradient Descent</h3>
         <p class="pub-authors">R. Dixit, <strong>A. S. Bedi</strong>, R. Tripathi, and K. Rajawat</p>
@@ -825,7 +1106,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">SPCOM</div>
+      <div class="pub-venue-col">
+        <span class="vshort">SPCOM</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Decentralized Asynchronous Stochastic Gradient Descent: Convergence Rate Analysis</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong>, H. Pradhan, and K. Rajawat</p>
@@ -833,7 +1117,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">CDC</div>
+      <div class="pub-venue-col">
+        <span class="vshort">CDC</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Asynchronous Saddle Point Method: Interference Management Through Pricing</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong>, A. Koppel, and K. Rajawat</p>
@@ -841,7 +1128,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ICASSP</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ICASSP</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Adversarial Multi-Agent Target Tracking with Inexact Online Gradient Descent</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong>, P. Sarma, and K. Rajawat</p>
@@ -849,7 +1139,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">WCNC</div>
+      <div class="pub-venue-col">
+        <span class="vshort">WCNC</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Wireless Network Optimization via Stochastic Sub-gradient Descent: Rate Analysis</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong> and K. Rajawat</p>
@@ -857,7 +1150,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">INFOCOM</div>
+      <div class="pub-venue-col">
+        <span class="vshort">INFOCOM</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>An Online Approach to D2D Trajectory Utility Maximization Problem</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong>, K. Rajawat, and M. Coupechoux</p>
@@ -865,7 +1161,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">Asilomar</div>
+      <div class="pub-venue-col">
+        <span class="vshort">Asilomar</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Beyond Consensus and Synchrony in Decentralized Online Optimization using Saddle Point Method</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong>, A. Koppel, and K. Rajawat</p>
@@ -873,7 +1172,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ICC</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ICC</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Asynchronous Resource Allocation in Distributed Heterogeneous Networks</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong> and K. Rajawat</p>
@@ -881,7 +1183,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">ICC WS</div>
+      <div class="pub-venue-col">
+        <span class="vshort">ICC WS</span>
+        <span class="vyear">2017</span>
+      </div>
       <div class="pub-body">
         <h3>Optimal Utilization of Storage Systems under Real-time Pricing</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong> and K. Rajawat</p>
@@ -889,7 +1194,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">Globecom</div>
+      <div class="pub-venue-col">
+        <span class="vshort">Globecom</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>BER-Optimized Robust Precoder Design for MIMO-OFDM Systems with Insufficient CP</h3>
         <p class="pub-authors">J. Akhtar, <strong>A. S. Bedi</strong>, K. Rajawat, and A. K. Jagannatham</p>
@@ -897,7 +1205,10 @@
       </div>
     </div>
     <div class="pub-item">
-      <div class="pub-num">SPCOM</div>
+      <div class="pub-venue-col">
+        <span class="vshort">SPCOM</span>
+        <span class="vyear"></span>
+      </div>
       <div class="pub-body">
         <h3>Online Load Scheduling Under Price and Demand Uncertainty in Smart Grid</h3>
         <p class="pub-authors"><strong>A. S. Bedi</strong> and K. Rajawat</p>
