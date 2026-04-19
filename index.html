@@ -5,42 +5,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Amrit Singh Bedi</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Inter is more reliable on the web; Aptos is kept as fallback -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     html {
       scroll-behavior: smooth;
     }
+
     body {
-font-family: Aptos, "Segoe UI", Roboto, Arial, sans-serif;    }
+      font-family: "Inter", Aptos, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
     .section-title {
-      letter-spacing: 0.02em;
+      letter-spacing: -0.02em;
+    }
+
+    .soft-card {
+      border: 1px solid rgb(229 231 235);
+      border-radius: 1rem;
+      background: white;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+    }
+
+    .news-card:hover,
+    .pub-card:hover,
+    .link-card:hover {
+      transform: translateY(-2px);
+      transition: all 0.2s ease;
+      box-shadow: 0 14px 36px rgba(0,0,0,0.07);
+    }
+
+    .accent-line {
+      width: 56px;
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #1d4ed8, #60a5fa);
+    }
+
+    .muted {
+      color: rgb(107 114 128);
     }
   </style>
 </head>
-<body class="bg-white text-gray-900">
+<body class="bg-[#fcfcfd] text-gray-900">
 
   <!-- Header -->
-  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200">
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-gray-200">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <div>
-        <a href="#top" class="text-3xl font-semibold tracking-tight"></a>
-      </div>
+      <a href="#top" class="text-2xl md:text-3xl font-semibold tracking-tight">
+        Amrit Singh Bedi
+      </a>
 
-      <nav class="hidden md:flex items-center gap-6 text-lg">
-        <a href="#about" class="hover:text-blue-700">About</a>
-        <a href="#research" class="hover:text-blue-700">Research</a>
-        <a href="#news" class="hover:text-blue-700">News</a>
-        <a href="#publications" class="hover:text-blue-700">Publications</a>
-        <a href="#teaching" class="hover:text-blue-700">Teaching</a>
-        <a href="#links" class="hover:text-blue-700">Links</a>
+      <nav class="hidden md:flex items-center gap-7 text-[1rem] font-medium">
+        <a href="#about" class="hover:text-blue-700 transition">About</a>
+        <a href="#research" class="hover:text-blue-700 transition">Research</a>
+        <a href="#news" class="hover:text-blue-700 transition">News</a>
+        <a href="#publications" class="hover:text-blue-700 transition">Publications</a>
+        <a href="#teaching" class="hover:text-blue-700 transition">Teaching</a>
+        <a href="#links" class="hover:text-blue-700 transition">Links</a>
       </nav>
 
-      <button id="menuButton" class="md:hidden text-sm border border-gray-300 rounded px-3 py-1">
+      <button id="menuButton" class="md:hidden text-sm border border-gray-300 rounded-lg px-3 py-2">
         Menu
       </button>
     </div>
 
-    <div id="mobileMenu" class="hidden md:hidden border-t border-gray-200">
-      <div class="max-w-6xl mx-auto px-6 py-3 flex flex-col gap-3 text-lg">
+    <div id="mobileMenu" class="hidden md:hidden border-t border-gray-200 bg-white">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-4 text-[1rem] font-medium">
         <a href="#about" class="hover:text-blue-700">About</a>
         <a href="#research" class="hover:text-blue-700">Research</a>
         <a href="#news" class="hover:text-blue-700">News</a>
@@ -52,27 +87,31 @@ font-family: Aptos, "Segoe UI", Roboto, Arial, sans-serif;    }
   </header>
 
   <!-- Main -->
-  <main id="top" class="max-w-6xl mx-auto px-6 py-12">
+  <main id="top" class="max-w-6xl mx-auto px-6 py-12 md:py-16">
 
     <!-- Hero / About -->
-    <section id="about" class="grid md:grid-cols-[240px_minmax(0,1fr)] gap-10 items-start">
+    <section id="about" class="grid md:grid-cols-[260px_minmax(0,1fr)] gap-10 md:gap-14 items-start">
       <div>
         <img
           src="profile.jpg"
           alt="Amrit Singh Bedi"
-          class="w-56 h-64 object-cover rounded-lg border border-gray-200 shadow-sm"
+          class="w-60 h-72 object-cover rounded-2xl border border-gray-200 shadow-sm"
         />
       </div>
 
       <div>
-        <h1 class="text-2xl md:text-5xl font-semibold tracking-tight mb-3">Amrit Singh Bedi</h1>
-        <p class="text-lg text-gray-700 mb-6">
-          Assistant Professor, Department of Computer Science<br />
-          Joint Appointment with Electrical and Computer Engineering<br />
-          University of Central Florida
+        <h1 class="text-3xl md:text-5xl font-semibold tracking-tight mb-3">Amrit Singh Bedi</h1>
+
+        <p class="text-lg md:text-xl text-gray-700 mb-2">
+          Assistant Professor, Department of Computer Science
+        </p>
+        <p class="text-base md:text-lg text-gray-600 mb-6">
+          Joint Appointment with Electrical and Computer Engineering · University of Central Florida
         </p>
 
-        <div class="flex flex-wrap gap-4 text-sm mb-8">
+        <div class="accent-line mb-6"></div>
+
+        <div class="flex flex-wrap gap-4 text-sm md:text-[0.95rem] mb-8">
           <a href="mailto:amritbedi@ucf.edu" class="underline underline-offset-4 hover:text-blue-700">Email</a>
           <a href="#" class="underline underline-offset-4 hover:text-blue-700">Google Scholar</a>
           <a href="#" class="underline underline-offset-4 hover:text-blue-700">CV</a>
@@ -81,130 +120,250 @@ font-family: Aptos, "Segoe UI", Roboto, Arial, sans-serif;    }
           <a href="#" class="underline underline-offset-4 hover:text-blue-700">SafeRR AI Lab</a>
         </div>
 
-        <div class="space-y-4 text-[1.05rem] leading-8 text-gray-800">
+        <div class="space-y-5 text-[1.04rem] md:text-[1.08rem] leading-8 text-gray-800 max-w-4xl">
           <p>
-            Thank you for visiting my webpage.
+            I am an Assistant Professor in the Department of Computer Science, with a joint appointment in Electrical and Computer Engineering, at the University of Central Florida. My research lies at the intersection of trustworthy AI, machine learning, optimization, and decision-making, with a particular emphasis on AI alignment, reinforcement learning, and safe generative AI.
           </p>
+
           <p>
-            I am an Assistant Professor in the Computer Science department, with a joint appointment in the ECE department, at the University of Central Florida, USA. Before joining UCF, I was an Assistant Research Professor/Scientist at the University of Maryland, College Park, where I worked closely with Prof. Dinesh Manocha, Prof. Pratap Tokekar, and Prof. Furong Huang.
+            My group develops mathematically grounded methods for building AI systems that are robust, adaptive, and deployable in real-world settings. We work on problems spanning alignment with human feedback, reliable inference-time control, multi-agent learning, and trustworthy embodied AI.
           </p>
+
           <p>
-            Prior to my time at UMD, I worked with Dr. Alec Koppel and Dr. Brian Sadler at the U.S. Army Research Laboratory, where I gained valuable experience in real-world applications of machine learning and AI. I earned my Ph.D. in Electrical Engineering from the Indian Institute of Technology Kanpur under the supervision of Prof. Ketan Rajawat, where my thesis focused on distributed and online learning with stochastic gradient methods.
+            Before joining UCF, I was an Assistant Research Professor/Scientist at the University of Maryland, College Park. Earlier, I worked with the U.S. Army Research Laboratory. I received my Ph.D. in Electrical Engineering from the Indian Institute of Technology Kanpur, where my thesis focused on distributed and online learning with stochastic gradient methods.
           </p>
         </div>
       </div>
     </section>
 
     <!-- Research -->
-    <section id="research" class="pt-20">
-      <h2 class="section-title text-3xl font-semibold mb-6">Research</h2>
-      <p class="text-[1.05rem] leading-8 text-gray-800 mb-6 max-w-4xl">
-        My research focuses on machine learning and artificial intelligence, with an emphasis on trustworthy, adaptive, and efficient methods. I am particularly interested in advancing the theoretical foundations and practical algorithms needed for safe and reliable AI systems.
+    <section id="research" class="pt-20 md:pt-24">
+      <h2 class="section-title text-3xl md:text-4xl font-semibold mb-3">Research</h2>
+      <div class="accent-line mb-6"></div>
+
+      <p class="text-[1.05rem] md:text-[1.08rem] leading-8 text-gray-800 mb-8 max-w-4xl">
+        My research focuses on machine learning and artificial intelligence, with an emphasis on trustworthy, adaptive, and efficient methods. I am particularly interested in advancing theoretical foundations and practical algorithms for reliable AI systems.
       </p>
 
-      <ul class="grid md:grid-cols-2 gap-x-12 gap-y-4 text-[1.02rem] leading-8 text-gray-800 list-disc pl-6">
-        <li>AI Alignment: theoretical insights and practical algorithms</li>
-        <li>Reinforcement Learning from Human Feedback</li>
-        <li>Safety and trustworthiness in generative AI</li>
-        <li>Optimization techniques for the AI era</li>
-        <li>Data efficiency in machine learning</li>
-      </ul>
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="soft-card p-6">
+          <h3 class="font-semibold text-lg mb-2">AI Alignment</h3>
+          <p class="text-gray-700 leading-7">Theoretical insights and practical algorithms for aligning AI systems with human goals and preferences.</p>
+        </div>
+
+        <div class="soft-card p-6">
+          <h3 class="font-semibold text-lg mb-2">RLHF</h3>
+          <p class="text-gray-700 leading-7">Reinforcement learning from human feedback, including robust and fair preference-based learning.</p>
+        </div>
+
+        <div class="soft-card p-6">
+          <h3 class="font-semibold text-lg mb-2">Safe Generative AI</h3>
+          <p class="text-gray-700 leading-7">Safety, trustworthiness, and inference-time safeguards for large language and multimodal models.</p>
+        </div>
+
+        <div class="soft-card p-6">
+          <h3 class="font-semibold text-lg mb-2">Optimization and Efficiency</h3>
+          <p class="text-gray-700 leading-7">Optimization methods and data-efficient machine learning for scalable and adaptive AI systems.</p>
+        </div>
+      </div>
     </section>
 
     <!-- News -->
-    <section id="news" class="pt-20">
-      <div class="flex items-end justify-between gap-4 mb-6">
-        <h2 class="section-title text-3xl font-semibold">News</h2>
-        <p class="text-sm text-gray-500">Selected recent updates</p>
+    <section id="news" class="pt-20 md:pt-24">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-6">
+        <div>
+          <h2 class="section-title text-3xl md:text-4xl font-semibold">Selected Recent News</h2>
+          <div class="accent-line mt-3"></div>
+        </div>
+        <p class="text-sm muted">Research updates, talks, awards, and service</p>
       </div>
 
-      <div class="space-y-4 text-[1.02rem] leading-8 text-gray-800">
-        <div><span class="font-semibold">2026.</span> Two papers accepted to ICLR 2026 in Rio de Janeiro, Brazil.</div>
-        <div><span class="font-semibold">2026.</span> Paper accepted to EACL 2026: <em>LIAR: Leveraging Inference Time Alignment (Best-of-N) to Jailbreak LLMs in Seconds</em>.</div>
-        <div><span class="font-semibold">2026.</span> Paper on the safety of VLMs accepted to AAAI 2026.</div>
-        <div><span class="font-semibold">2025.</span> Three papers on reasoning models, theoretical RL, and LLM alignment accepted to NeurIPS 2025.</div>
-        <div><span class="font-semibold">2025.</span> Invited talk at Asilomar 2025 on satisficing alignment.</div>
-        <div><span class="font-semibold">2025.</span> Paper on multi-robot coordination via multi-agent actor-critic accepted to IEEE RAL 2025.</div>
-        <div><span class="font-semibold">2025.</span> Paper accepted to EMNLP 2025.</div>
-        <div><span class="font-semibold">2025.</span> Organizing the first NeurIPS Workshop on Biosecurity Safeguards for Generative AI in San Diego, California.</div>
-        <div><span class="font-semibold">2025.</span> Paper accepted to CDC 2025.</div>
-        <div><span class="font-semibold">2025.</span> Three papers accepted to IROS 2025.</div>
-        <div><span class="font-semibold">2025.</span> Paper accepted to ICML 2025, Vancouver, Canada.</div>
-        <div><span class="font-semibold">2025.</span> Paper accepted to CVPR 2025: <em>Immune: Improving Safety Against Jailbreaks in Multi-modal LLMs via Inference-Time Alignment</em>.</div>
-        <div><span class="font-semibold">2025.</span> Serving as Area Chair for ACL 2025 and for Transactions of Machine Learning Research.</div>
-        <div><span class="font-semibold">2024.</span> Two papers accepted to NeurIPS 2024 in Vancouver, Canada.</div>
-        <div><span class="font-semibold">2024.</span> Presented recent AI alignment works at IBM Research, NY, Google DeepMind NYC, and Amazon.</div>
-        <div><span class="font-semibold">2024.</span> Five papers accepted to ICML 2024 in Vienna, Austria.</div>
-        <div><span class="font-semibold">2024.</span> Joined UCF as an Assistant Professor in January 2024 and started recruiting Ph.D. students and postdocs.</div>
+      <div class="space-y-5">
+        <article class="news-card soft-card p-6">
+          <div class="text-sm muted mb-1">2026</div>
+          <h3 class="text-xl font-semibold leading-8">Two papers accepted to ICLR 2026</h3>
+          <p class="text-gray-700 mt-2 leading-7">
+            Two papers from our group were accepted to ICLR 2026 in Rio de Janeiro, Brazil.
+          </p>
+        </article>
+
+        <article class="news-card soft-card p-6">
+          <div class="text-sm muted mb-1">2026</div>
+          <h3 class="text-xl font-semibold leading-8">Paper accepted to EACL 2026</h3>
+          <p class="text-gray-700 mt-2 leading-7">
+            Our paper <em>LIAR: Leveraging Inference Time Alignment (Best-of-N) to Jailbreak LLMs in Seconds</em> was accepted to EACL 2026.
+          </p>
+        </article>
+
+        <article class="news-card soft-card p-6">
+          <div class="text-sm muted mb-1">2026</div>
+          <h3 class="text-xl font-semibold leading-8">Paper on safety of VLMs accepted to AAAI 2026</h3>
+          <p class="text-gray-700 mt-2 leading-7">
+            Recent work on safety for vision-language models was accepted to AAAI 2026.
+          </p>
+        </article>
+
+        <article class="news-card soft-card p-6">
+          <div class="text-sm muted mb-1">2025</div>
+          <h3 class="text-xl font-semibold leading-8">Three papers accepted to NeurIPS 2025</h3>
+          <p class="text-gray-700 mt-2 leading-7">
+            Our recent work on reasoning models, theoretical reinforcement learning, and LLM alignment was accepted to NeurIPS 2025.
+          </p>
+        </article>
+
+        <article class="news-card soft-card p-6">
+          <div class="text-sm muted mb-1">2025</div>
+          <h3 class="text-xl font-semibold leading-8">Invited talk at Asilomar 2025</h3>
+          <p class="text-gray-700 mt-2 leading-7">
+            Gave an invited talk on satisficing alignment at Asilomar 2025.
+          </p>
+        </article>
+
+        <article class="news-card soft-card p-6">
+          <div class="text-sm muted mb-1">2025</div>
+          <h3 class="text-xl font-semibold leading-8">Paper accepted to IEEE RAL 2025</h3>
+          <p class="text-gray-700 mt-2 leading-7">
+            Our work on multi-robot coordination via multi-agent actor-critic was accepted to IEEE Robotics and Automation Letters.
+          </p>
+        </article>
+
+        <article class="news-card soft-card p-6">
+          <div class="text-sm muted mb-1">2025</div>
+          <h3 class="text-xl font-semibold leading-8">Workshop and conference papers in 2025</h3>
+          <p class="text-gray-700 mt-2 leading-7">
+            Papers were accepted to EMNLP 2025, CDC 2025, IROS 2025, and ICML 2025, and we are organizing the first NeurIPS Workshop on Biosecurity Safeguards for Generative AI.
+          </p>
+        </article>
+
+        <article class="news-card soft-card p-6">
+          <div class="text-sm muted mb-1">2025</div>
+          <h3 class="text-xl font-semibold leading-8">CVPR 2025 and academic service</h3>
+          <p class="text-gray-700 mt-2 leading-7">
+            Our paper <em>Immune: Improving Safety Against Jailbreaks in Multi-modal LLMs via Inference-Time Alignment</em> was accepted to CVPR 2025. I also served as Area Chair for ACL 2025 and for Transactions of Machine Learning Research.
+          </p>
+        </article>
+
+        <article class="news-card soft-card p-6">
+          <div class="text-sm muted mb-1">2024</div>
+          <h3 class="text-xl font-semibold leading-8">NeurIPS 2024, ICML 2024, and invited talks</h3>
+          <p class="text-gray-700 mt-2 leading-7">
+            Two papers were accepted to NeurIPS 2024, five papers were accepted to ICML 2024, and I presented recent AI alignment work at IBM Research, Google DeepMind NYC, and Amazon.
+          </p>
+        </article>
+
+        <article class="news-card soft-card p-6">
+          <div class="text-sm muted mb-1">2024</div>
+          <h3 class="text-xl font-semibold leading-8">Joined UCF in January 2024</h3>
+          <p class="text-gray-700 mt-2 leading-7">
+            I joined the University of Central Florida as an Assistant Professor and began recruiting Ph.D. students and postdocs.
+          </p>
+        </article>
       </div>
     </section>
 
     <!-- Publications -->
-    <section id="publications" class="pt-20">
-      <div class="flex items-end justify-between gap-4 mb-6">
-        <h2 class="section-title text-3xl font-semibold">Selected Publications</h2>
-        <a href="#" class="text-sm underline underline-offset-4 hover:text-blue-700">Full list coming soon</a>
+    <section id="publications" class="pt-20 md:pt-24">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-6">
+        <div>
+          <h2 class="section-title text-3xl md:text-4xl font-semibold">Selected Publications</h2>
+          <div class="accent-line mt-3"></div>
+        </div>
+        <a href="#" class="text-sm underline underline-offset-4 hover:text-blue-700">Full publication list</a>
       </div>
 
-      <div class="space-y-6 text-[1.02rem] leading-8 text-gray-800">
-        <div>
-          <div class="font-semibold">Learning Multi-Robot Coordination through Locality-Based Factorized Multi-Agent Actor-Critic Algorithm</div>
-          <div>C. L. Shek, A. S. Bedi, A. Basak, E. Novoseller, N. Waytowich, P. Narayanan, D. Manocha, and P. Tokekar</div>
-          <div><em>IEEE Robotics and Automation Letters (RAL), 2025</em></div>
-        </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <article class="pub-card soft-card p-6">
+          <div class="text-sm muted mb-2">IEEE Robotics and Automation Letters · 2025</div>
+          <h3 class="text-xl font-semibold leading-8">
+            Learning Multi-Robot Coordination through Locality-Based Factorized Multi-Agent Actor-Critic Algorithm
+          </h3>
+          <p class="text-gray-700 mt-3 leading-7">
+            C. L. Shek, A. S. Bedi, A. Basak, E. Novoseller, N. Waytowich, P. Narayanan, D. Manocha, and P. Tokekar
+          </p>
+        </article>
 
-        <div>
-          <div class="font-semibold">Does Thinking More Always Help? Mirage of Test-Time Scaling in Reasoning Models</div>
-          <div>S. S. Ghosal, S. Chakraborty, A. Reddy, Y. Lu, M. Wang, D. Manocha, F. Huang, M. Ghavamzadeh, and A. S. Bedi</div>
-          <div><em>NeurIPS 2025</em></div>
-        </div>
+        <article class="pub-card soft-card p-6">
+          <div class="text-sm muted mb-2">NeurIPS · 2025</div>
+          <h3 class="text-xl font-semibold leading-8">
+            Does Thinking More Always Help? Mirage of Test-Time Scaling in Reasoning Models
+          </h3>
+          <p class="text-gray-700 mt-3 leading-7">
+            S. S. Ghosal, S. Chakraborty, A. Reddy, Y. Lu, M. Wang, D. Manocha, F. Huang, M. Ghavamzadeh, and A. S. Bedi
+          </p>
+        </article>
 
-        <div>
-          <div class="font-semibold">Bounded Rationality for LLMs: Satisficing Alignment at Inference-Time</div>
-          <div>El Hajj Chehade, M. F., Ghosal, S. S., Chakraborty, S., Reddy, A., Manocha, D., Zhu, H., and A. S. Bedi</div>
-          <div><em>ICML 2025</em></div>
-        </div>
+        <article class="pub-card soft-card p-6">
+          <div class="text-sm muted mb-2">ICML · 2025</div>
+          <h3 class="text-xl font-semibold leading-8">
+            Bounded Rationality for LLMs: Satisficing Alignment at Inference-Time
+          </h3>
+          <p class="text-gray-700 mt-3 leading-7">
+            El Hajj Chehade, M. F., Ghosal, S. S., Chakraborty, S., Reddy, A., Manocha, D., Zhu, H., and A. S. Bedi
+          </p>
+        </article>
 
-        <div>
-          <div class="font-semibold">Immune: Improving Safety Against Jailbreaks in Multi-modal LLMs via Inference-Time Alignment</div>
-          <div>S. S. Ghosal, S. Chakraborty, V. Singh, T. Guan, M. Wang, A. Beirami, F. Huang, A. Velasquez, D. Manocha, and A. S. Bedi</div>
-          <div><em>CVPR 2025</em></div>
-        </div>
+        <article class="pub-card soft-card p-6">
+          <div class="text-sm muted mb-2">CVPR · 2025</div>
+          <h3 class="text-xl font-semibold leading-8">
+            Immune: Improving Safety Against Jailbreaks in Multi-modal LLMs via Inference-Time Alignment
+          </h3>
+          <p class="text-gray-700 mt-3 leading-7">
+            S. S. Ghosal, S. Chakraborty, V. Singh, T. Guan, M. Wang, A. Beirami, F. Huang, A. Velasquez, D. Manocha, and A. S. Bedi
+          </p>
+        </article>
 
-        <div>
-          <div class="font-semibold">Transfer Q⋆: Principled Decoding for LLM Alignment</div>
-          <div>S. Chakraborty, S. Ghoshal, M. Yin, D. Manocha, M. Wang, A. S. Bedi, and F. Huang</div>
-          <div><em>NeurIPS 2024</em></div>
-        </div>
+        <article class="pub-card soft-card p-6">
+          <div class="text-sm muted mb-2">NeurIPS · 2024</div>
+          <h3 class="text-xl font-semibold leading-8">
+            Transfer Q⋆: Principled Decoding for LLM Alignment
+          </h3>
+          <p class="text-gray-700 mt-3 leading-7">
+            S. Chakraborty, S. Ghoshal, M. Yin, D. Manocha, M. Wang, A. S. Bedi, and F. Huang
+          </p>
+        </article>
 
-        <div>
-          <div class="font-semibold">MaxMin-RLHF: Towards Equitable Alignment of Large Language Models with Diverse Human Preferences</div>
-          <div>S. Chakraborty, J. Qiu, H. Yuan, A. Koppel, F. Huang, D. Manocha, A. S. Bedi, and M. Wang</div>
-          <div><em>ICML 2024</em></div>
-        </div>
+        <article class="pub-card soft-card p-6">
+          <div class="text-sm muted mb-2">ICML · 2024</div>
+          <h3 class="text-xl font-semibold leading-8">
+            MaxMin-RLHF: Towards Equitable Alignment of Large Language Models with Diverse Human Preferences
+          </h3>
+          <p class="text-gray-700 mt-3 leading-7">
+            S. Chakraborty, J. Qiu, H. Yuan, A. Koppel, F. Huang, D. Manocha, A. S. Bedi, and M. Wang
+          </p>
+        </article>
 
-        <div>
-          <div class="font-semibold">Closing the Gap: Achieving Global Convergence (Last Iterate) of Actor-Critic under Markovian Sampling with Neural Network Parametrization</div>
-          <div>M. Gaur, A. S. Bedi, D. Wang, and V. Aggarwal</div>
-          <div><em>ICML 2024</em> — Spotlight</div>
-        </div>
+        <article class="pub-card soft-card p-6">
+          <div class="text-sm muted mb-2">ICML · 2024 · Spotlight</div>
+          <h3 class="text-xl font-semibold leading-8">
+            Closing the Gap: Achieving Global Convergence (Last Iterate) of Actor-Critic under Markovian Sampling with Neural Network Parametrization
+          </h3>
+          <p class="text-gray-700 mt-3 leading-7">
+            M. Gaur, A. S. Bedi, D. Wang, and V. Aggarwal
+          </p>
+        </article>
 
-        <div>
-          <div class="font-semibold">PARL: A Unified Framework for Policy Alignment in Reinforcement Learning</div>
-          <div>S. Chakraborty, A. S. Bedi, A. Koppel, D. Manocha, H. Wang, M. Wang, and F. Huang</div>
-          <div><em>ICLR 2024</em></div>
-        </div>
+        <article class="pub-card soft-card p-6">
+          <div class="text-sm muted mb-2">ICLR · 2024</div>
+          <h3 class="text-xl font-semibold leading-8">
+            PARL: A Unified Framework for Policy Alignment in Reinforcement Learning
+          </h3>
+          <p class="text-gray-700 mt-3 leading-7">
+            S. Chakraborty, A. S. Bedi, A. Koppel, D. Manocha, H. Wang, M. Wang, and F. Huang
+          </p>
+        </article>
       </div>
     </section>
 
     <!-- Teaching -->
-    <section id="teaching" class="pt-20">
-      <h2 class="section-title text-3xl font-semibold mb-6">Teaching</h2>
-      <div class="space-y-4 text-[1.02rem] leading-8 text-gray-800">
-        <p>
-          Teaching information will be updated here. This section can include current and past courses, teaching materials, and student-related information.
+    <section id="teaching" class="pt-20 md:pt-24">
+      <h2 class="section-title text-3xl md:text-4xl font-semibold mb-3">Teaching</h2>
+      <div class="accent-line mb-6"></div>
+
+      <div class="soft-card p-6 md:p-7 text-[1.02rem] leading-8 text-gray-800">
+        <p class="mb-4">
+          Teaching information will be updated here. This section can include current and past courses, course webpages, lecture notes, and student-related information.
         </p>
-        <ul class="list-disc pl-6">
+        <ul class="list-disc pl-6 space-y-1">
           <li>Current courses</li>
           <li>Past courses</li>
           <li>Course webpages or lecture notes</li>
@@ -213,21 +372,23 @@ font-family: Aptos, "Segoe UI", Roboto, Arial, sans-serif;    }
     </section>
 
     <!-- Links -->
-    <section id="links" class="pt-20">
-      <h2 class="section-title text-3xl font-semibold mb-6">Links</h2>
-      <div class="grid sm:grid-cols-2 gap-4 text-[1.02rem]">
-        <a href="mailto:amritbedi@ucf.edu" class="border border-gray-200 rounded-lg px-5 py-4 hover:border-blue-500 hover:text-blue-700 transition">Email</a>
-        <a href="#" class="border border-gray-200 rounded-lg px-5 py-4 hover:border-blue-500 hover:text-blue-700 transition">Google Scholar</a>
-        <a href="#" class="border border-gray-200 rounded-lg px-5 py-4 hover:border-blue-500 hover:text-blue-700 transition">Curriculum Vitae</a>
-        <a href="#" class="border border-gray-200 rounded-lg px-5 py-4 hover:border-blue-500 hover:text-blue-700 transition">LinkedIn</a>
-        <a href="#" class="border border-gray-200 rounded-lg px-5 py-4 hover:border-blue-500 hover:text-blue-700 transition">Twitter</a>
-        <a href="#" class="border border-gray-200 rounded-lg px-5 py-4 hover:border-blue-500 hover:text-blue-700 transition">SafeRR AI Lab</a>
+    <section id="links" class="pt-20 md:pt-24">
+      <h2 class="section-title text-3xl md:text-4xl font-semibold mb-3">Links</h2>
+      <div class="accent-line mb-6"></div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 text-[1.02rem]">
+        <a href="mailto:amritbedi@ucf.edu" class="link-card soft-card px-5 py-5 hover:border-blue-500 hover:text-blue-700 transition">Email</a>
+        <a href="#" class="link-card soft-card px-5 py-5 hover:border-blue-500 hover:text-blue-700 transition">Google Scholar</a>
+        <a href="#" class="link-card soft-card px-5 py-5 hover:border-blue-500 hover:text-blue-700 transition">Curriculum Vitae</a>
+        <a href="#" class="link-card soft-card px-5 py-5 hover:border-blue-500 hover:text-blue-700 transition">LinkedIn</a>
+        <a href="#" class="link-card soft-card px-5 py-5 hover:border-blue-500 hover:text-blue-700 transition">Twitter</a>
+        <a href="#" class="link-card soft-card px-5 py-5 hover:border-blue-500 hover:text-blue-700 transition">SafeRR AI Lab</a>
       </div>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer class="mt-20 border-t border-gray-200">
+  <footer class="mt-20 border-t border-gray-200 bg-white">
     <div class="max-w-6xl mx-auto px-6 py-8 text-sm text-gray-500">
       © 2026 Amrit Singh Bedi
     </div>
