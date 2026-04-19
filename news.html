@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News — Amrit Singh Bedi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--ink:#1a1814;--ink-mid:#4a4640;--ink-faint:#8a8480;--paper:#faf9f7;--cream:#f2efe9;--rule:#dedad4;--blue:#1a3a6e;--blue-lt:#e8eef8;--gold:#b8880a;--serif:'EB Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--max:820px}
+    html{scroll-behavior:smooth;font-size:17px}
+    body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.65}
+    header{position:sticky;top:0;z-index:100;background:rgba(250,249,247,0.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+    .header-inner{max-width:var(--max);margin:0 auto;padding:0 2rem;height:58px;display:flex;align-items:center;justify-content:space-between}
+    .back-link{font-size:0.82rem;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-mid);text-decoration:none}
+    .back-link:hover{color:var(--blue)}
+    nav{display:flex;gap:2rem}
+    nav a{font-size:0.82rem;font-weight:400;color:var(--ink-mid);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase}
+    nav a:hover{color:var(--blue)}
+    main{max-width:var(--max);margin:0 auto;padding:3rem 2rem 6rem}
+    .page-head{margin-bottom:2.5rem;padding-bottom:1.25rem;border-bottom:1px solid var(--rule)}
+    .page-head h1{font-family:var(--serif);font-size:1.9rem;font-weight:500;letter-spacing:-0.01em}
+
+    /* Filter bar */
+    .filter-bar{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+    .fbtn{font-size:0.72rem;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;padding:5px 13px;border-radius:3px;border:1px solid var(--rule);background:var(--paper);color:var(--ink-mid);cursor:pointer;transition:all 0.14s}
+    .fbtn:hover{background:var(--cream)}
+    .fbtn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+    /* News items */
+    .news-item{display:grid;grid-template-columns:56px 1fr;gap:1.5rem;padding:1.2rem 0;border-bottom:1px solid var(--rule)}
+    .news-item.hidden{display:none}
+    .news-year{font-family:var(--serif);font-size:0.85rem;color:var(--ink-faint);font-style:italic;padding-top:4px}
+    .news-content h3{font-family:var(--serif);font-size:1.05rem;font-weight:500;color:var(--ink);margin-bottom:0.25rem;line-height:1.4}
+    .news-content p{font-size:0.88rem;color:var(--ink-mid);line-height:1.65;margin-top:0.2rem}
+    .tag{display:inline-block;font-size:0.68rem;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;padding:2px 8px;border-radius:3px;margin-right:6px;margin-bottom:5px}
+    .tag-pub{background:var(--blue-lt);color:var(--blue)}
+    .tag-service{background:#f5edf7;color:#6e1a8e}
+    .tag-talk{background:#edf7f0;color:#1a6e40}
+    .tag-funding{background:#fdf3e0;color:var(--gold)}
+    .tag-workshop{background:#fff0e8;color:#b84a0a}
+
+    footer{border-top:1px solid var(--rule);background:var(--cream);margin-top:4rem}
+    .footer-inner{max-width:var(--max);margin:0 auto;padding:1.4rem 2rem;display:flex;align-items:center;justify-content:space-between}
+    .footer-inner p{font-size:0.8rem;color:var(--ink-faint)}
+    @media(max-width:600px){.news-item{grid-template-columns:44px 1fr;gap:1rem}nav{display:none}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="back-link" href="index.html">← Amrit Singh Bedi</a>
+    <nav>
+      <a href="index.html#publications">Publications</a>
+      <a href="index.html#teaching">Teaching</a>
+      <a href="index.html#links">Links</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="page-head">
+    <h1>News</h1>
+  </div>
+
+  <div class="filter-bar">
+    <button class="fbtn active" onclick="filter('all',event)">All</button>
+    <button class="fbtn" onclick="filter('pub',event)">Publications</button>
+    <button class="fbtn" onclick="filter('talk',event)">Talks</button>
+    <button class="fbtn" onclick="filter('service',event)">Service</button>
+    <button class="fbtn" onclick="filter('workshop',event)">Workshops</button>
+    <button class="fbtn" onclick="filter('funding',event)">Funding</button>
+  </div>
+
+  <!-- 2026 -->
+  <div class="news-item" data-cat="pub"><div class="news-year">2026</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Two papers accepted to ICLR 2026</h3><p>Two papers from our group accepted to ICLR 2026 in Rio de Janeiro, Brazil.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2026</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to EACL 2026</h3><p><em>LIAR: Leveraging Inference Time Alignment (Best-of-N) to Jailbreak LLMs in Seconds</em></p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2026</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper on safety of VLMs accepted to AAAI 2026</h3></div></div>
+
+  <!-- 2025 -->
+  <div class="news-item" data-cat="pub"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to Nature Biotechnology</h3><p>Our work on generative AI and biosecurity. <a href="https://www.nature.com/articles/s41587-025-02650-8" target="_blank" style="color:var(--blue);text-decoration:none;">Read →</a></p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Three papers accepted to NeurIPS 2025</h3><p>Work spanning reasoning models, theoretical RL, and LLM alignment. San Diego, CA.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to EMNLP 2025</h3></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to CDC 2025</h3></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Three papers accepted to IROS 2025</h3></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to ICML 2025</h3><p>Vancouver, Canada.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to IEEE RAL 2025</h3><p>Multi-robot coordination via locality-based factorized multi-agent actor-critic.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to CVPR 2025</h3><p><em>Immune: Improving Safety Against Jailbreaks in Multi-modal LLMs via Inference-Time Alignment</em></p></div></div>
+  <div class="news-item" data-cat="workshop"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-workshop">Workshop</span><h3>Organizing the first NeurIPS Workshop on Biosecurity Safeguards for Generative AI</h3><p>San Diego, California, USA.</p></div></div>
+  <div class="news-item" data-cat="talk"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-talk">Talk</span><h3>Invited talk at Asilomar 2025 on satisficing alignment</h3></div></div>
+  <div class="news-item" data-cat="talk"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-talk">Talk</span><h3>Presented Transfer Q* at UT Austin</h3></div></div>
+  <div class="news-item" data-cat="service"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-service">Service</span><h3>Area Chair — ACL 2025, NeurIPS 2025</h3></div></div>
+  <div class="news-item" data-cat="service"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-service">Service</span><h3>Area Chair — Transactions on Machine Learning Research (TMLR)</h3></div></div>
+
+  <!-- 2024 -->
+  <div class="news-item" data-cat="pub"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Two papers accepted to NeurIPS 2024</h3><p>Vancouver, Canada.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Five papers accepted to ICML 2024</h3><p>Vienna, Austria. Including one Spotlight (top 3.5% of submissions).</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Three papers accepted to IROS 2024</h3><p>Abu Dhabi, UAE.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to ICLR 2024</h3><p><em>PARL: A Unified Framework for Policy Alignment in Reinforcement Learning</em></p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to JMLR</h3><p><em>On the Sample Complexity and Metastability of Heavy-tailed Policy Search in Continuous Control</em></p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to TMLR</h3><p><em>A Survey on the Possibilities &amp; Impossibilities of AI-Generated Text Detection</em></p></div></div>
+  <div class="news-item" data-cat="talk"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-talk">Talk</span><h3>Invited talks at IBM Research, Google DeepMind NYC, and Amazon</h3><p>Presented Transfer Q* and MaxMin-RLHF. Also presented at Amazon Rising Star Speaker Series (June 2024).</p></div></div>
+  <div class="news-item" data-cat="service"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-service">Service</span><h3>Area Chair — NeurIPS 2024</h3></div></div>
+
+  <!-- 2023 -->
+  <div class="news-item" data-cat="pub"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted (oral) at CoRL 2023</h3><p><em>iPLAN: Intent-Aware Planning in Heterogeneous Traffic via Distributed Multi-Agent RL</em> — also won Best Paper at the Advances in Multi-Agent Learning Workshop at IROS 2023.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Two papers accepted to ICML 2023</h3><p>STEERING and Beyond Exponentially Fast Mixing in Average-Reward RL via Multi-Level Monte Carlo Actor-Critic.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Three papers accepted to ICRA 2023</h3><p>RTAW, Decentralized Multi-agent Exploration, and Heavy-Tailed Policy Optimization for sparse rewards.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Two papers accepted (oral) to AAAI 2023</h3></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to ICLR 2023</h3><p><em>SWIFT: Rapid Decentralized Federated Learning via Wait-Free Model Communication</em></p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to JAIR</h3><p><em>Achieving Zero Constraint Violation for Constrained Reinforcement Learning via Primal-Dual Approach</em></p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to IEEE TAI</h3><p><em>Regret and Belief Complexity Trade-off in Gaussian Process Bandits via Information Thresholding</em></p></div></div>
+  <div class="news-item" data-cat="service"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-service">Service</span><h3>Area Chair — NeurIPS 2023</h3></div></div>
+
+  <!-- 2022 -->
+  <div class="news-item" data-cat="pub"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Two papers accepted to ICML 2022 (spotlight talks)</h3><p>On the Hidden Biases of Policy Mirror Ascent; FedNew for federated learning.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Two papers accepted to IROS 2022</h3><p>Distributed Riemannian Optimization; DC-MRTA for multi-robot task allocation.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to CoRL 2022</h3><p>HTRON: Efficient Outdoor Navigation with Sparse Rewards via Heavy Tailed Adaptive Reinforce.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to IEEE TSP</h3><p>Projection-Free Algorithm for Stochastic Bi-level Optimization.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Two papers accepted to AAAI 2022</h3></div></div>
+  <div class="news-item" data-cat="funding"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-funding">Funding</span><h3>Amazon Research Award 2022</h3><p>For the proposal "Ensuring fairness via federated learning beyond consensus" at the University of Maryland.</p></div></div>
+  <div class="news-item" data-cat="funding"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-funding">Funding</span><h3>ARL Grant — Efficient Multi-Agent RL for Next-generation Team of Combat Vehicles</h3><p>Principal Investigator.</p></div></div>
+  <div class="news-item" data-cat="funding"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-funding">Funding</span><h3>ARL Grant — Risk Sensitive Maneuver Tradeoffs for a Team of Ground Vehicles</h3><p>Co-Principal Investigator.</p></div></div>
+  <div class="news-item" data-cat="funding"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-funding">Funding</span><h3>Northrop Grumman Seed Grant Award</h3><p>Principal Investigator.</p></div></div>
+
+</main>
+<footer>
+  <div class="footer-inner">
+    <p>© 2026 Amrit Singh Bedi &nbsp;·&nbsp; University of Central Florida</p>
+    <p><a href="index.html" style="color:var(--blue);text-decoration:none;">← Back to home</a></p>
+  </div>
+</footer>
+<script>
+  function filter(cat, e) {
+    document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    document.querySelectorAll('.news-item').forEach(item => {
+      if (cat === 'all' || item.dataset.cat === cat) {
+        item.classList.remove('hidden');
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+  }
+</script>
+</body>
+</html>
