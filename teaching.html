@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teaching — Amrit Singh Bedi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --ink:#1a1814;--ink-mid:#4a4640;--ink-faint:#8a8480;
+      --paper:#faf9f7;--cream:#f2efe9;--rule:#dedad4;
+      --blue:#1a3a6e;--blue-lt:#e8eef8;--gold:#b8880a;
+      --serif:'EB Garamond',Georgia,serif;
+      --sans:'DM Sans',system-ui,sans-serif;
+      --max:820px;
+    }
+    html{scroll-behavior:smooth;font-size:17px}
+    body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.65}
+
+    header{position:sticky;top:0;z-index:100;background:rgba(250,249,247,0.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+    .header-inner{max-width:var(--max);margin:0 auto;padding:0 2rem;height:58px;display:flex;align-items:center;justify-content:space-between}
+    .back-link{font-size:0.82rem;font-weight:400;letter-spacing:0.03em;color:var(--ink-mid);text-decoration:none}
+    .back-link:hover{color:var(--blue)}
+    nav{display:flex;gap:2rem}
+    nav a{font-size:0.82rem;font-weight:400;color:var(--ink-mid);text-decoration:none;letter-spacing:0.03em}
+    nav a:hover{color:var(--blue)}
+
+    main{max-width:var(--max);margin:0 auto;padding:3rem 2rem 6rem}
+
+    .page-head{margin-bottom:2.5rem;padding-bottom:1.25rem;border-bottom:1px solid var(--rule)}
+    .page-head h1{font-family:var(--serif);font-size:1.9rem;font-weight:500;letter-spacing:-0.01em;margin-bottom:0.3rem}
+    .page-head p{font-size:0.85rem;color:var(--ink-faint)}
+
+    /* Course cards */
+    .courses{display:flex;flex-direction:column;gap:0}
+
+    .course-item{
+      display:grid;
+      grid-template-columns:110px 1fr;
+      gap:1.75rem;
+      padding:1.5rem 0;
+      border-bottom:1px solid var(--rule);
+    }
+
+    .course-term{
+      padding-top:3px;
+      text-align:right;
+    }
+    .course-term .term{
+      font-family:var(--serif);
+      font-size:0.9rem;
+      font-weight:600;
+      color:var(--blue);
+      display:block;
+    }
+    .course-term .year{
+      font-size:0.75rem;
+      color:var(--ink-faint);
+      display:block;
+      margin-top:2px;
+    }
+    .course-term .level{
+      display:inline-block;
+      margin-top:6px;
+      font-size:0.68rem;
+      font-weight:500;
+      letter-spacing:0.03em;
+      padding:2px 7px;
+      border-radius:3px;
+    }
+    .level-grad{background:#edf7f0;color:#1a6e40}
+    .level-undergrad{background:var(--blue-lt);color:var(--blue)}
+
+    .course-body h3{
+      font-family:var(--serif);
+      font-size:1.12rem;
+      font-weight:500;
+      color:var(--ink);
+      line-height:1.4;
+      margin-bottom:0.35rem;
+    }
+    .course-body .focus{
+      font-size:0.85rem;
+      color:var(--ink-faint);
+      font-style:italic;
+      margin-bottom:0.5rem;
+    }
+    .course-body p{
+      font-size:0.88rem;
+      color:var(--ink-mid);
+      line-height:1.7;
+    }
+
+    /* Philosophy block */
+    .philosophy{
+      margin-top:3.5rem;
+      padding-top:2rem;
+      border-top:1px solid var(--rule);
+    }
+    .philosophy h2{
+      font-family:var(--serif);
+      font-size:1.3rem;
+      font-weight:500;
+      color:var(--ink);
+      margin-bottom:1rem;
+    }
+    .philosophy p{
+      font-size:0.93rem;
+      color:var(--ink-mid);
+      line-height:1.8;
+      margin-bottom:0.85rem;
+    }
+    .philosophy p:last-child{margin-bottom:0}
+
+    footer{border-top:1px solid var(--rule);background:var(--cream);margin-top:4rem}
+    .footer-inner{max-width:var(--max);margin:0 auto;padding:1.4rem 2rem;display:flex;align-items:center;justify-content:space-between}
+    .footer-inner p{font-size:0.8rem;color:var(--ink-faint)}
+
+    @media(max-width:600px){
+      .course-item{grid-template-columns:80px 1fr;gap:1rem}
+      nav{display:none}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="back-link" href="index.html">← Amrit Singh Bedi</a>
+    <nav>
+      <a href="index.html#news">News</a>
+      <a href="publications.html">Publications</a>
+      <a href="index.html#links">Links</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <div class="page-head">
+    <h1>Teaching</h1>
+    <p>University of Central Florida &nbsp;·&nbsp; Department of Computer Science</p>
+  </div>
+
+  <div class="courses">
+
+    <div class="course-item">
+      <div class="course-term">
+        <span class="term">Fall 2025</span>
+        <span class="year">2025</span>
+        <span class="level level-grad">Graduate</span>
+      </div>
+      <div class="course-body">
+        <h3>Current Topics in Machine Learning</h3>
+        <p class="focus">Focus: Agentic AI</p>
+        <p>
+          An advanced seminar covering the foundations and frontiers of agentic AI systems —
+          including tool-using language models, planning under uncertainty, multi-agent coordination,
+          and safety considerations for autonomous decision-making. Students engage with recent
+          research papers and present on emerging topics each week.
+        </p>
+      </div>
+    </div>
+
+    <div class="course-item">
+      <div class="course-term">
+        <span class="term">Spring 2025</span>
+        <span class="year">2025</span>
+        <span class="level level-undergrad">Undergraduate</span>
+      </div>
+      <div class="course-body">
+        <h3>Algorithms for Machine Learning</h3>
+        <p>
+          A foundational course covering core algorithmic ideas underlying modern machine learning —
+          including optimization, supervised and unsupervised learning, neural networks, and
+          model evaluation. Emphasis on both theoretical understanding and practical implementation.
+        </p>
+      </div>
+    </div>
+
+    <div class="course-item">
+      <div class="course-term">
+        <span class="term">Fall 2024</span>
+        <span class="year">2024</span>
+        <span class="level level-grad">Graduate</span>
+      </div>
+      <div class="course-body">
+        <h3>Current Topics in Machine Learning</h3>
+        <p class="focus">Focus: AI Alignment</p>
+        <p>
+          A graduate seminar on the theory and practice of AI alignment — covering reinforcement
+          learning from human feedback (RLHF), preference learning, reward modeling, constitutional
+          AI, and inference-time safety methods. Weekly paper discussions drive the course, with
+          students leading sessions on selected readings.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="philosophy">
+    <h2>Teaching Philosophy</h2>
+    <p>
+      My teaching follows the Universal Design for Learning (UDL) framework, offering multiple
+      means of engagement, representation, and assessment. I aim to make rigorous material
+      accessible through diverse modalities — including weekly paper discussions, written
+      assignments, quizzes, and student-led presentations.
+    </p>
+    <p>
+      At the graduate level, I treat courses as research incubators: students are expected to
+      read primary literature critically, identify open problems, and connect theory to practice.
+      At the undergraduate level, I emphasize building strong algorithmic intuition alongside
+      the mathematical foundations needed for advanced study.
+    </p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p>© 2026 Amrit Singh Bedi &nbsp;·&nbsp; University of Central Florida</p>
+    <p><a href="index.html" style="color:var(--blue);text-decoration:none;">← Back to home</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
