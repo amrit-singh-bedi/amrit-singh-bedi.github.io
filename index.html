@@ -6,7 +6,6 @@
   <title>Amrit Singh Bedi</title>
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Inter is more reliable on the web; Aptos is kept as fallback -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -56,12 +55,13 @@
   <!-- Header -->
   <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-gray-200">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="#top" class="text-2xl md:text-2xl font-semibold tracking-tight">
+      <a href="#home" class="text-2xl md:text-2xl font-semibold tracking-tight">
         Amrit Singh Bedi
       </a>
 
       <nav class="hidden md:flex items-center gap-7 text-[1rem] font-medium">
-        <a href="#SaferRR AI Lab" class="hover:text-blue-700 transition">News</a>
+        <a href="#home" class="hover:text-blue-700 transition">Home</a>
+        <a href="#news" class="hover:text-blue-700 transition">News</a>
         <a href="#publications" class="hover:text-blue-700 transition">Publications</a>
         <a href="#teaching" class="hover:text-blue-700 transition">Teaching</a>
         <a href="#links" class="hover:text-blue-700 transition">Links</a>
@@ -74,7 +74,8 @@
 
     <div id="mobileMenu" class="hidden md:hidden border-t border-gray-200 bg-white">
       <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-4 text-[1rem] font-medium">
-        <a href="#SaferRR AI Lab" class="hover:text-blue-700">News</a>
+        <a href="#home" class="hover:text-blue-700">Home</a>
+        <a href="#news" class="hover:text-blue-700">News</a>
         <a href="#publications" class="hover:text-blue-700">Publications</a>
         <a href="#teaching" class="hover:text-blue-700">Teaching</a>
         <a href="#links" class="hover:text-blue-700">Links</a>
@@ -83,10 +84,10 @@
   </header>
 
   <!-- Main -->
-  <main id="top" class="max-w-6xl mx-auto px-6 py-12 md:py-16">
+  <main class="max-w-6xl mx-auto px-6 py-12 md:py-16">
 
-    <!-- Hero / About -->
-    <section id="about" class="grid md:grid-cols-[260px_minmax(0,1fr)] gap-10 md:gap-14 items-start">
+    <!-- Home -->
+    <section id="home" class="grid md:grid-cols-[260px_minmax(0,1fr)] gap-10 md:gap-14 items-start">
       <div>
         <img
           src="profile.jpg"
@@ -118,48 +119,16 @@
 
         <div class="space-y-5 text-[1.04rem] md:text-[1.08rem] leading-8 text-gray-800 max-w-4xl">
           <p>
-            I am an Assistant Professor in the Department of Computer Science, with a joint appointment in Electrical and Computer Engineering, at the University of Central Florida. My research lies at the intersection of trustworthy AI, machine learning, optimization, and decision-making, with a particular emphasis on AI alignment, reinforcement learning, and safe generative AI.
+            I am an Assistant Professor in the Department of Computer Science, with a joint appointment in Electrical and Computer Engineering, at the University of Central Florida. I lead the SafeRR AI Lab, where we develop trustworthy, adaptive, and efficient AI systems, with a focus on AI alignment, reinforcement learning, safe generative AI, and multi-agent decision-making.
           </p>
 
           <p>
-            My group develops mathematically grounded methods for building AI systems that are robust, adaptive, and deployable in real-world settings. We work on problems spanning alignment with human feedback, reliable inference-time control, multi-agent learning, and trustworthy embodied AI.
+            My research combines machine learning, optimization, and control to build AI systems that are robust, reliable, and deployable in real-world settings. I am particularly interested in alignment with human feedback, inference-time safeguards, and embodied and multi-agent intelligence.
           </p>
 
           <p>
-            Before joining UCF, I was an Assistant Research Professor/Scientist at the University of Maryland, College Park. Earlier, I worked with the U.S. Army Research Laboratory. I received my Ph.D. in Electrical Engineering from the Indian Institute of Technology Kanpur, where my thesis focused on distributed and online learning with stochastic gradient methods.
+            Before joining UCF, I was at the University of Maryland, College Park, and the U.S. Army Research Laboratory. I received my Ph.D. in Electrical Engineering from IIT Kanpur.
           </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Research -->
-    <section id="research" class="pt-20 md:pt-24">
-      <h2 class="section-title text-3xl md:text-4xl font-semibold mb-3">Research</h2>
-      <div class="accent-line mb-6"></div>
-
-      <p class="text-[1.05rem] md:text-[1.08rem] leading-8 text-gray-800 mb-8 max-w-4xl">
-        My research focuses on machine learning and artificial intelligence, with an emphasis on trustworthy, adaptive, and efficient methods. I am particularly interested in advancing theoretical foundations and practical algorithms for reliable AI systems.
-      </p>
-
-      <div class="grid md:grid-cols-2 gap-5">
-        <div class="soft-card p-6">
-          <h3 class="font-semibold text-lg mb-2">AI Alignment</h3>
-          <p class="text-gray-700 leading-7">Theoretical insights and practical algorithms for aligning AI systems with human goals and preferences.</p>
-        </div>
-
-        <div class="soft-card p-6">
-          <h3 class="font-semibold text-lg mb-2">RLHF</h3>
-          <p class="text-gray-700 leading-7">Reinforcement learning from human feedback, including robust and fair preference-based learning.</p>
-        </div>
-
-        <div class="soft-card p-6">
-          <h3 class="font-semibold text-lg mb-2">Safe Generative AI</h3>
-          <p class="text-gray-700 leading-7">Safety, trustworthiness, and inference-time safeguards for large language and multimodal models.</p>
-        </div>
-
-        <div class="soft-card p-6">
-          <h3 class="font-semibold text-lg mb-2">Optimization and Efficiency</h3>
-          <p class="text-gray-700 leading-7">Optimization methods and data-efficient machine learning for scalable and adaptive AI systems.</p>
         </div>
       </div>
     </section>
