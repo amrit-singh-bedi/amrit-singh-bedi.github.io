@@ -4,61 +4,296 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="SafeRR AI Lab at the University of Central Florida. Research in safe, robust, and reliable AI, reinforcement learning, and AI alignment." />
+
   <title>SafeRR AI Lab — Amrit Singh Bedi</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
+
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--ink:#1a1814;--ink-mid:#4a4640;--ink-faint:#706a65;--paper:#faf9f7;--cream:#f2efe9;--rule:#dedad4;--blue:#1a3a6e;--gold:#b8880a;--serif:'EB Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--max:860px}
+
+    :root{
+      --ink:#1a1814;
+      --ink-mid:#4a4640;
+      --ink-faint:#706a65;
+      --paper:#faf9f7;
+      --cream:#f2efe9;
+      --rule:#dedad4;
+      --blue:#1a3a6e;
+      --gold:#b8880a;
+      --serif:'EB Garamond',Georgia,serif;
+      --sans:'DM Sans',system-ui,sans-serif;
+      --max:860px;
+    }
+
     html{font-size:17px}
-    body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.65}
+
+    body{
+      font-family:var(--sans);
+      background:var(--paper);
+      color:var(--ink);
+      line-height:1.65;
+    }
+
     a{color:var(--blue);text-underline-offset:3px}
     a:hover{text-decoration:underline}
-    a:focus-visible{outline:2px solid var(--blue);outline-offset:4px;border-radius:2px}
-    .skip-link{position:absolute;left:1rem;top:-5rem;padding:0.5rem 1rem;background:var(--paper);z-index:200}
+
+    a:focus-visible{
+      outline:2px solid var(--blue);
+      outline-offset:4px;
+      border-radius:2px;
+    }
+
+    .skip-link{
+      position:absolute;
+      left:1rem;
+      top:-5rem;
+      padding:0.5rem 1rem;
+      background:var(--paper);
+      z-index:200;
+    }
+
     .skip-link:focus{top:0.5rem}
-    header{position:sticky;top:0;z-index:100;background:rgba(250,249,247,0.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
-    .header-inner{max-width:var(--max);margin:0 auto;padding:0.8rem 2rem;min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:0.65rem 1.5rem;flex-wrap:wrap}
-    .back-link,nav a{font-size:0.82rem;font-weight:400;color:var(--ink-mid);text-decoration:none;letter-spacing:0.03em}
+
+    /* Header */
+    header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(250,249,247,0.95);
+      backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--rule);
+    }
+
+    .header-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:0.8rem 2rem;
+      min-height:58px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:0.65rem 1.5rem;
+      flex-wrap:wrap;
+    }
+
+    .back-link,nav a{
+      font-size:0.82rem;
+      font-weight:400;
+      color:var(--ink-mid);
+      text-decoration:none;
+      letter-spacing:0.03em;
+    }
+
     nav{display:flex;gap:1.5rem;flex-wrap:wrap}
-    nav a[aria-current="page"]{color:var(--blue);font-weight:500}
-    main{max-width:var(--max);margin:0 auto;padding:3rem 2rem 4rem}
-    .page-head{margin-bottom:1.6rem;padding-bottom:1.2rem;border-bottom:1px solid var(--rule)}
-    h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-0.01em}
-    h1{font-size:2.1rem;line-height:1.2;margin-bottom:0.45rem}
-    .tagline{font-size:0.95rem;color:var(--ink-mid);margin-bottom:0.35rem}
-    .affiliation{font-size:0.82rem;color:var(--ink-faint)}
-    .intro{font-size:0.9rem;color:var(--ink-mid);line-height:1.8}
+
+    nav a[aria-current="page"]{
+      color:var(--blue);
+      font-weight:500;
+    }
+
+    /* Page introduction */
+    main{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:3rem 2rem 4rem;
+    }
+
+    .page-head{
+      margin-bottom:1.6rem;
+      padding-bottom:1.2rem;
+      border-bottom:1px solid var(--rule);
+    }
+
+    h1,h2,h3{
+      font-family:var(--serif);
+      font-weight:500;
+      letter-spacing:-0.01em;
+    }
+
+    h1{
+      font-size:2.1rem;
+      line-height:1.2;
+      margin-bottom:0.45rem;
+    }
+
+    .tagline{
+      font-size:0.95rem;
+      color:var(--ink-mid);
+      margin-bottom:0.35rem;
+    }
+
+    .affiliation{
+      font-size:0.82rem;
+      color:var(--ink-faint);
+    }
+
+    .intro{
+      font-size:0.9rem;
+      color:var(--ink-mid);
+      line-height:1.8;
+    }
+
     .intro p{margin-bottom:0.9rem}
-    .intro-links{display:flex;gap:0.5rem 1.5rem;flex-wrap:wrap;font-size:0.83rem}
+
+    .intro-links{
+      display:flex;
+      gap:0.5rem 1.5rem;
+      flex-wrap:wrap;
+      font-size:0.83rem;
+    }
+
     .intro-links a{font-weight:500}
-    section{margin-top:2.5rem;scroll-margin-top:7rem}
-    h2{font-size:1.55rem;padding-bottom:0.55rem;border-bottom:1px solid var(--rule)}
+
+    /* People sections */
+    section{
+      margin-top:2.5rem;
+      scroll-margin-top:7rem;
+    }
+
+    h2{
+      font-size:1.55rem;
+      padding-bottom:0.55rem;
+      border-bottom:1px solid var(--rule);
+    }
+
     .people{list-style:none}
-    .person{padding:1.2rem 0;border-bottom:1px solid var(--rule);overflow-wrap:anywhere}
+
+    .person{
+      padding:1.2rem 0;
+      border-bottom:1px solid var(--rule);
+      overflow-wrap:anywhere;
+    }
+
     .person:last-child{border-bottom:0}
-    h3{font-size:1.18rem;line-height:1.4;margin-bottom:0.2rem}
-    .person p{font-size:0.85rem;color:var(--ink-mid);margin-top:0.15rem}
-    .person .person-meta{font-size:0.81rem;color:var(--ink-faint)}
-    .person .person-links{font-size:0.8rem;margin-top:0.35rem}
-    footer{border-top:1px solid var(--rule);background:var(--cream)}
-    .footer-inner{max-width:var(--max);margin:0 auto;padding:1.4rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:0.5rem 1rem;flex-wrap:wrap}
-    .footer-inner p{font-size:0.8rem;color:var(--ink-faint)}
+
+    h3{
+      font-size:1.18rem;
+      line-height:1.4;
+      margin-bottom:0.2rem;
+    }
+
+    .person p{
+      font-size:0.85rem;
+      color:var(--ink-mid);
+      margin-top:0.15rem;
+    }
+
+    .person .person-meta{
+      font-size:0.81rem;
+      color:var(--ink-faint);
+    }
+
+    .person .person-links{
+      font-size:0.8rem;
+      margin-top:0.35rem;
+    }
+
+    .person-with-photo{
+      display:grid;
+      grid-template-columns:88px minmax(0,1fr);
+      align-items:center;
+      gap:1.25rem;
+    }
+
+    .person-details{min-width:0}
+
+    /* Photo placeholders */
+    .person-photo{
+      position:relative;
+      width:88px;
+      height:88px;
+      overflow:hidden;
+      border:1px solid var(--rule);
+      border-radius:4px;
+      background:var(--cream);
+    }
+
+    .photo-placeholder{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family:var(--serif);
+      font-size:1.5rem;
+      color:var(--ink-faint);
+    }
+
+    .person-photo img{
+      position:relative;
+      display:block;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+    }
+
+    .person-photo img[hidden]{display:none}
+
+    /* Keep member links in the same text color */
+    .person h3 a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .person h3 a:hover{text-decoration:underline}
+    .person .person-links a{color:inherit}
+
+    /* Footer */
+    footer{
+      border-top:1px solid var(--rule);
+      background:var(--cream);
+    }
+
+    .footer-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:1.4rem 2rem;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:0.5rem 1rem;
+      flex-wrap:wrap;
+    }
+
+    .footer-inner p{
+      font-size:0.8rem;
+      color:var(--ink-faint);
+    }
+
+    /* Mobile */
     @media(max-width:560px){
       .header-inner{padding:0.8rem 1.25rem}
       nav{gap:1.2rem}
       main{padding:2.25rem 1.25rem 3rem}
       h1{font-size:1.9rem}
+
+      .person-with-photo{
+        grid-template-columns:72px minmax(0,1fr);
+        gap:1rem;
+      }
+
+      .person-photo{
+        width:72px;
+        height:72px;
+      }
+
       .footer-inner{padding:1.2rem 1.25rem}
     }
   </style>
 </head>
+
 <body>
+
 <a class="skip-link" href="#main-content">Skip to content</a>
+
 <header>
   <div class="header-inner">
     <a class="back-link" href="index.html">← Amrit Singh Bedi</a>
+
     <nav aria-label="Main navigation">
       <a href="lab.html" aria-current="page">Lab</a>
       <a href="publications.html">Publications</a>
@@ -68,10 +303,13 @@
 </header>
 
 <main id="main-content" tabindex="-1">
+
   <div class="page-head">
     <h1>SafeRR AI Lab</h1>
     <p class="tagline">Safe, robust, and reliable artificial intelligence.</p>
-    <p class="affiliation">University of Central Florida · Department of Computer Science</p>
+    <p class="affiliation">
+      University of Central Florida · Department of Computer Science
+    </p>
   </div>
 
   <div class="intro">
@@ -80,6 +318,7 @@
       safe, robust, and reliable AI. Our research spans reinforcement learning,
       AI alignment, and inference-time control of generative and agentic AI systems.
     </p>
+
     <div class="intro-links">
       <a href="publications.html">View our publications →</a>
       <a href="mailto:amritbedi@ucf.edu">Contact: amritbedi@ucf.edu</a>
@@ -87,53 +326,246 @@
   </div>
 
   <!--
-    HOW TO ADD PEOPLE
-    1. Replace the bracketed fields below with real information.
-    2. Duplicate a complete <li class="person"> ... </li> block for each person.
-    3. Delete any optional year or research line you do not need.
-    4. To add a website, replace https://example.com/ in the commented link
-       with the person's real URL, then remove the surrounding comment markers.
-    All bracketed entries are placeholders, not current lab members.
+    PHOTOS
+    Create a folder named students beside lab.html and add these files:
+
+      students/avinash-reddy.jpg
+      students/jivjot-singh.jpg
+      students/anirudh-narayan.jpg
+      students/timothy-mcallister.jpg
+      students/adeel-yousuf.jpg
+      students/prashant-trivedi.jpg
+      students/utsav-singh.jpg
+
+    Filenames are case-sensitive. To use PNG or another image format,
+    change the corresponding image src below to match your filename.
+
+    Initials appear when a photo is missing.
+    Refresh after uploading photos.
+
+    ADDING PEOPLE
+    Duplicate a complete li.person-with-photo block and edit its details.
+    The Collaborators section remains a template for you to fill in later.
   -->
 
+  <!-- PhD Students -->
   <section id="phd-students" aria-labelledby="phd-heading">
     <h2 id="phd-heading">PhD Students</h2>
+
     <ul class="people">
-      <!-- Copy this entire li block to add another PhD student. -->
-      <li class="person">
-        <h3>[Student Name]</h3>
-        <p class="person-meta">PhD student · [Start year–present]</p>
-        <p>Research: [Brief research interests]</p>
-        <!-- <p class="person-links"><a href="https://example.com/">Website</a></p> -->
+
+      <!-- Avinash Reddy -->
+      <li class="person person-with-photo">
+        <div class="person-photo">
+          <span class="photo-placeholder" aria-hidden="true">AR</span>
+          <img
+            src="students/avinash-reddy.jpg"
+            alt="Avinash Reddy"
+            width="88"
+            height="88"
+            loading="lazy"
+            decoding="async"
+            onerror="this.hidden=true;">
+        </div>
+
+        <div class="person-details">
+          <h3>Avinash Reddy</h3>
+          <p class="person-meta">PhD student</p>
+          <p class="person-links">
+            <a href="mailto:avinashreddy.chapparapu@ucf.edu">
+              avinashreddy.chapparapu@ucf.edu
+            </a>
+          </p>
+        </div>
       </li>
+
+      <!-- Jivjot Singh -->
+      <li class="person person-with-photo">
+        <div class="person-photo">
+          <span class="photo-placeholder" aria-hidden="true">JS</span>
+          <img
+            src="students/jivjot-singh.jpg"
+            alt="Jivjot Singh"
+            width="88"
+            height="88"
+            loading="lazy"
+            decoding="async"
+            onerror="this.hidden=true;">
+        </div>
+
+        <div class="person-details">
+          <h3>Jivjot Singh</h3>
+          <p class="person-meta">
+            PhD student · Joint with Prof. Mubarak Shah
+          </p>
+          <p class="person-links">
+            <a href="mailto:jivjot.singh@ucf.edu">
+              jivjot.singh@ucf.edu
+            </a>
+          </p>
+        </div>
+      </li>
+
+      <!-- Anirudh Narayan -->
+      <li class="person person-with-photo">
+        <div class="person-photo">
+          <span class="photo-placeholder" aria-hidden="true">AN</span>
+          <img
+            src="students/anirudh-narayan.jpg"
+            alt="Anirudh Narayan"
+            width="88"
+            height="88"
+            loading="lazy"
+            decoding="async"
+            onerror="this.hidden=true;">
+        </div>
+
+        <div class="person-details">
+          <h3>Anirudh Narayan</h3>
+          <p class="person-meta">PhD student</p>
+          <p class="person-links">
+            <a href="mailto:anirudhnarayand4@gmail.com">
+              anirudhnarayand4@gmail.com
+            </a>
+          </p>
+        </div>
+      </li>
+
+      <!-- Timothy Mcallister -->
+      <li class="person person-with-photo">
+        <div class="person-photo">
+          <span class="photo-placeholder" aria-hidden="true">TM</span>
+          <img
+            src="students/timothy-mcallister.jpg"
+            alt="Timothy Mcallister"
+            width="88"
+            height="88"
+            loading="lazy"
+            decoding="async"
+            onerror="this.hidden=true;">
+        </div>
+
+        <div class="person-details">
+          <h3>Timothy Mcallister</h3>
+          <p class="person-meta">PhD student</p>
+          <p class="person-links">
+            <a href="mailto:timothy.mcallister@ucf.edu">
+              timothy.mcallister@ucf.edu
+            </a>
+          </p>
+        </div>
+      </li>
+
+      <!-- Adeel Yousuf -->
+      <li class="person person-with-photo">
+        <div class="person-photo">
+          <span class="photo-placeholder" aria-hidden="true">AY</span>
+          <img
+            src="students/adeel-yousuf.jpg"
+            alt="Adeel Yousuf"
+            width="88"
+            height="88"
+            loading="lazy"
+            decoding="async"
+            onerror="this.hidden=true;">
+        </div>
+
+        <div class="person-details">
+          <h3>Adeel Yousuf</h3>
+          <p class="person-meta">
+            PhD student · Joint with Prof. Mubarak Shah
+          </p>
+          <p class="person-links">
+            <a href="mailto:Adeel.Yousaf@ucf.edu">
+              Adeel.Yousaf@ucf.edu
+            </a>
+          </p>
+        </div>
+      </li>
+
     </ul>
   </section>
 
+  <!-- Postdocs -->
   <section id="postdocs" aria-labelledby="postdoc-heading">
     <h2 id="postdoc-heading">Postdocs</h2>
+
     <ul class="people">
-      <!-- Copy this entire li block to add another postdoc. -->
-      <li class="person">
-        <h3>[Postdoc Name]</h3>
-        <p class="person-meta">Postdoctoral researcher · [Start year–present]</p>
-        <p>Research: [Brief research interests]</p>
-        <!-- <p class="person-links"><a href="https://example.com/">Website</a></p> -->
+
+      <!-- Prashant Trivedi -->
+      <li class="person person-with-photo">
+        <div class="person-photo">
+          <span class="photo-placeholder" aria-hidden="true">PT</span>
+          <img
+            src="students/prashant-trivedi.jpg"
+            alt="Prashant Trivedi"
+            width="88"
+            height="88"
+            loading="lazy"
+            decoding="async"
+            onerror="this.hidden=true;">
+        </div>
+
+        <div class="person-details">
+          <h3>
+            <a
+              href="https://prashantrivedi.github.io/"
+              target="_blank"
+              rel="noopener noreferrer">
+              Prashant Trivedi
+            </a>
+          </h3>
+          <p class="person-meta">Postdoctoral researcher</p>
+        </div>
       </li>
+
+      <!-- Utsav Singh -->
+      <li class="person person-with-photo">
+        <div class="person-photo">
+          <span class="photo-placeholder" aria-hidden="true">US</span>
+          <img
+            src="students/utsav-singh.jpg"
+            alt="Utsav Singh"
+            width="88"
+            height="88"
+            loading="lazy"
+            decoding="async"
+            onerror="this.hidden=true;">
+        </div>
+
+        <div class="person-details">
+          <h3>Utsav Singh</h3>
+          <p class="person-meta">
+            Postdoctoral researcher · Joint with Prof. Mubarak Shah
+          </p>
+        </div>
+      </li>
+
     </ul>
   </section>
 
+  <!-- Collaborators: fill in later -->
   <section id="collaborators" aria-labelledby="collaborator-heading">
     <h2 id="collaborator-heading">Collaborators</h2>
+
     <ul class="people">
+
       <!-- Copy this entire li block to add another collaborator. -->
       <li class="person">
         <h3>[Collaborator Name]</h3>
         <p class="person-meta">[Institution or organization]</p>
         <p>Research: [Brief collaboration topic]</p>
-        <!-- <p class="person-links"><a href="https://example.com/">Website</a></p> -->
+
+        <!--
+        <p class="person-links">
+          <a href="https://example.com/">Website</a>
+        </p>
+        -->
       </li>
+
     </ul>
   </section>
+
 </main>
 
 <footer>
@@ -142,5 +574,6 @@
     <p><a href="index.html">← Back to home</a></p>
   </div>
 </footer>
+
 </body>
 </html>
