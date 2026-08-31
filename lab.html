@@ -42,6 +42,15 @@
     .person p{font-size:0.85rem;color:var(--ink-mid);margin-top:0.15rem}
     .person .person-meta{font-size:0.81rem;color:var(--ink-faint)}
     .person .person-links{font-size:0.8rem;margin-top:0.35rem}
+    .person-with-photo{display:grid;grid-template-columns:88px minmax(0,1fr);align-items:center;gap:1.25rem}
+    .person-details{min-width:0}
+    .person-photo{position:relative;width:88px;height:88px;overflow:hidden;border:1px solid var(--rule);border-radius:4px;background:var(--cream)}
+    .photo-placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.5rem;color:var(--ink-faint)}
+    .person-photo img{position:relative;display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+    .person-photo img[hidden]{display:none}
+    .person h3 a{color:inherit;text-decoration:none}
+    .person h3 a:hover{text-decoration:underline}
+    .person .person-links a{color:inherit}
     footer{border-top:1px solid var(--rule);background:var(--cream)}
     .footer-inner{max-width:var(--max);margin:0 auto;padding:1.4rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:0.5rem 1rem;flex-wrap:wrap}
     .footer-inner p{font-size:0.8rem;color:var(--ink-faint)}
@@ -50,6 +59,8 @@
       nav{gap:1.2rem}
       main{padding:2.25rem 1.25rem 3rem}
       h1{font-size:1.9rem}
+      .person-with-photo{grid-template-columns:72px minmax(0,1fr);gap:1rem}
+      .person-photo{width:72px;height:72px}
       .footer-inner{padding:1.2rem 1.25rem}
     }
   </style>
@@ -87,24 +98,71 @@
   </div>
 
   <!--
-    HOW TO ADD PEOPLE
-    1. Replace the bracketed fields below with real information.
-    2. Duplicate a complete <li class="person"> ... </li> block for each person.
-    3. Delete any optional year or research line you do not need.
-    4. To add a website, replace https://example.com/ in the commented link
-       with the person's real URL, then remove the surrounding comment markers.
-    All bracketed entries are placeholders, not current lab members.
+    EDITING PEOPLE AND PHOTOS
+    Duplicate a complete li.person-with-photo block to add another member.
+    Update the name, role, links, initials, image src, and image alt text.
+    Upload photos to students/ using the exact filenames below; see students/README.md.
+    Initials remain visible when a photo is missing. Refresh after uploading a photo.
+    Only the Collaborators section still contains bracketed template fields.
   -->
 
   <section id="phd-students" aria-labelledby="phd-heading">
     <h2 id="phd-heading">PhD Students</h2>
     <ul class="people">
-      <!-- Copy this entire li block to add another PhD student. -->
-      <li class="person">
-        <h3>[Student Name]</h3>
-        <p class="person-meta">PhD student · [Start year–present]</p>
-        <p>Research: [Brief research interests]</p>
-        <!-- <p class="person-links"><a href="https://example.com/">Website</a></p> -->
+      <li class="person person-with-photo">
+        <div class="person-photo">
+          <span class="photo-placeholder" aria-hidden="true">AR</span>
+          <img src="students/avinash-reddy.jpg" alt="Avinash Reddy" width="88" height="88" loading="lazy" decoding="async" onerror="this.hidden=true;">
+        </div>
+        <div class="person-details">
+          <h3>Avinash Reddy</h3>
+          <p class="person-meta">PhD student</p>
+          <p class="person-links"><a href="mailto:avinashreddy.chapparapu@ucf.edu">avinashreddy.chapparapu@ucf.edu</a></p>
+        </div>
+      </li>
+      <li class="person person-with-photo">
+        <div class="person-photo">
+          <span class="photo-placeholder" aria-hidden="true">JS</span>
+          <img src="students/jivjot-singh.jpg" alt="Jivjot Singh" width="88" height="88" loading="lazy" decoding="async" onerror="this.hidden=true;">
+        </div>
+        <div class="person-details">
+          <h3>Jivjot Singh</h3>
+          <p class="person-meta">PhD student · Joint with Prof. Mubarak Shah</p>
+          <p class="person-links"><a href="mailto:jivjot.singh@ucf.edu">jivjot.singh@ucf.edu</a></p>
+        </div>
+      </li>
+      <li class="person person-with-photo">
+        <div class="person-photo">
+          <span class="photo-placeholder" aria-hidden="true">AN</span>
+          <img src="students/anirudh-narayan.jpg" alt="Anirudh Narayan" width="88" height="88" loading="lazy" decoding="async" onerror="this.hidden=true;">
+        </div>
+        <div class="person-details">
+          <h3>Anirudh Narayan</h3>
+          <p class="person-meta">PhD student</p>
+          <p class="person-links"><a href="mailto:anirudhnarayand4@gmail.com">anirudhnarayand4@gmail.com</a></p>
+        </div>
+      </li>
+      <li class="person person-with-photo">
+        <div class="person-photo">
+          <span class="photo-placeholder" aria-hidden="true">TM</span>
+          <img src="students/timothy-mcallister.jpg" alt="Timothy Mcallister" width="88" height="88" loading="lazy" decoding="async" onerror="this.hidden=true;">
+        </div>
+        <div class="person-details">
+          <h3>Timothy Mcallister</h3>
+          <p class="person-meta">PhD student</p>
+          <p class="person-links"><a href="mailto:timothy.mcallister@ucf.edu">timothy.mcallister@ucf.edu</a></p>
+        </div>
+      </li>
+      <li class="person person-with-photo">
+        <div class="person-photo">
+          <span class="photo-placeholder" aria-hidden="true">AY</span>
+          <img src="students/adeel-yousuf.jpg" alt="Adeel Yousuf" width="88" height="88" loading="lazy" decoding="async" onerror="this.hidden=true;">
+        </div>
+        <div class="person-details">
+          <h3>Adeel Yousuf</h3>
+          <p class="person-meta">PhD student · Joint with Prof. Mubarak Shah</p>
+          <p class="person-links"><a href="mailto:Adeel.Yousaf@ucf.edu">Adeel.Yousaf@ucf.edu</a></p>
+        </div>
       </li>
     </ul>
   </section>
@@ -112,12 +170,25 @@
   <section id="postdocs" aria-labelledby="postdoc-heading">
     <h2 id="postdoc-heading">Postdocs</h2>
     <ul class="people">
-      <!-- Copy this entire li block to add another postdoc. -->
-      <li class="person">
-        <h3>[Postdoc Name]</h3>
-        <p class="person-meta">Postdoctoral researcher · [Start year–present]</p>
-        <p>Research: [Brief research interests]</p>
-        <!-- <p class="person-links"><a href="https://example.com/">Website</a></p> -->
+      <li class="person person-with-photo">
+        <div class="person-photo">
+          <span class="photo-placeholder" aria-hidden="true">PT</span>
+          <img src="students/prashant-trivedi.jpg" alt="Prashant Trivedi" width="88" height="88" loading="lazy" decoding="async" onerror="this.hidden=true;">
+        </div>
+        <div class="person-details">
+          <h3><a href="https://prashantrivedi.github.io/" target="_blank" rel="noopener noreferrer">Prashant Trivedi</a></h3>
+          <p class="person-meta">Postdoctoral researcher</p>
+        </div>
+      </li>
+      <li class="person person-with-photo">
+        <div class="person-photo">
+          <span class="photo-placeholder" aria-hidden="true">US</span>
+          <img src="students/utsav-singh.jpg" alt="Utsav Singh" width="88" height="88" loading="lazy" decoding="async" onerror="this.hidden=true;">
+        </div>
+        <div class="person-details">
+          <h3>Utsav Singh</h3>
+          <p class="person-meta">Postdoctoral researcher · Joint with Prof. Mubarak Shah</p>
+        </div>
       </li>
     </ul>
   </section>
