@@ -8,8 +8,6 @@ title: Safety Alignment via Weight-Space Programming
 
 **TL;DR.** We asked a frontier model to make a vision-language model safer by editing its weights directly, without gradient-based training. Acting as the weight-editing agent, Claude Fable 5.1 analyzed the model's internal activations and identified a gap between harmful-content detection and refusal behavior. It then designed just two rank-1 weight updates to strengthen the connection between these signals, modifying approximately 80 million weight values, representing only 0.9% of the model's 8.8 billion parameters. On the held-out FigStep set, the attack success rate (ASR) of Qwen3-VL-8B-Instruct dropped from 49% to 2%, while on the held-out MM-SafetyBench dataset, ASR decreased from 22% to 4%. Meanwhile, average accuracy on ScienceQA and MathVista remained nearly unchanged, from 72% to 71%. These are initial results, and we will share further analysis soon.
 
-[I WOULD LIKE TO EDIT TLDR LATER ONCE AVEYTHING IS FINALIZE]
-
 ![image](https://hackmd.io/_uploads/Skerpld6fl.png)
 
 
