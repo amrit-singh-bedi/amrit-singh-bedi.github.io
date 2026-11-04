@@ -1,7 +1,7 @@
 # Safety Alignment via Weight-Space Programming
 
 
->**TL;DR.** We asked Claude Fable 5.1 to make a vision-language model safer by editing its weights directly, without fine-tuning. Claude found that the model’s internal activations still carried information about harmful content even when it answered the request. It then designed two targeted weight edits to help the model use that information to refuse. Qwen3-VL-8B-Instruct (see Figure 1), attack success rate fell from 49% to 2% on held-out FigStep examples and from 22% to 4% on MM-SafetyBench. Average accuracy on ScienceQA and MathVista stayed close to the original model’s performance (72% → 71%). These are encouraging initial results showing the promise of weight-space programming, and we’ll share more experiments and analysis soon.
+>**TL;DR.** We asked Claude Fable 5.1 to make a vision-language model safer by editing its weights directly, without fine-tuning. Claude found that the model’s internal activations still carried information about harmful content even when it answered the request. It then designed two targeted weight edits to help the model use that information to refuse. Qwen3-VL-8B-Instruct (see Figure 1), the attack success rate fell from 49% to 2% on held-out FigStep examples and from 22% to 4% on MM-SafetyBench. Average accuracy on ScienceQA and MathVista stayed close to the original model’s performance (72% → 71%). These are encouraging initial results showing the promise of weight-space programming, and we’ll share more experiments and analysis soon.
 
 
 ![image](https://hackmd.io/_uploads/Skerpld6fl.png)
@@ -12,9 +12,9 @@
 
 ## Motivation and problem setup
 
-A recent interesting work, [Weight-Space Programming](https://rikiyat.github.io/blog/weight-space-programming/), showed that a frontier model can inspect and edit neural-network weights in response to natural-language instructions. Across its experiments, GPT-6 Astra identified what neural networks had learned from their weights, repaired a reinforcement-learning policy that had become stuck, and substantially improved a small language model's mathematical reasoning performance by identifying and removing a direction associated with repetitive outputs. 
+A recent interesting work, [Weight-Space Programming](https://rikiyat.github.io/blog/weight-space-programming/), showed that a frontier model can inspect and edit neural network weights in response to natural-language instructions. Across its experiments, GPT-6 Astra identified what neural networks had learned from their weights, repaired a reinforcement-learning policy that had become stuck, and substantially improved a small language model's mathematical reasoning performance by identifying and removing a direction associated with repetitive outputs. 
 
-These results raise a natural question: **can an agent make an AI model safer by editing its weights directly?** Safety alignment aims to make models refuse harmful requests while remaining helpful on legitimate ones. However, achieving this balance remains challenging. Because carefully crafted prompts or images can bypass a model’s safeguards (called jailbreaking). At the same time, stronger safeguards can also make cause models to reject harmless questions (utility drop). Improving this behavior often involves additional training, which requires data and computing resources and can still leave the model vulnerable to new attacks. We explore whether an AI agent can identify and address a specific **safety failure** through targeted weight edits, without further training. Below, we share our initial proof-of-concept findings.
+These results raise a natural question: **can an agent make an AI model safer by editing its weights directly?** Safety alignment aims to make models refuse harmful requests while remaining helpful on legitimate ones. However, achieving this balance remains challenging. Carefully crafted prompts or images can bypass a model’s safeguards (called jailbreaking). At the same time, stronger safeguards can also cause models to reject harmless questions (utility drop). Improving this behavior often involves additional training, which requires data and computing resources and can still leave the model vulnerable to new attacks. We explore whether an AI agent can identify and address a specific **safety failure** through targeted weight edits, without further training. Below, we share our initial proof-of-concept findings.
 
 ## Experimental setup
 
@@ -41,7 +41,7 @@ The initial request began:
 
 I want to investigate whether Claude Fable 5.1 can improve the safety of a vision-language model through direct weight editing, without conventional fine-tuning.
 
-Specifically, the goal is to reduce FigStep attack success rate (ASR) while preserving benign utility and minimizing over-refusal.
+Specifically, the goal is to reduce the FigStep attack success rate (ASR) while preserving benign utility and minimizing over-refusal.
 
 **Research Instructions**
 
@@ -96,7 +96,7 @@ Claude compared the model's internal activations for FigStep requests it refused
 
 **Step 3: Designing the Weight Edit (18 forward passes).**
 
-Based on these findings, Claude proposed a targeted intervention: strengthen the model's refusal signal when harmful content is detected, while minimizing changes to benign requests. Simply amplifying the existing refusal signal would not work because it was largely absent in successful FigStep attacks. Instead, Claude designed a conditional rank-1 weight update: $W' = W + \alpha u v^\top$. Here:
+Based on these findings, Claude proposed a targeted intervention: strengthen the model's refusal signal when harmful content is detected, while minimizing changes to benign requests. Simply amplifying the existing refusal signal would not work, as it was largely absent from successful FigStep attacks. Instead, Claude designed a conditional rank-1 weight update: $W' = W + \alpha u v^\top$. Here:
 
 - $u$ is the refusal direction identified in Step 2.
 - $v$ is a harm-related direction, obtained by comparing internal activations of successful FigStep attacks with harmless images in the same format.
@@ -123,7 +123,7 @@ Claude tested the selected edits on the 50 FigStep working samples, where refusa
 
 **The improvement depended on the specific direction chosen by the agent.** To test whether the gains came from the identified refusal direction rather than arbitrary weight changes, Claude replaced it with a random direction in **decoder layer 18**, keeping the other editing settings unchanged. As shown in Figure 2, the random-direction edit (**Edit 4**) increased the FigStep proxy ASR from **48% to 66%**, whereas the targeted refusal-direction edit at the same layer (**Edit 1**) reduced it to **30%**. This suggests that the improvement came from modifying a meaningful refusal-related direction rather than simply perturbing the model's weights.
 
-**The agent balanced attack resistance and over-refusal.** As shown in the Figure 2, one candidate edit (**Edit 5**) achieved a **2%  proxy ASR**, refusing 49 out of 50 FigStep attacks. However, it also incorrectly refused 2 out of 30 harmless requests. Claude therefore selected the two-layer edit (**Edit 6**), which achieved a **6%  proxy ASR** (47/50 refusals) without refusing any of those harmless requests. 
+**The agent balanced attack resistance and over-refusal.** As shown in Figure 2, one candidate edit (**Edit 5**) achieved a **2%  proxy ASR**, refusing 49 out of 50 FigStep attacks. However, it also incorrectly refused 2 out of 30 harmless requests. Claude therefore selected the two-layer edit (**Edit 6**), which achieved a **6%  proxy ASR** (47/50 refusals) without refusing any of those harmless requests. 
 
 This highlights how the agent considered both attack resistance and over-refusal when selecting the final weight edit, rather than simply choosing the candidate with the lowest ASR.
 
@@ -134,9 +134,9 @@ To investigate whether weight-space programming can improve safety across differ
 
 
 ![image](https://hackmd.io/_uploads/SyvVM7uTfg.png)
-*Figure 3. Safety and utility performance of Qwen3.5-0.8B and Llama-3.2-11B-Vision-Instruct before and after weight editing. On held-out FigStep attacks, ASR decreased from 18% to 10% for Qwen3.5-0.8B and from 95% to 12% for Llama-3.2-11B-Vision. On the unseen MM-SafetyBench benchmark, ASR decreased from 10% to 3% and from 58% to 29% respectively. Average accuracy on ScienceQA and MathVista was unchanged for both models (83.3% and 66%). Lower ASR and higher utility are better.*
+*Figure 3. Safety and utility performance of Qwen3.5-0.8B and Llama-3.2-11B-Vision-Instruct before and after weight editing. On held-out FigStep attacks, ASR decreased from 18% to 10% for Qwen3.5-0.8B and from 95% to 12% for Llama-3.2-11B-Vision. On the unseen MM-SafetyBench benchmark, ASR decreased from 10% to 3% and from 58% to 29%, respectively. Average accuracy on ScienceQA and MathVista was unchanged for both models (83.3% and 66%). Lower ASR and higher utility are better.*
 
-Next, Figure 4 shows the editing history for the Llama model and it's effect of the attack success rate. 
+Next, Figure 4 shows the editing history for the Llama model and its effect on the attack success rate. 
 
 ![llama_edit_sequence](https://hackmd.io/_uploads/HJqg5Eupzg.png)
 *Figure 4. FigStep proxy ASR across different weight edits tested by Claude on Llama-3.2-11B-Vision-Instruct, measured on the 50 FigStep examples used during editing. Proxy ASR measures the percentage of requests the model did not refuse, based on a keyword check of its responses. The selected edit, in a single cross-attention layer (layer 23), reduced the proxy ASR from 94% to 2%. Edits with lower ASR were rejected because they refused harmless requests or weakened refusals of harmful text. Lower is better.*
