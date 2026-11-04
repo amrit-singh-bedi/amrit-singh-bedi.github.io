@@ -71,7 +71,7 @@ Maintain detailed logs of hypotheses, experiments, weight modifications, forward
 The primary objective is to determine whether an autonomous reasoning agent can improve multimodal safety through targeted, gradient-free weight editing while preserving the model's original capabilities.
 
 </details>
-
+ 
 
 ## How the Agent Edited the Model's Weights
 
