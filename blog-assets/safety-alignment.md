@@ -73,11 +73,9 @@ The primary objective is to determine whether an autonomous reasoning agent can 
 </details>
 
 
-## What the agent did
+## How the Agent Edited the Model's Weights
 
 The [experiment log (PDF)](https://github.com/Adeelyousaf/weight-space-safety-editing/blob/main/qwen3_vl_8b_weight_editing_log.pdf) records the measurements and editing decisions. The main steps are fairly intuitive.
-
-## How the Agent Edited the Model's Weights
 
 **Step 1: Diagnosing the Problem (19 forward passes).**
 
