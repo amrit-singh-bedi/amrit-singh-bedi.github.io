@@ -1,5 +1,7 @@
 # Safety Alignment via Weight-Space Programming
 
+[SafeRR AI Lab](https://amrit-singh-bedi.github.io/lab.html), Institute of Artificial Intelligence, University of Central Florida
+
 
 >**TL;DR.** We asked Claude Fable 5.1 to make a vision-language model safer by editing its weights directly, without fine-tuning. Claude found that the model’s internal activations still carried information about harmful content even when it answered the request. It then designed two targeted weight edits to help the model use that information to refuse. Qwen3-VL-8B-Instruct (see Figure 1), the attack success rate fell from 49% to 2% on held-out FigStep examples and from 22% to 4% on MM-SafetyBench. Average accuracy on ScienceQA and MathVista stayed close to the original model’s performance (72% → 71%). These are encouraging initial results showing the promise of weight-space programming, and we’ll share more experiments and analysis soon.
 
