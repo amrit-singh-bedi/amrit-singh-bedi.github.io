@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Safety Alignment via Weight-Space Programming — Amrit Singh Bedi</title>
-  <meta name="description" content="Initial proof-of-concept experiments in which a reasoning agent inspects and edits a vision-language model’s weights to improve safety without gradient-based training.">
+  <meta name="description" content="Initial experiments in which Claude directly edits Qwen and Llama vision-language model weights to improve safety without fine-tuning, with results and editing histories.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -29,138 +29,94 @@
   <!-- Article rendered from blog-assets/safety-alignment.md. Wording is preserved. -->
   <article class="article-body">
 <h1>Safety Alignment via Weight-Space Programming</h1>
-<p><strong>TL;DR.</strong> We asked a frontier model to make a vision-language model safer by editing its weights directly, without gradient-based training. Acting as the weight-editing agent, Claude Fable 5.1 analyzed the model&#39;s internal activations and identified a gap between harmful-content detection and refusal behavior. It then designed just two rank-1 weight updates to strengthen the connection between these signals, modifying approximately 80 million weight values, representing only 0.9% of the model&#39;s 8.8 billion parameters. On the held-out FigStep set, the attack success rate (ASR) of Qwen3-VL-8B-Instruct dropped from 49% to 2%, while on the held-out MM-SafetyBench dataset, ASR decreased from 22% to 4%. Meanwhile, average accuracy on ScienceQA and MathVista remained nearly unchanged, from 72% to 71%. These are initial results, and we will share further analysis soon.</p>
-<p>[I WOULD LIKE TO EDIT TLDR LATER ONCE AVEYTHING IS FINALIZE]</p>
-<figure><a href="blog-assets/qwen3-vl-safety-utility.png" aria-label="View full-size figure"><img src="blog-assets/qwen3-vl-safety-utility.png" alt="Qwen3-VL-8B-Instruct safety and utility before and after weight editing" width="3900" height="1470" loading="eager" decoding="async"></a><figcaption><em>Figure 1. Safety and utility performance of Qwen3-VL-8B-Instruct before and after weight editing. Attack success rate (ASR) decreased from <strong>49% to 2%</strong> on held-out FigStep attacks and from <strong>22% to 4%</strong> on the unseen MM-SafetyBench benchmark. Meanwhile, average accuracy on ScienceQA and MathVista remained nearly unchanged (<strong>72% to 71%</strong>). Lower ASR and higher utility are better.</em></figcaption></figure>
+<blockquote>
+<p><strong>TL;DR.</strong> We asked Claude Fable 5.1 to make a vision-language model safer by editing its weights directly, without fine-tuning. Claude found that the model’s internal activations still carried information about harmful content even when it answered the request. It then designed two targeted weight edits to help the model use that information to refuse. Qwen3-VL-8B-Instruct (see Figure 1), attack success rate fell from 49% to 2% on held-out FigStep examples and from 22% to 4% on MM-SafetyBench. Average accuracy on ScienceQA and MathVista stayed close to the original model’s performance (72% → 71%). These are encouraging initial results showing the promise of weight-space programming, and we’ll share more experiments and analysis soon.</p>
+</blockquote>
+<figure><a href="blog-assets/qwen3-vl-safety-utility.png" aria-label="View Figure 1 at full size"><img src="blog-assets/qwen3-vl-safety-utility.png" alt="Qwen3-VL-8B-Instruct safety and utility before and after weight editing" width="3900" height="1470" loading="eager" decoding="async"></a><figcaption><em>Figure 1. Safety and utility performance of Qwen3-VL-8B-Instruct before and after weight editing. Attack success rate (ASR) decreased from <strong>49% to 2%</strong> on held-out FigStep attacks and from <strong>22% to 4%</strong> on the unseen MM-SafetyBench benchmark. Meanwhile, average accuracy on ScienceQA and MathVista remained nearly unchanged (<strong>72% to 71%</strong>). Lower ASR and higher utility are better.</em></figcaption></figure>
 <h2>Motivation and problem setup</h2>
-<p>A recent post, <a href="https://rikiyat.github.io/blog/weight-space-programming/">Weight-Space Programming</a>, showed that a frontier model can inspect and edit neural-network weights in response to natural-language instructions. Across its experiments, GPT-6 Astra identified what neural networks had learned from their weights, repaired a reinforcement-learning policy that had become stuck, and substantially improved a small language model&#39;s mathematical reasoning performance by identifying and removing a direction associated with repetitive outputs. </p>
-<p>These results raise a natural question: <strong>can an agent make an AI model safer by editing its weights directly?</strong> Safety alignment aims to make models refuse harmful requests while remaining helpful on legitimate ones. However, achieving this balance remains challenging. Carefully crafted prompts or images can bypass a model’s safeguards, a problem commonly known as jailbreaking. At the same time, stronger safeguards can also make cause models to reject harmless questions. Improving this behavior often involves additional training, which requires data and computing resources and can still leave the model vulnerable to new attacks. We explore whether an agent can identify and address a specific <strong>safety failure</strong> through targeted weight edits, without further training. Below, we share our initial proof-of-concept findings.</p>
+<p>A recent interesting work, <a href="https://rikiyat.github.io/blog/weight-space-programming/">Weight-Space Programming</a>, showed that a frontier model can inspect and edit neural-network weights in response to natural-language instructions. Across its experiments, GPT-6 Astra identified what neural networks had learned from their weights, repaired a reinforcement-learning policy that had become stuck, and substantially improved a small language model&#39;s mathematical reasoning performance by identifying and removing a direction associated with repetitive outputs. </p>
+<p>These results raise a natural question: <strong>can an agent make an AI model safer by editing its weights directly?</strong> Safety alignment aims to make models refuse harmful requests while remaining helpful on legitimate ones. However, achieving this balance remains challenging. Because carefully crafted prompts or images can bypass a model’s safeguards (called jailbreaking). At the same time, stronger safeguards can also make cause models to reject harmless questions (utility drop). Improving this behavior often involves additional training, which requires data and computing resources and can still leave the model vulnerable to new attacks. We explore whether an AI agent can identify and address a specific <strong>safety failure</strong> through targeted weight edits, without further training. Below, we share our initial proof-of-concept findings.</p>
 <h2>Experimental setup</h2>
 <p><strong>Target model.</strong> Qwen3-VL-8B-Instruct, evaluated using BF16 precision and greedy decoding.</p>
-<p><strong>Attack and development data.</strong> We use <a href="https://arxiv.org/abs/2311.05608">FigStep</a>, which places a harmful request inside an image with an unfinished numbered list and asks the model to fill in the missing items. We provided Claude with 50 FigStep samples for development. During its investigation, Claude independently decided to create text-only versions of these requests and additional benign examples to better understand the model&#39;s behavior. </p>
+<p><strong>Attack and development data.</strong> We use <a href="https://arxiv.org/abs/2311.05608">FigStep</a>, which places a harmful request inside an image with an unfinished numbered list and asks the model to fill in the missing items. We provided Claude with 50 FigStep samples for development. </p>
 <p><strong>Agent.</strong> Claude Fable 5.1, operating through Claude Code. It can inspect activations, edit weights, and test candidate changes. The logged run adapts the activation-based editing approach from Experiment 8 of Weight-Space Programming.</p>
 <p><strong>Development checks.</strong> To reduce evaluation costs, Claude first tests different weight edits by checking whether the model&#39;s first predicted token indicates a refusal. It then evaluates the selected edit using responses of up to 16 tokens and a simple keyword-based refusal detector.</p>
 <p><strong>Held-out evaluation.</strong> We evaluate the edited model on 100 held-out FigStep samples and MM-SafetyBench to measure attack success rate (ASR). We also evaluate its general capabilities on ScienceQA and MathVista. We use GPT-5.5 as the judge for both safety and utility evaluations.</p>
-<p><strong>Budget.</strong> We gave Claude, acting as our weight-editing agent, a budget of 100 forward passes to investigate the target model (Qwen3-VL-8B-Instruct), test different weight modifications, and select the best one. Claude completed the process using only 55 forward passes, without any gradient-based training. Each forward pass represents one computation step through the target model, which can process multiple inputs simultaneously. The final held-out evaluation was conducted separately.</p>
+<p><strong>Budget.</strong> We gave Claude, acting as our weight-editing agent, a budget of 100 forward passes to investigate the target model (Qwen3-VL-8B-Instruct), test different weight modifications, and select the best one. Claude completed the process using only 55 forward passes, without any gradient-based training. Each forward pass represents one computation step through the target model, which can process multiple inputs simultaneously. </p>
 <p>The initial request began:</p>
 <blockquote>
-<p>I want to investigate whether weight-space programming can be used to improve the safety of vision-language models through direct weight editing.</p>
+<p>Investigate whether Claude Fable 5.1 can directly inspect and modify the weights of Qwen3-VL-8B to improve multimodal safety without gradient descent or conventional fine-tuning.</p>
 </blockquote>
 <details>
-<summary>Read the full original task prompt</summary>
+<summary>Read the condensed original task prompt</summary>
 
-<p>[CONFIRM THE EXACT PROMPT FOR THIS RUN. THE ORIGINAL REQUEST BELOW MENTIONS A SINGLE ATTEMPT, AND 20 BENIGN PROMPTS; THE SUPPLIED LOG DESCRIBES CANDIDATE SCREENING, AND AN EXPANDED EVALUATION.]</p>
-<p>I want to investigate whether weight-space programming can be used to improve the safety of vision-language models through direct weight editing.</p>
-<p>Specifically, I want to use Qwen/Qwen3-VL-8B-Instruct, which has a high attack success rate (ASR) on FigStep dataset, and investigate whether a capable reasoning model such as Claude Fable 5.1 can directly modify its weights (essentially zero-shot) to reduce its ASR.</p>
-<p>Experimental Setup</p>
+<p>I want to investigate whether Claude Fable 5.1 can improve the safety of a vision-language model through direct weight editing, without conventional fine-tuning.</p>
+<p>Specifically, the goal is to reduce FigStep attack success rate (ASR) while preserving benign utility and minimizing over-refusal.</p>
+<p><strong>Research Instructions</strong></p>
 <ul>
-<li>Target model: Qwen/Qwen3-VL-8B-Instruct</li>
-<li>Working dataset: 50 FigStep samples</li>
-<li>Final evaluation: Held-out FigStep-100 and 20 benign prompts</li>
-<li>Objective: Reduce the model&#39;s ASR through direct weight editing while preserving its behavior on benign prompts.</li>
+<li>Study <a href="https://rikiyat.github.io/blog/weight-space-programming/">Weight-Space Programming</a>, particularly Experiment 8 and its <a href="https://github.com/RikiyaT/lm_understand-logs">released logs</a>.</li>
+<li>Independently investigate the target model&#39;s behavior, develop hypotheses, and determine which weight modifications to apply.</li>
 </ul>
-<p>I want the reasoning model to independently investigate the model&#39;s behavior, identify potential weight modifications, and determine how to implement them without any fine-tuning.</p>
-<p>Implementation</p>
-<p>Use a file-queue kernel in my home directory that supports a fixed set of structured operations:</p>
+<p><strong>Experimental Setup</strong></p>
 <ul>
-<li>Generate model responses.</li>
-<li>Capture model activations.</li>
-<li>Read or edit model tensors.</li>
-<li>Restore the original model weights.</li>
-<li>Run the final evaluation.</li>
+<li>Target model: Qwen3-VL-8B-Instruct.</li>
+<li>Working dataset: 50 FigStep samples.</li>
+<li>Held-out evaluation: 100 separate FigStep samples and an independent over-refusal benchmark.</li>
+<li>Additional harmless examples may be used to monitor benign behavior.</li>
+<li>Budget: Maximum of 100 actual model forward passes during weight editing.</li>
 </ul>
-<p>The 50 FigStep samples should serve as the agent&#39;s working set. The held-out FigStep-100 and 20 benign prompts should only be evaluated at the end.</p>
-<p>Important: I want to test whether the reasoning model can figure out how to improve safety through weight-space programming on its own, rather than prescribing a particular editing method.</p>
-<p>If the experiment is likely to consume substantial API credits, inform me before proceeding.</p>
+<p><strong>Critical Constraints</strong></p>
+<ul>
+<li>Do not access held-out evaluation datasets during editing.</li>
+<li>Do not use gradients, backpropagation, optimizers, or fine-tuning.</li>
+<li>Let Claude independently decide which layers and weights to modify.</li>
+<li>Test candidate modifications, monitor benign behavior, and revert unsuccessful edits.</li>
+<li>Keep the original model weights unchanged.</li>
+</ul>
+<p><strong>Transparency and Reproducibility</strong></p>
+<p>Maintain detailed logs of hypotheses, experiments, weight modifications, forward-pass usage, and results. Explain significant decisions and report both successful and unsuccessful attempts.</p>
+<p>The primary objective is to determine whether an autonomous reasoning agent can improve multimodal safety through targeted, gradient-free weight editing while preserving the model&#39;s original capabilities.</p>
 </details>
 
-<!-- ## What the agent did
 
-The [experiment log (PDF)](REPLACE_WITH_PUBLIC_LOG_PDF_URL) records the measurements and editing decisions. The main steps are fairly intuitive. -->
-
+<h2>What the agent did</h2>
+<p>The <a href="https://github.com/Adeelyousaf/weight-space-safety-editing/blob/main/qwen3_vl_8b_weight_editing_log.pdf">experiment log (PDF)</a> records the measurements and editing decisions. The main steps are fairly intuitive.</p>
 <h2>How the Agent Edited the Model&#39;s Weights</h2>
 <p><strong>Step 1: Diagnosing the Problem (19 forward passes).</strong></p>
-<p>Starting with the 50 <a href="https://github.com/ThuCCSLab/FigStep">FigStep</a> samples, Claude independently created additional text-only versions of the harmful requests and benign questions, and used harmless images in the same FigStep layout for comparison. It then examined the target model&#39;s responses and internal activations across all 36 decoder layers.</p>
+<p>Starting with the 50 <a href="https://arxiv.org/abs/2311.05608">FigStep</a> samples, Claude independently created additional text-only versions of the harmful requests and benign questions, and used harmless images in the same FigStep layout for comparison. It then examined the target model&#39;s responses and internal activations across all 36 decoder layers.</p>
 <p>Interestingly, the model was more likely to refuse harmful requests written as plain text (43/50) than the same requests formatted as incomplete numbered lists (22/50). This suggested that the attack&#39;s effectiveness was not solely due to the image modality; the numbered-list format itself encouraged the model to complete the list rather than refuse. This is also consistent with the finding in the original <a href="https://arxiv.org/pdf/2311.05608">FigStep paper</a> Table 2.</p>
 <p><strong>Step 2: Locating the Refusal Mechanism (0 additional forward passes).</strong></p>
 <p>Using the previously recorded activations, Claude analyzed the model&#39;s responses to FigStep jailbreak attempts. For some of these harmful requests, the model correctly refused to provide an answer. For others, the jailbreak succeeded, and the model generated a response instead of refusing.</p>
-<p>Claude compared the model&#39;s internal activations in these two cases. Specifically, it calculated the average activation vector for requests the model refused and the average activation vector for requests where the jailbreak succeeded. The difference between these averages gave a direction in the model&#39;s internal representation space associated with refusal behavior:</p>
-<p>The agent computed a refusal direction by taking the difference between the average activations of refused and successfully jailbroken FigStep requests:</p>
-<div class="math-display">\begin{equation}
-u = \operatorname{normalize}\left(
-\bar{h}_{\mathrm{refused}} - \bar{h}_{\mathrm{complied}}
-\right),
-\end{equation}</div>
-<p>where <span class="math-inline">$\bar{h}_{\mathrm{refused}}$</span> and <span class="math-inline">$\bar{h}_{\mathrm{complied}}$</span> denote the average activation vectors at a given decoder layer for FigStep requests that the model refused and those for which the jailbreak succeeded, respectively.</p>
-<p>This refusal direction was highly consistent across image and text inputs, becoming clearly distinguishable around decoder layers 17–20.</p>
+<p>Claude compared the model&#39;s internal activations for FigStep requests it refused versus those where the jailbreak succeeded. It then calculated a refusal direction by taking the difference between their average activation vectors: <span class="math-inline">$u = \operatorname{normalize}\left(\bar{h}_{\mathrm{refused}} - \bar{h}_{\mathrm{complied}}\right)$</span>, where <span class="math-inline">$\bar{h}_{\mathrm{refused}}$</span> and <span class="math-inline">$\bar{h}_{\mathrm{complied}}$</span> represent the average activations of refused and successfully jailbroken requests, respectively. Interestingly, this refusal direction was highly consistent across image and text inputs and became clearly distinguishable around decoder layers 17–20.</p>
 <p><strong>Key insight:</strong> Even when the model complied with a FigStep attack, its internal activations still contained information that distinguished harmful requests from harmless ones. This suggests that the model retained information about the harmful content, but did not consistently use it to refuse the request. Instead, the numbered-list format may have encouraged the model to complete the list rather than refuse.</p>
 <p><strong>Step 3: Designing the Weight Edit (18 forward passes).</strong></p>
-<p>Based on these findings, Claude proposed a targeted intervention: strengthen the model&#39;s refusal signal when harmful content is detected, while minimizing changes to benign requests.</p>
-<p>Simply amplifying the existing refusal signal would not work because it was largely absent in successful FigStep attacks. Instead, Claude designed a conditional rank-1 weight update:</p>
-<div class="math-display">$$
-W' = W + \alpha u v^\top
-$$</div>
-<p>Here:</p>
+<p>Based on these findings, Claude proposed a targeted intervention: strengthen the model&#39;s refusal signal when harmful content is detected, while minimizing changes to benign requests. Simply amplifying the existing refusal signal would not work because it was largely absent in successful FigStep attacks. Instead, Claude designed a conditional rank-1 weight update: <span class="math-inline">$W' = W + \alpha u v^\top$</span>. Here:</p>
 <ul>
 <li><span class="math-inline">$u$</span> is the refusal direction identified in Step 2.</li>
 <li><span class="math-inline">$v$</span> is a harm-related direction, obtained by comparing internal activations of successful FigStep attacks with harmless images in the same format.</li>
 <li><span class="math-inline">$α$</span> controls the strength of the edit.</li>
 <li><span class="math-inline">$W$</span> denotes the original weight matrix of a transformer layer, and <span class="math-inline">$W^{'}$</span> denotes the modified weight matrix after the edit.</li>
 </ul>
-<p>The idea is simple: when the model&#39;s activations align strongly with <span class="math-inline">$v$</span>, the edit strengthens the signal along <span class="math-inline">$u$</span>, encouraging the model to refuse. Claude further adjusted <span class="math-inline">$v$</span> to minimize its activation on benign examples, making the modification more selective.</p>
-<p>Claude then tested different decoder layers, edit strengths, and weight matrices. Stronger edits improved attack rejection but also began triggering refusals on some legitimate requests.</p>
+<p>The idea is simple: when the model&#39;s activations align strongly with <span class="math-inline">$v$</span>, the edit strengthens the signal along <span class="math-inline">$u$</span>, encouraging the model to refuse. Claude further adjusted <span class="math-inline">$v$</span> to minimize its activation on benign examples, making the modification more selective. Claude then tested different decoder layers, edit strengths, and weight matrices. Stronger edits improved attack rejection but also began triggering refusals on some legitimate requests.</p>
 <p><strong>Key insight:</strong> Claude ultimately selected just two targeted rank-1 weight updates, one each in decoder layers 17 and 18. These edits strengthen the connection between harmful-content detection and refusal by directly modifying two MLP output weight matrices. In total, approximately 80 million weight values were changed, representing just 0.9% of the model&#39;s 8.8 billion parameters, without gradients or fine-tuning.</p>
 <p><strong>Step 4: Verifying the Edited Model (18 forward passes).</strong></p>
-<p>Claude tested the selected edits on the 50 FigStep working samples, where refusals increased from <strong>26/50 to 47/50</strong>, reducing the preliminary ASR estimate from <strong>48% to 6%</strong>. Meanwhile, all 50 harmless FigStep-style images remained answerable, and benign first-token predictions were unchanged.</p>
-<p>As a control, Claude replaced the refusal direction with a random direction of the same magnitude. This resulted in only <strong>28/50 refusals</strong>, compared with <strong>47/50</strong> for the targeted edit.</p>
+<p>Claude tested the selected edits on the 50 FigStep working samples, where refusals increased from <strong>26/50 to 47/50</strong>, reducing the preliminary ASR estimate from <strong>48% to 6%</strong>. Meanwhile, all 50 harmless FigStep-style images remained answerable, and benign first-token predictions were unchanged. As a control, Claude replaced the refusal direction with a random direction of the same magnitude. This resulted in only <strong>28/50 refusals</strong>, compared with <strong>47/50</strong> for the targeted edit.</p>
 <p><strong>Key insight:</strong> The improvement was specific to the identified refusal direction, rather than simply modifying the model&#39;s weights. Overall, Claude used <strong>55 of the 100 available forward passes</strong> before freezing the edited model for held-out evaluation.</p>
 <h2>Main results and insights</h2>
-<p><strong>The agent substantially improved refusal behavior on FigStep attacks.</strong> We evaluated the selected weight edit on 50 FigStep development examples, which were the jailbreak examples available to the agent during experimentation. Before editing, the model generated non-refusing responses on 24 of these 50 examples. After editing, this number dropped to just 3, reducing the development attack-success proxy from <strong>48%</strong> to <strong>6%</strong>.</p>
-<p>Importantly, this improvement did not come with an observed increase in refusals on the benign examples used during development.</p>
-<!-- **The development results show a substantial change in refusal behavior.** On the 50 development attacks, the number of non-refusing responses fell from 24 to 3: a development ASR proxy of **48% → 6%**. This measurement uses 16-token responses and a keyword detector. It is encouraging, but the complete-response, held-out evaluation is needed to establish the final ASR. -->
-
-<!-- The benign checks remained stable under the selected edit: -->
-
-<div class="table-wrap" role="region" aria-label="Development measurements" tabindex="0"><table>
-<thead>
-<tr>
-<th>Development measurement</th>
-<th align="right">Before editing</th>
-<th align="right">After editing</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>FigStep non-refusals, 16-token keyword check</td>
-<td align="right">24/50</td>
-<td align="right">3/50</td>
-</tr>
-<tr>
-<td>Harmless typographic refusals, 16-token keyword check</td>
-<td align="right">0/50</td>
-<td align="right">0/50</td>
-</tr>
-<tr>
-<td>Correct first tokens on one-word benign tasks</td>
-<td align="right">44/44</td>
-<td align="right">44/44</td>
-</tr>
-<tr>
-<td>Refusal-like first tokens on borderline benign images / text lists</td>
-<td align="right">0/30 / 0/30</td>
-<td align="right">0/30 / 0/30</td>
-</tr>
-</tbody></table></div>
-<p>These results use short, 16-token responses and keyword-based refusal detection. These checks provide initial evidence of selectivity. They do not yet show that general utility is unchanged or that over-refusal is absent on a broader benchmark.</p>
-<p><strong>The improvement depended on the specific direction chosen by the agent.</strong> After identifying a direction associated with refusal behavior, the agent evaluated alternative edits using random directions orthogonal to the one it had identified, while keeping the other settings and edit magnitudes unchanged. With these random directions, refusal-like first tokens increased only from 26 to 28 out of 50.</p>
-<p>The same edit also affected the text-only list version of the attack. In the paired screening batch, refusal-like first tokens increased from 21 to 42 out of 50, while harmless text lists remained at zero refusals. This is an interesting sign of a shared effect across image and text presentations, although it uses the same development questions rather than a new attack benchmark.</p>
-<p><strong>The agent chose an edit that gave up a little attack rejection to avoid emerging over-refusal.</strong> During its experiments, the agent found a weight edit that triggered refusals on 49 out of 50 FigStep attacks. However, it also incorrectly refused 2 out of 30 harmless requests. The selected two-layer edit reached 47 of 50 attacks with zero refusals on that benign check. The log explicitly records this choice and acknowledges that it departed from the earlier selection rule, which would have permitted those two benign refusals.</p>
-<p>That decision is worth highlighting. The agent used the benign checks to reconsider what looked like a better attack score. It was trying to preserve the distinction between harmful and legitimate requests.</p>
+<figure><a href="blog-assets/qwen-edit-history.png" aria-label="View Figure 2 at full size"><img src="blog-assets/qwen-edit-history.png" alt="FigStep proxy ASR across weight edits tested on Qwen3-VL-8B-Instruct" width="3750" height="1500" loading="lazy" decoding="async"></a><figcaption><em>Figure 2. FigStep proxy ASR across different weight edits tested by Claude on the 50 FigStep examples used during editing. Proxy ASR measures the percentage of requests where the model did not refuse, based on short responses or the first predicted token. Lower is better.</em></figcaption></figure>
+<p><strong>Different weight edits produced different safety improvements.</strong> As shown in Figure 2, Claude explored several editing strategies by varying the target layers, refusal directions, and edit strengths. On the 50 FigStep examples used during editing, the selected two-layer edit (<strong>Edit 6, layers 17 and 18</strong>) reduced the proxy ASR from <strong>48% to 6%</strong>. These results highlight how the choice of weight modification affected the model&#39;s refusal behavior.</p>
+<p><strong>The improvement depended on the specific direction chosen by the agent.</strong> To test whether the gains came from the identified refusal direction rather than arbitrary weight changes, Claude replaced it with a random direction in <strong>decoder layer 18</strong>, keeping the other editing settings unchanged. As shown in Figure 2, the random-direction edit (<strong>Edit 4</strong>) increased the FigStep proxy ASR from <strong>48% to 66%</strong>, whereas the targeted refusal-direction edit at the same layer (<strong>Edit 1</strong>) reduced it to <strong>30%</strong>. This suggests that the improvement came from modifying a meaningful refusal-related direction rather than simply perturbing the model&#39;s weights.</p>
+<p><strong>The agent balanced attack resistance and over-refusal.</strong> As shown in the Figure 2, one candidate edit (<strong>Edit 5</strong>) achieved a <strong>2%  proxy ASR</strong>, refusing 49 out of 50 FigStep attacks. However, it also incorrectly refused 2 out of 30 harmless requests. Claude therefore selected the two-layer edit (<strong>Edit 6</strong>), which achieved a <strong>6%  proxy ASR</strong> (47/50 refusals) without refusing any of those harmless requests. </p>
+<p>This highlights how the agent considered both attack resistance and over-refusal when selecting the final weight edit, rather than simply choosing the candidate with the lowest ASR.</p>
 <h2>Additional evaluations and next steps</h2>
-<p>To investigate whether weight-space programming can improve safety across different models, we also conducted preliminary experiments with <strong>Qwen3.5-0.8B</strong>, a substantially smaller model. On the <strong>FigStep</strong>, weight editing reduced the ASR from <strong>18% to 10%</strong>. On <strong>MM-SafetyBench</strong>, ASR decreased from <strong>10% to 3%</strong>. Importantly, the model&#39;s original utility was retained after weight editing.</p>
+<p>To investigate whether weight-space programming can improve safety across different models (see Figure 3), we further evaluated two additional models. For <strong>Qwen3.5-0.8B</strong>, ASR decreased from <strong>18% to 10%</strong> on held-out FigStep and from <strong>10% to 3%</strong> on unseen MM-SafetyBench. For <strong>Llama-3.2-11B-Vision-Instruct</strong>, whose base safety on these attacks is much weaker, ASR dropped from <strong>95% to 12%</strong> on held-out FigStep and from <strong>58% to 29%</strong> on unseen MM-SafetyBench. For both models, utility on ScienceQA and MathVista was preserved after weight editing.</p>
+<figure><a href="blog-assets/additional-model-safety-utility.png" aria-label="View Figure 3 at full size"><img src="blog-assets/additional-model-safety-utility.png" alt="Qwen3.5-0.8B and Llama-3.2-11B-Vision-Instruct safety and utility before and after weight editing" width="4050" height="1680" loading="lazy" decoding="async"></a><figcaption><em>Figure 3. Safety and utility performance of Qwen3.5-0.8B and Llama-3.2-11B-Vision-Instruct before and after weight editing. On held-out FigStep attacks, ASR decreased from 18% to 10% for Qwen3.5-0.8B and from 95% to 12% for Llama-3.2-11B-Vision. On the unseen MM-SafetyBench benchmark, ASR decreased from 10% to 3% and from 58% to 29% respectively. Average accuracy on ScienceQA and MathVista was unchanged for both models (83.3% and 66%). Lower ASR and higher utility are better.</em></figcaption></figure>
+<p>Next, Figure 4 shows the editing history for the Llama model and it&#39;s effect of the attack success rate. </p>
+<figure><a href="blog-assets/llama-edit-history.png" aria-label="View Figure 4 at full size"><img src="blog-assets/llama-edit-history.png" alt="FigStep proxy ASR across weight edits tested on Llama-3.2-11B-Vision-Instruct" width="3750" height="1500" loading="lazy" decoding="async"></a><figcaption><em>Figure 4. FigStep proxy ASR across different weight edits tested by Claude on Llama-3.2-11B-Vision-Instruct, measured on the 50 FigStep examples used during editing. Proxy ASR measures the percentage of requests the model did not refuse, based on a keyword check of its responses. The selected edit, in a single cross-attention layer (layer 23), reduced the proxy ASR from 94% to 2%. Edits with lower ASR were rejected because they refused harmless requests or weakened refusals of harmful text. Lower is better.</em></figcaption></figure>
 <p>What we find exciting is the sequence of decisions: the agent compared formats, identified useful activation patterns, revised its editing strategy, and checked the consequences for benign requests. These are initial proof-of-concept findings. We are sharing them to make the approach and its limitations concrete, and we will add further results as the evaluation develops.</p>
-<figure><a href="blog-assets/qwen35-safety-utility.png" aria-label="View full-size figure"><img src="blog-assets/qwen35-safety-utility.png" alt="Qwen3.5-0.8B safety and utility before and after weight editing" width="3900" height="1470" loading="lazy" decoding="async"></a></figure>
 <h2>Acknowledgements</h2>
 <p>We thank the members of <a href="https://amrit-singh-bedi.github.io/lab.html">SafeRR AI Lab</a> at the Institute of Artificial Intelligence, University of Central Florida.</p>
+
   </article>
   <div class="article-end"><a href="blog.html">← Back to Blog</a><a href="index.html">Homepage</a></div>
 </main>
