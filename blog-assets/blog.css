@@ -1,6 +1,6 @@
 /* Shared only by the new blog pages; colors and typography follow news.html. */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--ink:#1a1814;--ink-mid:#4a4640;--ink-faint:#8a8480;--paper:#faf9f7;--cream:#f2efe9;--rule:#dedad4;--blue:#1a3a6e;--blue-lt:#e8eef8;--gold:#b8880a;--serif:'EB Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--max:820px}
+:root{--ink:#1a1814;--ink-mid:#4a4640;--ink-faint:#706a65;--paper:#faf9f7;--cream:#f2efe9;--rule:#dedad4;--blue:#1a3a6e;--blue-lt:#e8eef8;--gold:#b8880a;--serif:'EB Garamond','EB Garamond Fallback',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--max:820px}
 html{scroll-behavior:smooth;font-size:17px}
 body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.65}
 header{position:sticky;top:0;z-index:100;background:rgba(250,249,247,0.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
@@ -11,7 +11,16 @@ nav{display:flex;gap:2rem;flex-shrink:0}
 main{max-width:var(--max);margin:0 auto;padding:3rem 2rem 6rem}
 a{color:var(--blue);text-underline-offset:0.18em}
 a:hover{text-decoration-thickness:2px}
-a:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+a:focus-visible,summary:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+.skip-link{position:absolute;left:1rem;top:-5rem;z-index:200;padding:0.5rem 1rem;background:var(--paper)}
+.skip-link:focus{top:0.5rem}
+.blog-search{margin-bottom:2.5rem}
+.blog-search label{display:block;font-size:0.85rem;font-weight:500;margin-bottom:0.5rem}
+.blog-search input{display:block;width:100%;min-height:44px;border:1px solid #706a65;border-radius:4px;padding:0.65rem 0.8rem;background:var(--paper);color:var(--ink);font:inherit;font-size:0.88rem}
+.blog-search input::placeholder{color:var(--ink-faint);opacity:1}
+#search-status{font-size:0.8rem;color:var(--ink-faint);margin-top:0.5rem}
+.math-inline{display:inline-block;max-width:100%;vertical-align:middle;overflow-x:auto;overflow-y:hidden}
+.math-inline math{font-size:1.05em}
 .page-head{margin-bottom:2.5rem;padding-bottom:1.25rem;border-bottom:1px solid var(--rule)}
 h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-0.01em;color:var(--ink);line-height:1.25}
 .page-head h1{font-size:1.9rem}
@@ -27,6 +36,11 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-0.01em;color:v
 .article-body{font-size:0.94rem;color:var(--ink-mid);line-height:1.8;overflow-wrap:anywhere}
 .article-body h1{font-size:2.2rem;padding-bottom:1.25rem;border-bottom:1px solid var(--rule);margin-bottom:2rem}
 .article-body h2{font-size:1.65rem;margin:2.75rem 0 1.2rem;scroll-margin-top:5rem}
+/* Keep offscreen article sections in the document and browser search while
+   postponing their layout/paint. The opening summary is always rendered. */
+.article-section{content-visibility:auto;contain-intrinsic-size:auto 800px;margin:2.75rem 0 1.2rem}
+.article-section>h2:first-child{margin-top:0}
+.article-section>:last-child{margin-bottom:0}
 .article-body h3{font-size:1.25rem;margin:2rem 0 1rem}
 .article-body p{margin-bottom:1.2rem}
 .article-body strong{font-weight:500;color:var(--ink)}
@@ -57,3 +71,4 @@ footer{border-top:1px solid var(--rule);background:var(--cream);margin-top:4rem}
 .footer-inner p{font-size:0.8rem;color:var(--ink-faint)}
 @media(max-width:600px){.header-inner{padding:0 1.25rem}.back-link,nav a{font-size:0.72rem}main{padding:2rem 1.25rem 4rem}.article-body h1{font-size:1.9rem}.article-body h2{font-size:1.5rem}.article-body details{padding:0.9rem 1rem}.footer-inner{padding:1.4rem 1.25rem}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{.article-section{content-visibility:visible;contain-intrinsic-size:none}}

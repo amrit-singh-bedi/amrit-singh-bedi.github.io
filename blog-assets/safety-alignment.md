@@ -1,5 +1,10 @@
 # Safety Alignment via Weight-Space Programming
 
+<!-- Article metadata (not displayed):
+Authors: Amrit Singh Bedi, Adeel, Anirudh Narayan Devanathan, Gabriel Garcia, Hongjie Tian, Jivjot Singh, Utsav Singh
+Published: 2026-11-04
+-->
+
 [SafeRR AI Lab](https://amrit-singh-bedi.github.io/lab.html), Institute of Artificial Intelligence, University of Central Florida
 
 

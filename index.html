@@ -3,13 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amrit Singh Bedi — UCF</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>Amrit Singh Bedi | SafeRR AI Lab, UCF</title>
+  <meta name="description" content="Amrit Singh Bedi is an Assistant Professor of Computer Science at UCF, leading the SafeRR AI Lab in AI safety, alignment, and reinforcement learning.">
+  <link rel="canonical" href="https://amrit-singh-bedi.github.io/">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.png" type="image/png" sizes="96x96">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
+  <meta name="theme-color" content="#1a3a6e">
+  <meta property="og:site_name" content="Amrit Singh Bedi · SafeRR AI Lab">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Amrit Singh Bedi | SafeRR AI Lab, UCF">
+  <meta property="og:description" content="Amrit Singh Bedi is an Assistant Professor of Computer Science at UCF, leading the SafeRR AI Lab in AI safety, alignment, and reinforcement learning.">
+  <meta property="og:url" content="https://amrit-singh-bedi.github.io/">
+  <meta property="og:image" content="https://amrit-singh-bedi.github.io/assets/site-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Amrit Singh Bedi, SafeRR AI Lab, University of Central Florida">
+  <meta name="twitter:card" content="summary_large_image">
+  <style data-source="assets/fonts.css">
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 300 500;
+  font-display: swap;
+  src: url(assets/fonts/dm-sans-normal-web.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/eb-garamond-italic-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url(assets/fonts/eb-garamond-normal-web.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Georgia fallback matches the web font's heading-weighted advance widths
+   and vertical metrics. The original font is displayed once downloaded. */
+@font-face {
+  font-family: 'EB Garamond Fallback';
+  src: local('Georgia');
+  font-style: normal;
+  font-weight: 400 600;
+  size-adjust: 90.7659%;
+  ascent-override: 110.9447%;
+  descent-override: 32.8317%;
+  line-gap-override: 0%;
+}
+  </style>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--ink:#1a1814;--ink-mid:#4a4640;--ink-faint:#8a8480;--paper:#faf9f7;--cream:#f2efe9;--rule:#dedad4;--blue:#1a3a6e;--blue-lt:#e8eef8;--gold:#b8880a;--serif:'EB Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--max:1080px;--col-gap:3rem}
+    :root{--ink:#1a1814;--ink-mid:#4a4640;--ink-faint:#706a65;--paper:#faf9f7;--cream:#f2efe9;--rule:#dedad4;--blue:#1a3a6e;--blue-lt:#e8eef8;--gold:#b8880a;--serif:'EB Garamond','EB Garamond Fallback',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--max:1080px;--col-gap:3rem}
     html{scroll-behavior:smooth;font-size:17px}
     body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.65}
     header{position:sticky;top:0;z-index:100;background:rgba(250,249,247,0.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
@@ -78,6 +131,36 @@
     .footer-inner p{font-size:0.8rem;color:var(--ink-faint)}
     @media(max-width:700px){#home{grid-template-columns:1fr}.profile-photo,.profile-photo-placeholder{width:160px;height:200px}.profile-text h1{font-size:2rem}nav{display:none}#menuBtn{display:block}.links-grid{grid-template-columns:repeat(2,1fr)}.pub-item{grid-template-columns:72px 1fr;gap:1rem}.news-item{grid-template-columns:44px 1fr;gap:1rem}.sec-meta{display:none}}
   </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://amrit-singh-bedi.github.io/#website",
+      "name": "Amrit Singh Bedi · SafeRR AI Lab",
+      "url": "https://amrit-singh-bedi.github.io/"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://amrit-singh-bedi.github.io/#amrit-singh-bedi",
+      "name": "Amrit Singh Bedi",
+      "url": "https://amrit-singh-bedi.github.io/",
+      "image": "https://amrit-singh-bedi.github.io/amrit_pic.png",
+      "jobTitle": "Assistant Professor",
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Central Florida",
+        "url": "https://www.ucf.edu/"
+      },
+      "sameAs": [
+        "https://scholar.google.com/citations?user=91WLA6QAAAAJ",
+        "https://www.linkedin.com/in/amrit-singh-bedi-3284089a/"
+      ]
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <header>
@@ -91,7 +174,7 @@
         <a href="#links">Links</a>
         <a href="blog.html">Blog</a>
       </nav>
-      <button id="menuBtn" onclick="toggleMenu()">Menu</button>
+      <button id="menuBtn" type="button" aria-controls="mobileNav" aria-expanded="false" onclick="toggleMenu()">Menu</button>
     </div>
     <div id="mobileNav">
       <a href="#home" onclick="closeMenu()">Home</a>
@@ -107,7 +190,7 @@
     <!-- Home -->
     <section id="home">
       <div>
-        <img src="amrit_pic.png" alt="Amrit Singh Bedi" class="profile-photo"
+        <img src="assets/amrit-bedi.webp" alt="Amrit Singh Bedi" class="profile-photo" width="220" height="270" fetchpriority="high" decoding="async"
           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="profile-photo-placeholder" style="display:none;">Photo</div>
       </div>
@@ -191,7 +274,7 @@
         <div class="news-item"><div class="news-year">2026</div><div class="news-content"><span class="tag tag-conf">Paper</span><h3>Paper accepted to ACM FAccT 2026</h3></div></div>
         <div class="news-item"><div class="news-year">2026</div><div class="news-content"><span class="tag tag-conf">Paper</span><h3>Two papers accepted to ICLR 2026</h3><p>Two papers from our group accepted to ICLR 2026 in Rio de Janeiro, Brazil.</p></div></div>
         <div class="news-item"><div class="news-year">2026</div><div class="news-content"><span class="tag tag-conf">Paper</span><h3>Paper accepted to EACL 2026</h3><p><em>LIAR: Leveraging Inference Time Alignment (Best-of-N) to Jailbreak LLMs in Seconds</em></p></div></div>
-               <div class="news-item" data-cat="funding"><div class="news-year">2026</div><div class="news-content"><span class="tag tag-funding">Funding</span><h3>DARPA research support</h3><p>We are grateful to DARPA for supporting our research. <a href="https://www.cecs.ucf.edu/ucf-researcher-aims-to-make-ai-safer-more-reliable/" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:none;">UCF News →</a></p></div></div>
+               <div class="news-item" data-cat="funding"><div class="news-year">2026</div><div class="news-content"><span class="tag tag-funding">Funding</span><h3>DARPA research support</h3><p>We are grateful to DARPA for supporting our research. <a href="https://www.cecs.ucf.edu/ucf-researcher-aims-to-make-ai-safer-more-reliable/" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:underline;">UCF News →</a></p></div></div>
 <div class="news-item"><div class="news-year">2026</div><div class="news-content"><span class="tag tag-conf">Paper</span><h3>Paper on safety of VLMs accepted to AAAI 2026</h3></div></div>
         <div class="news-item" data-cat="funding"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-funding">Funding</span><h3>Lockheed Martin research support</h3><p>We are grateful to Lockheed Martin for supporting our research.</p></div></div>
         <div class="news-item" data-cat="funding"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-funding">Funding</span><h3>Florida Department of Health–funded collaboration</h3><p>We are pleased to participate in MammoChat and thank the Florida Department of Health for its support.</p></div></div>
@@ -229,7 +312,7 @@
       <div class="sec-head"><h2>Teaching</h2></div>
       <p style="font-size:0.95rem;color:var(--ink-mid);line-height:1.8;">
         Courses taught at the University of Central Florida across graduate and undergraduate levels. &nbsp;
-        <a href="teaching.html" style="color:var(--blue);text-decoration:none;font-weight:500;border-bottom:1px solid var(--blue-lt);padding-bottom:1px;">View teaching page →</a>
+        <a href="teaching.html" style="color:var(--blue);text-decoration:underline;font-weight:500;border-bottom:1px solid var(--blue-lt);padding-bottom:1px;">View teaching page →</a>
       </p>
     </section>
 
@@ -237,7 +320,7 @@
     <section id="Videos">
       <div class="sec-head"><h2>Videos</h2></div>
       <p style="font-size:0.95rem;color:var(--ink-mid);line-height:1.8;">
-        <a href="videos.html" style="color:var(--blue);text-decoration:none;font-weight:500;border-bottom:1px solid var(--blue-lt);padding-bottom:1px;">View teaching page →</a>
+        <a href="videos.html" style="color:var(--blue);text-decoration:underline;font-weight:500;border-bottom:1px solid var(--blue-lt);padding-bottom:1px;">View teaching page →</a>
       </p>
     </section>
     
@@ -265,8 +348,8 @@
   </footer>
 
   <script>
-    function toggleMenu(){const m=document.getElementById('mobileNav');m.style.display=m.style.display==='flex'?'none':'flex';m.style.flexDirection='column'}
-    function closeMenu(){document.getElementById('mobileNav').style.display='none'}
+    function toggleMenu(){const m=document.getElementById('mobileNav');m.style.display=m.style.display==='flex'?'none':'flex';m.style.flexDirection='column';document.getElementById('menuBtn').setAttribute('aria-expanded',m.style.display==='flex')}
+    function closeMenu(){document.getElementById('mobileNav').style.display='none';document.getElementById('menuBtn').setAttribute('aria-expanded','false')}
   </script>
 </body>
 </html>

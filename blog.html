@@ -4,23 +4,205 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog — Amrit Singh Bedi</title>
-  <meta name="description" content="Research articles by Amrit Singh Bedi.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="blog-assets/blog.css">
+  <meta name="description" content="Research articles from Amrit Singh Bedi and the SafeRR AI Lab at UCF on AI safety, alignment, reinforcement learning, and weight-space programming.">
+  <link rel="canonical" href="https://amrit-singh-bedi.github.io/blog.html">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.png" type="image/png" sizes="96x96">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
+  <meta name="theme-color" content="#1a3a6e">
+  <meta property="og:site_name" content="Amrit Singh Bedi · SafeRR AI Lab">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Blog — Amrit Singh Bedi">
+  <meta property="og:description" content="Research articles from Amrit Singh Bedi and the SafeRR AI Lab at UCF on AI safety, alignment, reinforcement learning, and weight-space programming.">
+  <meta property="og:url" content="https://amrit-singh-bedi.github.io/blog.html">
+  <meta property="og:image" content="https://amrit-singh-bedi.github.io/assets/site-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Amrit Singh Bedi, SafeRR AI Lab, University of Central Florida">
+  <meta name="twitter:card" content="summary_large_image">
+  <style data-source="assets/fonts.css">
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 300 500;
+  font-display: swap;
+  src: url(assets/fonts/dm-sans-normal-web.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/eb-garamond-italic-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url(assets/fonts/eb-garamond-normal-web.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Georgia fallback matches the web font's heading-weighted advance widths
+   and vertical metrics. The original font is displayed once downloaded. */
+@font-face {
+  font-family: 'EB Garamond Fallback';
+  src: local('Georgia');
+  font-style: normal;
+  font-weight: 400 600;
+  size-adjust: 90.7659%;
+  ascent-override: 110.9447%;
+  descent-override: 32.8317%;
+  line-gap-override: 0%;
+}
+  </style>
+  <style data-source="blog-assets/blog.css">
+/* Shared only by the new blog pages; colors and typography follow news.html. */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#1a1814;--ink-mid:#4a4640;--ink-faint:#706a65;--paper:#faf9f7;--cream:#f2efe9;--rule:#dedad4;--blue:#1a3a6e;--blue-lt:#e8eef8;--gold:#b8880a;--serif:'EB Garamond','EB Garamond Fallback',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--max:820px}
+html{scroll-behavior:smooth;font-size:17px}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.65}
+header{position:sticky;top:0;z-index:100;background:rgba(250,249,247,0.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.header-inner{max-width:var(--max);margin:0 auto;padding:0 2rem;min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.back-link,nav a{font-size:0.82rem;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-mid);text-decoration:none}
+.back-link:hover,nav a:hover,nav a[aria-current="page"]{color:var(--blue)}
+nav{display:flex;gap:2rem;flex-shrink:0}
+main{max-width:var(--max);margin:0 auto;padding:3rem 2rem 6rem}
+a{color:var(--blue);text-underline-offset:0.18em}
+a:hover{text-decoration-thickness:2px}
+a:focus-visible,summary:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+.skip-link{position:absolute;left:1rem;top:-5rem;z-index:200;padding:0.5rem 1rem;background:var(--paper)}
+.skip-link:focus{top:0.5rem}
+.blog-search{margin-bottom:2.5rem}
+.blog-search label{display:block;font-size:0.85rem;font-weight:500;margin-bottom:0.5rem}
+.blog-search input{display:block;width:100%;min-height:44px;border:1px solid #706a65;border-radius:4px;padding:0.65rem 0.8rem;background:var(--paper);color:var(--ink);font:inherit;font-size:0.88rem}
+.blog-search input::placeholder{color:var(--ink-faint);opacity:1}
+#search-status{font-size:0.8rem;color:var(--ink-faint);margin-top:0.5rem}
+.math-inline{display:inline-block;max-width:100%;vertical-align:middle;overflow-x:auto;overflow-y:hidden}
+.math-inline math{font-size:1.05em}
+.page-head{margin-bottom:2.5rem;padding-bottom:1.25rem;border-bottom:1px solid var(--rule)}
+h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-0.01em;color:var(--ink);line-height:1.25}
+.page-head h1{font-size:1.9rem}
+.blog-list{list-style:none}
+.blog-entry{padding:0 0 2rem;border-bottom:1px solid var(--rule)}
+.blog-entry h2{font-size:1.5rem;margin-bottom:0.8rem}
+.blog-entry h2 a{color:var(--ink);text-decoration:none}
+.blog-entry h2 a:hover{color:var(--blue)}
+.blog-entry p{font-size:0.88rem;color:var(--ink-mid);line-height:1.8;margin-bottom:1rem}
+.read-link,.article-back{font-size:0.82rem}
+.article-back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
+.article-back:hover{text-decoration:underline}
+.article-body{font-size:0.94rem;color:var(--ink-mid);line-height:1.8;overflow-wrap:anywhere}
+.article-body h1{font-size:2.2rem;padding-bottom:1.25rem;border-bottom:1px solid var(--rule);margin-bottom:2rem}
+.article-body h2{font-size:1.65rem;margin:2.75rem 0 1.2rem;scroll-margin-top:5rem}
+/* Keep offscreen article sections in the document and browser search while
+   postponing their layout/paint. The opening summary is always rendered. */
+.article-section{content-visibility:auto;contain-intrinsic-size:auto 800px;margin:2.75rem 0 1.2rem}
+.article-section>h2:first-child{margin-top:0}
+.article-section>:last-child{margin-bottom:0}
+.article-body h3{font-size:1.25rem;margin:2rem 0 1rem}
+.article-body p{margin-bottom:1.2rem}
+.article-body strong{font-weight:500;color:var(--ink)}
+.article-body ul,.article-body ol{padding-left:1.4rem;margin:0 0 1.5rem}
+.article-body li{padding-left:0.15rem;margin-bottom:0.45rem}
+.article-body blockquote{border-left:2px solid var(--gold);padding:0.2rem 0 0.2rem 1.25rem;margin:1.5rem 0}
+.article-body blockquote p:last-child{margin-bottom:0}
+.article-body figure{margin:2rem 0}
+.article-body figure a{display:block}
+.article-body img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:4px;background:#fff}
+.article-body figcaption{font-size:0.8rem;line-height:1.7;margin-top:0.85rem}
+.article-body details{background:var(--cream);border:1px solid var(--rule);border-radius:4px;padding:1rem 1.25rem;margin:1.75rem 0}
+.article-body summary{cursor:pointer;color:var(--blue);font-weight:500}
+.article-body details[open] summary{margin-bottom:1.2rem}
+.article-body details>:last-child{margin-bottom:0}
+.table-wrap{max-width:100%;overflow-x:auto;margin:1.75rem 0}
+.article-body table{width:100%;border-collapse:collapse;font-size:0.8rem;line-height:1.6}
+.article-body th,.article-body td{padding:0.75rem;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top;min-width:7rem}
+.article-body th{font-weight:500;color:var(--ink);background:var(--cream)}
+.article-body th:first-child,.article-body td:first-child{min-width:15rem}
+.article-body pre{overflow-x:auto;padding:1rem;background:var(--cream);border:1px solid var(--rule);border-radius:4px;margin:1.5rem 0}
+.article-body code{font-size:0.85em;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+.math-display{overflow-x:auto;max-width:100%;margin:1.5rem 0;padding:0.25rem 0;text-align:center}
+.math-display mjx-container[display="true"]{margin:0.5rem 0!important}
+.article-end{margin-top:3rem;padding-top:1.25rem;border-top:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:1rem 2rem;font-size:0.82rem}
+footer{border-top:1px solid var(--rule);background:var(--cream);margin-top:4rem}
+.footer-inner{max-width:var(--max);margin:0 auto;padding:1.4rem 2rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0.5rem}
+.footer-inner p{font-size:0.8rem;color:var(--ink-faint)}
+@media(max-width:600px){.header-inner{padding:0 1.25rem}.back-link,nav a{font-size:0.72rem}main{padding:2rem 1.25rem 4rem}.article-body h1{font-size:1.9rem}.article-body h2{font-size:1.5rem}.article-body details{padding:0.9rem 1rem}.footer-inner{padding:1.4rem 1.25rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{.article-section{content-visibility:visible;contain-intrinsic-size:none}}
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "SafeRR AI Lab Research Blog",
+  "url": "https://amrit-singh-bedi.github.io/blog.html",
+  "description": "Research articles from Amrit Singh Bedi and the SafeRR AI Lab at UCF on AI safety, alignment, reinforcement learning, and weight-space programming.",
+  "blogPost": [
+    {
+      "@type": "BlogPosting",
+      "headline": "Safety Alignment via Weight-Space Programming",
+      "url": "https://amrit-singh-bedi.github.io/blog-safety-alignment.html",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Amrit Singh Bedi",
+          "url": "https://amrit-singh-bedi.github.io/"
+        },
+        {
+          "@type": "Person",
+          "name": "Adeel"
+        },
+        {
+          "@type": "Person",
+          "name": "Anirudh Narayan Devanathan"
+        },
+        {
+          "@type": "Person",
+          "name": "Gabriel Garcia",
+          "url": "https://gpgabriel25.github.io/"
+        },
+        {
+          "@type": "Person",
+          "name": "Hongjie Tian"
+        },
+        {
+          "@type": "Person",
+          "name": "Jivjot Singh"
+        },
+        {
+          "@type": "Person",
+          "name": "Utsav Singh"
+        }
+      ],
+      "datePublished": "2026-11-04"
+    }
+  ]
+}
+  </script>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
 <header>
   <div class="header-inner">
     <a class="back-link" href="index.html">← Amrit Singh Bedi</a>
     <nav aria-label="Blog navigation"><a href="blog.html" aria-current="page">Blog</a></nav>
   </div>
 </header>
-<main>
+<main id="main-content" tabindex="-1">
   <div class="page-head"><h1>Blog</h1></div>
-  <ul class="blog-list">
-    <li class="blog-entry">
+  <form id="blog-search" class="blog-search" role="search" aria-label="Search blog articles" hidden>
+    <label for="blog-query">Search articles</label>
+    <input id="blog-query" name="q" type="search" placeholder="Search topics or model names…" autocomplete="off" aria-controls="blog-articles" aria-describedby="search-status">
+    <p id="search-status" role="status" aria-live="polite" aria-atomic="true"></p>
+  </form>
+  <ul id="blog-articles" class="blog-list">
+    <li class="blog-entry" data-keywords="AI alignment multimodal safety Qwen3-VL Qwen3.5 Llama FigStep MM-SafetyBench ScienceQA MathVista jailbreak refusal reinforcement learning">
       <article>
         <h2><a href="blog-safety-alignment.html">Safety Alignment via Weight-Space Programming</a></h2>
         <p>Initial experiments in which Claude directly edits Qwen and Llama vision-language model weights to improve safety without fine-tuning, with results and editing histories.</p>
@@ -32,5 +214,43 @@
 <footer>
   <div class="footer-inner"><p>© 2026 Amrit Singh Bedi &nbsp;·&nbsp; University of Central Florida</p></div>
 </footer>
+<script data-source="blog-assets/search.js">
+'use strict';
+
+// Filter the rendered entries so new posts are searchable without a separate index.
+const searchForm = document.querySelector('#blog-search');
+const searchInput = document.querySelector('#blog-query');
+const searchStatus = document.querySelector('#search-status');
+const entries = [...document.querySelectorAll('.blog-entry')];
+
+const normalize = value => value.normalize('NFKD').replace(/\p{M}/gu, '').toLocaleLowerCase();
+const searchableEntries = entries.map(entry => ({
+  entry,
+  text: normalize(`${entry.textContent} ${entry.dataset.keywords || ''}`)
+}));
+
+function filterArticles() {
+  const terms = normalize(searchInput.value).trim().split(/\s+/).filter(Boolean);
+  let count = 0;
+  for (const {entry, text} of searchableEntries) {
+    entry.hidden = !terms.every(term => text.includes(term));
+    if (!entry.hidden) count++;
+  }
+  searchStatus.textContent = count === 0
+    ? 'No matching articles. Try another topic or clear the search.'
+    : `${count} ${count === 1 ? 'article' : 'articles'}${terms.length ? ' found' : ''}.`;
+}
+
+searchForm.hidden = false;
+searchForm.addEventListener('submit', event => event.preventDefault());
+searchInput.addEventListener('input', filterArticles);
+searchInput.addEventListener('keydown', event => {
+  if (event.key === 'Escape') {
+    searchInput.value = '';
+    filterArticles();
+  }
+});
+filterArticles();
+</script>
 </body>
 </html>

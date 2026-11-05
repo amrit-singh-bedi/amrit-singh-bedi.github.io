@@ -4,12 +4,65 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>News — Amrit Singh Bedi</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <meta name="description" content="Research news, publications, talks, awards, and funding updates from Amrit Singh Bedi and the SafeRR AI Lab at the University of Central Florida.">
+  <link rel="canonical" href="https://amrit-singh-bedi.github.io/news.html">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.png" type="image/png" sizes="96x96">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
+  <meta name="theme-color" content="#1a3a6e">
+  <meta property="og:site_name" content="Amrit Singh Bedi · SafeRR AI Lab">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="News — Amrit Singh Bedi">
+  <meta property="og:description" content="Research news, publications, talks, awards, and funding updates from Amrit Singh Bedi and the SafeRR AI Lab at the University of Central Florida.">
+  <meta property="og:url" content="https://amrit-singh-bedi.github.io/news.html">
+  <meta property="og:image" content="https://amrit-singh-bedi.github.io/assets/site-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Amrit Singh Bedi, SafeRR AI Lab, University of Central Florida">
+  <meta name="twitter:card" content="summary_large_image">
+  <style data-source="assets/fonts.css">
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 300 500;
+  font-display: swap;
+  src: url(assets/fonts/dm-sans-normal-web.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/eb-garamond-italic-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url(assets/fonts/eb-garamond-normal-web.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Georgia fallback matches the web font's heading-weighted advance widths
+   and vertical metrics. The original font is displayed once downloaded. */
+@font-face {
+  font-family: 'EB Garamond Fallback';
+  src: local('Georgia');
+  font-style: normal;
+  font-weight: 400 600;
+  size-adjust: 90.7659%;
+  ascent-override: 110.9447%;
+  descent-override: 32.8317%;
+  line-gap-override: 0%;
+}
+  </style>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--ink:#1a1814;--ink-mid:#4a4640;--ink-faint:#8a8480;--paper:#faf9f7;--cream:#f2efe9;--rule:#dedad4;--blue:#1a3a6e;--blue-lt:#e8eef8;--gold:#b8880a;--serif:'EB Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--max:820px}
+    :root{--ink:#1a1814;--ink-mid:#4a4640;--ink-faint:#706a65;--paper:#faf9f7;--cream:#f2efe9;--rule:#dedad4;--blue:#1a3a6e;--blue-lt:#e8eef8;--gold:#b8880a;--serif:'EB Garamond','EB Garamond Fallback',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--max:820px}
     html{scroll-behavior:smooth;font-size:17px}
     body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.65}
     header{position:sticky;top:0;z-index:100;background:rgba(250,249,247,0.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
@@ -33,7 +86,7 @@
     .news-item{display:grid;grid-template-columns:56px 1fr;gap:1.5rem;padding:1.2rem 0;border-bottom:1px solid var(--rule)}
     .news-item.hidden{display:none}
     .news-year{font-family:var(--serif);font-size:0.85rem;color:var(--ink-faint);font-style:italic;padding-top:4px}
-    .news-content h3{font-family:var(--serif);font-size:1.05rem;font-weight:500;color:var(--ink);margin-bottom:0.25rem;line-height:1.4}
+    .news-content h2{font-family:var(--serif);font-size:1.05rem;font-weight:500;color:var(--ink);margin-bottom:0.25rem;line-height:1.4}
     .news-content p{font-size:0.88rem;color:var(--ink-mid);line-height:1.65;margin-top:0.2rem}
     .tag{display:inline-block;font-size:0.72rem;font-weight:500;letter-spacing:0.02em;padding:2px 9px;border-radius:3px;margin-right:6px;margin-bottom:5px}
     .tag-pub{background:var(--blue-lt);color:var(--blue)}
@@ -74,61 +127,61 @@
   </div>
 
   <!-- 2026 -->
-  <div class="news-item" data-cat="funding"><div class="news-year">2026</div><div class="news-content"><span class="tag tag-funding">Funding</span><h3>ARO support for runtime control of AI models</h3><p>We are grateful to the Army Research Office (ARO) for supporting our research on runtime control of AI models.</p></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2026</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Two papers accepted to ICLR 2026</h3><p>Two papers from our group accepted to ICLR 2026 in Rio de Janeiro, Brazil.</p></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2026</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to EACL 2026</h3><p><em>LIAR: Leveraging Inference Time Alignment (Best-of-N) to Jailbreak LLMs in Seconds</em></p></div></div>
-  <div class="news-item" data-cat="funding"><div class="news-year">2026</div><div class="news-content"><span class="tag tag-funding">Funding</span><h3>DARPA research support</h3><p>We are grateful to DARPA for supporting our research. <a href="https://www.cecs.ucf.edu/ucf-researcher-aims-to-make-ai-safer-more-reliable/" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:none;">UCF News →</a></p></div></div>
- <div class="news-item" data-cat="pub"><div class="news-year">2026</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper on safety of VLMs accepted to AAAI 2026</h3></div></div>
+  <div class="news-item" data-cat="funding"><div class="news-year">2026</div><div class="news-content"><span class="tag tag-funding">Funding</span><h2>ARO support for runtime control of AI models</h2><p>We are grateful to the Army Research Office (ARO) for supporting our research on runtime control of AI models.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2026</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Two papers accepted to ICLR 2026</h2><p>Two papers from our group accepted to ICLR 2026 in Rio de Janeiro, Brazil.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2026</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Paper accepted to EACL 2026</h2><p><em>LIAR: Leveraging Inference Time Alignment (Best-of-N) to Jailbreak LLMs in Seconds</em></p></div></div>
+  <div class="news-item" data-cat="funding"><div class="news-year">2026</div><div class="news-content"><span class="tag tag-funding">Funding</span><h2>DARPA research support</h2><p>We are grateful to DARPA for supporting our research. <a href="https://www.cecs.ucf.edu/ucf-researcher-aims-to-make-ai-safer-more-reliable/" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:underline;">UCF News →</a></p></div></div>
+ <div class="news-item" data-cat="pub"><div class="news-year">2026</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Paper on safety of VLMs accepted to AAAI 2026</h2></div></div>
 
   <!-- 2025 -->
-  <div class="news-item" data-cat="funding"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-funding">Funding</span><h3>Lockheed Martin research support</h3><p>We are grateful to Lockheed Martin for supporting our research.</p></div></div>
-  <div class="news-item" data-cat="funding"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-funding">Funding</span><h3>Florida Department of Health–funded collaboration</h3><p>We are pleased to participate in MammoChat and thank the Florida Department of Health for its support.</p></div></div>
-  <div class="news-item" data-cat="funding"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-funding">Funding</span><h3>NSF-funded collaboration</h3><p>We are pleased to participate in the multi-university CUE-M project and thank the National Science Foundation for its support.</p></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to Nature Biotechnology</h3><p>Our work on generative AI and biosecurity. <a href="https://www.nature.com/articles/s41587-025-02650-8" target="_blank" style="color:var(--blue);text-decoration:none;">Read →</a></p></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Three papers accepted to NeurIPS 2025</h3><p>Work spanning reasoning models, theoretical RL, and LLM alignment. San Diego, CA.</p></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to EMNLP 2025</h3></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to CDC 2025</h3></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Three papers accepted to IROS 2025</h3></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to ICML 2025</h3><p>Vancouver, Canada.</p></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to IEEE RAL 2025</h3><p>Multi-robot coordination via locality-based factorized multi-agent actor-critic.</p></div></div>
-<div class="news-item" data-cat="pub">  <div class="news-year">2025</div>  <div class="news-content">    <span class="tag tag-pub">Publication</span>    <h3>Paper accepted to CVPR 2025</h3>    <p>      <a href="https://openaccess.thecvf.com/content/CVPR2025/html/Ghosal_Immune_Improving_Safety_Against_Jailbreaks_in_Multi-modal_LLMs_via_Inference-Time_CVPR_2025_paper.html"
+  <div class="news-item" data-cat="funding"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-funding">Funding</span><h2>Lockheed Martin research support</h2><p>We are grateful to Lockheed Martin for supporting our research.</p></div></div>
+  <div class="news-item" data-cat="funding"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-funding">Funding</span><h2>Florida Department of Health–funded collaboration</h2><p>We are pleased to participate in MammoChat and thank the Florida Department of Health for its support.</p></div></div>
+  <div class="news-item" data-cat="funding"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-funding">Funding</span><h2>NSF-funded collaboration</h2><p>We are pleased to participate in the multi-university CUE-M project and thank the National Science Foundation for its support.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Paper accepted to Nature Biotechnology</h2><p>Our work on generative AI and biosecurity. <a href="https://www.nature.com/articles/s41587-025-02650-8" target="_blank" style="color:var(--blue);text-decoration:underline;">Read →</a></p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Three papers accepted to NeurIPS 2025</h2><p>Work spanning reasoning models, theoretical RL, and LLM alignment. San Diego, CA.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Paper accepted to EMNLP 2025</h2></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Paper accepted to CDC 2025</h2></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Three papers accepted to IROS 2025</h2></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Paper accepted to ICML 2025</h2><p>Vancouver, Canada.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Paper accepted to IEEE RAL 2025</h2><p>Multi-robot coordination via locality-based factorized multi-agent actor-critic.</p></div></div>
+<div class="news-item" data-cat="pub">  <div class="news-year">2025</div>  <div class="news-content">    <span class="tag tag-pub">Publication</span>    <h2>Paper accepted to CVPR 2025</h2>    <p>      <a href="https://openaccess.thecvf.com/content/CVPR2025/html/Ghosal_Immune_Improving_Safety_Against_Jailbreaks_in_Multi-modal_LLMs_via_Inference-Time_CVPR_2025_paper.html"
          target="_blank"         rel="noopener noreferrer">        <em>Immune: Improving Safety Against Jailbreaks in Multi-modal LLMs via Inference-Time Alignment</em>      </a>    </p>  </div>
-</div>  <div class="news-item" data-cat="workshop"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-workshop">Workshop</span><h3>Organizing the first NeurIPS Workshop on Biosecurity Safeguards for Generative AI</h3><p>San Diego, California, USA.</p></div></div>
-  <div class="news-item" data-cat="talk"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-talk">Talk</span><h3>Invited talk at Asilomar 2025 on satisficing alignment</h3></div></div>
-  <div class="news-item" data-cat="talk"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-talk">Talk</span><h3>Presented Transfer Q* at UT Austin</h3></div></div>
-  <div class="news-item" data-cat="service"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-service">Service</span><h3>Area Chair — ACL 2025, NeurIPS 2025</h3></div></div>
-  <div class="news-item" data-cat="service"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-service">Service</span><h3>Area Chair — Transactions on Machine Learning Research (TMLR)</h3></div></div>
+</div>  <div class="news-item" data-cat="workshop"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-workshop">Workshop</span><h2>Organizing the first NeurIPS Workshop on Biosecurity Safeguards for Generative AI</h2><p>San Diego, California, USA.</p></div></div>
+  <div class="news-item" data-cat="talk"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-talk">Talk</span><h2>Invited talk at Asilomar 2025 on satisficing alignment</h2></div></div>
+  <div class="news-item" data-cat="talk"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-talk">Talk</span><h2>Presented Transfer Q* at UT Austin</h2></div></div>
+  <div class="news-item" data-cat="service"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-service">Service</span><h2>Area Chair — ACL 2025, NeurIPS 2025</h2></div></div>
+  <div class="news-item" data-cat="service"><div class="news-year">2025</div><div class="news-content"><span class="tag tag-service">Service</span><h2>Area Chair — Transactions on Machine Learning Research (TMLR)</h2></div></div>
 
   <!-- 2024 -->
-  <div class="news-item" data-cat="pub"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Two papers accepted to NeurIPS 2024</h3><p>Vancouver, Canada.</p></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Five papers accepted to ICML 2024</h3><p>Vienna, Austria. Including one Spotlight (top 3.5% of submissions).</p></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Three papers accepted to IROS 2024</h3><p>Abu Dhabi, UAE.</p></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to ICLR 2024</h3><p><em>PARL: A Unified Framework for Policy Alignment in Reinforcement Learning</em></p></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to JMLR</h3><p><em>On the Sample Complexity and Metastability of Heavy-tailed Policy Search in Continuous Control</em></p></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to TMLR</h3><p><em>A Survey on the Possibilities &amp; Impossibilities of AI-Generated Text Detection</em></p></div></div>
-  <div class="news-item" data-cat="talk"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-talk">Talk</span><h3>Invited talks at IBM Research, Google DeepMind NYC, and Amazon</h3><p>Presented Transfer Q* and MaxMin-RLHF. Also presented at Amazon Rising Star Speaker Series (June 2024).</p></div></div>
-  <div class="news-item" data-cat="service"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-service">Service</span><h3>Area Chair — NeurIPS 2024</h3></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Two papers accepted to NeurIPS 2024</h2><p>Vancouver, Canada.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Five papers accepted to ICML 2024</h2><p>Vienna, Austria. Including one Spotlight (top 3.5% of submissions).</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Three papers accepted to IROS 2024</h2><p>Abu Dhabi, UAE.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Paper accepted to ICLR 2024</h2><p><em>PARL: A Unified Framework for Policy Alignment in Reinforcement Learning</em></p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Paper accepted to JMLR</h2><p><em>On the Sample Complexity and Metastability of Heavy-tailed Policy Search in Continuous Control</em></p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Paper accepted to TMLR</h2><p><em>A Survey on the Possibilities &amp; Impossibilities of AI-Generated Text Detection</em></p></div></div>
+  <div class="news-item" data-cat="talk"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-talk">Talk</span><h2>Invited talks at IBM Research, Google DeepMind NYC, and Amazon</h2><p>Presented Transfer Q* and MaxMin-RLHF. Also presented at Amazon Rising Star Speaker Series (June 2024).</p></div></div>
+  <div class="news-item" data-cat="service"><div class="news-year">2024</div><div class="news-content"><span class="tag tag-service">Service</span><h2>Area Chair — NeurIPS 2024</h2></div></div>
 
   <!-- 2023 -->
-  <div class="news-item" data-cat="pub"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted (oral) at CoRL 2023</h3><p><em>iPLAN: Intent-Aware Planning in Heterogeneous Traffic via Distributed Multi-Agent RL</em> — also won Best Paper at the Advances in Multi-Agent Learning Workshop at IROS 2023.</p></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Two papers accepted to ICML 2023</h3><p>STEERING and Beyond Exponentially Fast Mixing in Average-Reward RL via Multi-Level Monte Carlo Actor-Critic.</p></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Three papers accepted to ICRA 2023</h3><p>RTAW, Decentralized Multi-agent Exploration, and Heavy-Tailed Policy Optimization for sparse rewards.</p></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Two papers accepted (oral) to AAAI 2023</h3></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>details accepted to ICLR 2023</h3><p><em>SWIFT: Rapid Decentralized Federated Learning via Wait-Free Model Communication</em></p></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to JAIR</h3><p><em>Achieving Zero Constraint Violation for Constrained Reinforcement Learning via Primal-Dual Approach</em></p></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to IEEE TAI</h3><p><em>Regret and Belief Complexity Trade-off in Gaussian Process Bandits via Information Thresholding</em></p></div></div>
-  <div class="news-item" data-cat="service"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-service">Service</span><h3>Area Chair — NeurIPS 2023</h3></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Paper accepted (oral) at CoRL 2023</h2><p><em>iPLAN: Intent-Aware Planning in Heterogeneous Traffic via Distributed Multi-Agent RL</em> — also won Best Paper at the Advances in Multi-Agent Learning Workshop at IROS 2023.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Two papers accepted to ICML 2023</h2><p>STEERING and Beyond Exponentially Fast Mixing in Average-Reward RL via Multi-Level Monte Carlo Actor-Critic.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Three papers accepted to ICRA 2023</h2><p>RTAW, Decentralized Multi-agent Exploration, and Heavy-Tailed Policy Optimization for sparse rewards.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Two papers accepted (oral) to AAAI 2023</h2></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>details accepted to ICLR 2023</h2><p><em>SWIFT: Rapid Decentralized Federated Learning via Wait-Free Model Communication</em></p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Paper accepted to JAIR</h2><p><em>Achieving Zero Constraint Violation for Constrained Reinforcement Learning via Primal-Dual Approach</em></p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Paper accepted to IEEE TAI</h2><p><em>Regret and Belief Complexity Trade-off in Gaussian Process Bandits via Information Thresholding</em></p></div></div>
+  <div class="news-item" data-cat="service"><div class="news-year">2023</div><div class="news-content"><span class="tag tag-service">Service</span><h2>Area Chair — NeurIPS 2023</h2></div></div>
 
   <!-- 2022 -->
-  <div class="news-item" data-cat="pub"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Two papers accepted to ICML 2022 (spotlight talks)</h3><p>On the Hidden Biases of Policy Mirror Ascent; FedNew for federated learning.</p></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Two papers accepted to IROS 2022</h3><p>Distributed Riemannian Optimization; DC-MRTA for multi-robot task allocation.</p></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to CoRL 2022</h3><p>HTRON: Efficient Outdoor Navigation with Sparse Rewards via Heavy Tailed Adaptive Reinforce.</p></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Paper accepted to IEEE TSP</h3><p>Projection-Free Algorithm for Stochastic Bi-level Optimization.</p></div></div>
-  <div class="news-item" data-cat="pub"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-pub">Publication</span><h3>Two papers accepted to AAAI 2022</h3></div></div>
-  <div class="news-item" data-cat="funding"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-funding">Funding</span><h3>Amazon Research Award 2022</h3><p>For the proposal "Ensuring fairness via federated learning beyond consensus" at the University of Maryland.</p></div></div>
-  <div class="news-item" data-cat="funding"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-funding">Funding</span><h3>ARL Grant — Efficient Multi-Agent RL for Next-generation Team of Combat Vehicles</h3><p>Principal Investigator.</p></div></div>
-  <div class="news-item" data-cat="funding"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-funding">Funding</span><h3>ARL Grant — Risk Sensitive Maneuver Tradeoffs for a Team of Ground Vehicles</h3><p>Co-Principal Investigator.</p></div></div>
-  <div class="news-item" data-cat="funding"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-funding">Funding</span><h3>Northrop Grumman Seed Grant Award</h3><p>Principal Investigator.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Two papers accepted to ICML 2022 (spotlight talks)</h2><p>On the Hidden Biases of Policy Mirror Ascent; FedNew for federated learning.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Two papers accepted to IROS 2022</h2><p>Distributed Riemannian Optimization; DC-MRTA for multi-robot task allocation.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Paper accepted to CoRL 2022</h2><p>HTRON: Efficient Outdoor Navigation with Sparse Rewards via Heavy Tailed Adaptive Reinforce.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Paper accepted to IEEE TSP</h2><p>Projection-Free Algorithm for Stochastic Bi-level Optimization.</p></div></div>
+  <div class="news-item" data-cat="pub"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-pub">Publication</span><h2>Two papers accepted to AAAI 2022</h2></div></div>
+  <div class="news-item" data-cat="funding"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-funding">Funding</span><h2>Amazon Research Award 2022</h2><p>For the proposal "Ensuring fairness via federated learning beyond consensus" at the University of Maryland.</p></div></div>
+  <div class="news-item" data-cat="funding"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-funding">Funding</span><h2>ARL Grant — Efficient Multi-Agent RL for Next-generation Team of Combat Vehicles</h2><p>Principal Investigator.</p></div></div>
+  <div class="news-item" data-cat="funding"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-funding">Funding</span><h2>ARL Grant — Risk Sensitive Maneuver Tradeoffs for a Team of Ground Vehicles</h2><p>Co-Principal Investigator.</p></div></div>
+  <div class="news-item" data-cat="funding"><div class="news-year">2022</div><div class="news-content"><span class="tag tag-funding">Funding</span><h2>Northrop Grumman Seed Grant Award</h2><p>Principal Investigator.</p></div></div>
 
 </main>
 <footer>

@@ -4,12 +4,68 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Publications — Amrit Singh Bedi</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <meta name="description" content="Research publications by Amrit Singh Bedi on AI safety, reinforcement learning, language model alignment, optimization, and machine learning.">
+  <link rel="canonical" href="https://amrit-singh-bedi.github.io/publications.html">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.png" type="image/png" sizes="96x96">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
+  <meta name="theme-color" content="#1a3a6e">
+  <meta property="og:site_name" content="Amrit Singh Bedi · SafeRR AI Lab">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Publications — Amrit Singh Bedi">
+  <meta property="og:description" content="Research publications by Amrit Singh Bedi on AI safety, reinforcement learning, language model alignment, optimization, and machine learning.">
+  <meta property="og:url" content="https://amrit-singh-bedi.github.io/publications.html">
+  <meta property="og:image" content="https://amrit-singh-bedi.github.io/assets/site-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Amrit Singh Bedi, SafeRR AI Lab, University of Central Florida">
+  <meta name="twitter:card" content="summary_large_image">
+  <style data-source="assets/fonts.css">
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 300 500;
+  font-display: swap;
+  src: url(assets/fonts/dm-sans-normal-web.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/eb-garamond-italic-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url(assets/fonts/eb-garamond-normal-web.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Georgia fallback matches the web font's heading-weighted advance widths
+   and vertical metrics. The original font is displayed once downloaded. */
+@font-face {
+  font-family: 'EB Garamond Fallback';
+  src: local('Georgia');
+  font-style: normal;
+  font-weight: 400 600;
+  size-adjust: 90.7659%;
+  ascent-override: 110.9447%;
+  descent-override: 32.8317%;
+  line-gap-override: 0%;
+}
+  </style>
   <style>
+    /* Defer offscreen layout; text and links remain searchable. */
+    .pub-item{content-visibility:auto;contain-intrinsic-size:auto 180px}
+    @media print{.pub-item{content-visibility:visible;contain-intrinsic-size:none}}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--ink:#1a1814;--ink-mid:#4a4640;--ink-faint:#8a8480;--paper:#faf9f7;--cream:#f2efe9;--rule:#dedad4;--blue:#1a3a6e;--blue-lt:#e8eef8;--gold:#b8880a;--serif:'EB Garamond',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--max:860px}
+    :root{--ink:#1a1814;--ink-mid:#4a4640;--ink-faint:#706a65;--paper:#faf9f7;--cream:#f2efe9;--rule:#dedad4;--blue:#1a3a6e;--blue-lt:#e8eef8;--gold:#b8880a;--serif:'EB Garamond','EB Garamond Fallback',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--max:860px}
     html{scroll-behavior:smooth;font-size:17px}
     body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.65}
     header{position:sticky;top:0;z-index:100;background:rgba(250,249,247,0.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
@@ -85,7 +141,7 @@
       <div class="pub-body">
         <h3>Improved Sample Complexity Bounds for Diffusion Model Training Without Empirical Risk Minimizer Access</h3>
         <p class="pub-authors">M. Gaur, P. Trivedi, S. Kunapuli, <strong>A. S. Bedi</strong>, and V. Aggarwal</p>
-        <p class="pub-venue"><span class="vname">Transactions on Machine Learning Research (TMLR)</span>, 2026 · <a href="https://arxiv.org/abs/2505.18344" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:none;" aria-label="Read Improved Sample Complexity Bounds for Diffusion Model Training Without Empirical Risk Minimizer Access">arXiv ↗</a></p>
+        <p class="pub-venue"><span class="vname">Transactions on Machine Learning Research (TMLR)</span>, 2026 · <a href="https://arxiv.org/abs/2505.18344" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:underline;" aria-label="arXiv ↗: Read Improved Sample Complexity Bounds for Diffusion Model Training Without Empirical Risk Minimizer Access">arXiv ↗</a></p>
       </div>
     </div>
     <div class="pub-item" data-publication-id="tamboli-2026-balanceddpo">
@@ -96,7 +152,7 @@
       <div class="pub-body">
         <h3>BalancedDPO: Adaptive Multi-Metric Alignment</h3>
         <p class="pub-authors">D. Tamboli, S. Chakraborty, A. Malusare, B. Banerjee, <strong>A. S. Bedi</strong>, and V. Aggarwal</p>
-        <p class="pub-venue"><span class="vname">Transactions on Machine Learning Research (TMLR)</span>, 2026 · <a href="https://arxiv.org/abs/2503.12575" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:none;" aria-label="Read BalancedDPO: Adaptive Multi-Metric Alignment">arXiv ↗</a></p>
+        <p class="pub-venue"><span class="vname">Transactions on Machine Learning Research (TMLR)</span>, 2026 · <a href="https://arxiv.org/abs/2503.12575" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:underline;" aria-label="arXiv ↗: Read BalancedDPO: Adaptive Multi-Metric Alignment">arXiv ↗</a></p>
       </div>
     </div>
     <div class="pub-item" data-publication-id="teku-2025-props">
@@ -107,7 +163,7 @@
       <div class="pub-body">
         <h3>PROPS: Progressively Private Self-alignment of Large Language Models</h3>
         <p class="pub-authors">N. Teku, F. Tian, P. Bhattacharjee, S. Chakraborty, <strong>A. S. Bedi</strong>, and R. Tandon</p>
-        <p class="pub-venue"><span class="vname">Transactions on Machine Learning Research (TMLR)</span>, Oct 2025 · <a href="https://arxiv.org/abs/2508.06783" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:none;" aria-label="Read PROPS: Progressively Private Self-alignment of Large Language Models">arXiv ↗</a></p>
+        <p class="pub-venue"><span class="vname">Transactions on Machine Learning Research (TMLR)</span>, Oct 2025 · <a href="https://arxiv.org/abs/2508.06783" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:underline;" aria-label="arXiv ↗: Read PROPS: Progressively Private Self-alignment of Large Language Models">arXiv ↗</a></p>
       </div>
     </div>
     <div class="pub-item">
@@ -121,39 +177,9 @@
         <p class="pub-venue"><span class='vname'>IEEE Robotics and Automation Letters (RAL)</span>, 2025</p>
       </div>
     </div>
-     <div class="pub-item" data-publication-id="gaur-2026-diffusion">
-      <div class="pub-venue-col" style="min-width:0;">
-        <span class="vshort">TMLR</span>
-        <span class="vyear">2026</span>
-      </div>
-      <div class="pub-body">
-        <h3>Improved Sample Complexity Bounds for Diffusion Model Training Without Empirical Risk Minimizer Access</h3>
-        <p class="pub-authors">M. Gaur, P. Trivedi, S. Kunapuli, <strong>A. S. Bedi</strong>, and V. Aggarwal</p>
-        <p class="pub-venue"><span class="vname">Transactions on Machine Learning Research (TMLR)</span>, 2026 · <a href="https://arxiv.org/abs/2505.18344" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:none;" aria-label="Read Improved Sample Complexity Bounds for Diffusion Model Training Without Empirical Risk Minimizer Access">arXiv ↗</a></p>
-      </div>
-    </div>
-    <div class="pub-item" data-publication-id="tamboli-2026-balanceddpo">
-      <div class="pub-venue-col" style="min-width:0;">
-        <span class="vshort">TMLR</span>
-        <span class="vyear">2026</span>
-      </div>
-      <div class="pub-body">
-        <h3>BalancedDPO: Adaptive Multi-Metric Alignment</h3>
-        <p class="pub-authors">D. Tamboli, S. Chakraborty, A. Malusare, B. Banerjee, <strong>A. S. Bedi</strong>, and V. Aggarwal</p>
-        <p class="pub-venue"><span class="vname">Transactions on Machine Learning Research (TMLR)</span>, 2026 · <a href="https://arxiv.org/abs/2503.12575" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:none;" aria-label="Read BalancedDPO: Adaptive Multi-Metric Alignment">arXiv ↗</a></p>
-      </div>
-    </div>
-    <div class="pub-item" data-publication-id="teku-2025-props">
-      <div class="pub-venue-col" style="min-width:0;">
-        <span class="vshort">TMLR</span>
-        <span class="vyear">2025</span>
-      </div>
-      <div class="pub-body">
-        <h3>PROPS: Progressively Private Self-alignment of Large Language Models</h3>
-        <p class="pub-authors">N. Teku, F. Tian, P. Bhattacharjee, S. Chakraborty, <strong>A. S. Bedi</strong>, and R. Tandon</p>
-        <p class="pub-venue"><span class="vname">Transactions on Machine Learning Research (TMLR)</span>, Oct 2025 · <a href="https://arxiv.org/abs/2508.06783" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:none;" aria-label="Read PROPS: Progressively Private Self-alignment of Large Language Models">arXiv ↗</a></p>
-      </div>
-    </div>
+
+
+
     <div class="pub-item">
       <div class="pub-venue-col">
         <span class="vshort">TMLR</span>
@@ -475,7 +501,7 @@
       <div class="pub-body">
         <h3>Does Reasoning Preserve Alignment? On the Trustworthiness of Large Reasoning Models</h3>
         <p class="pub-authors">P. Kini, A. Reddy, S. Chakraborty, S. S. S. Namburi GNVV, F. Huang, <strong>A. S. Bedi</strong>, and A. Velasquez</p>
-        <p class="pub-venue"><span class="vname">Findings of the Association for Computational Linguistics: EMNLP 2026</span> · <a href="https://openreview.net/forum?id=aXZRXE8EZR" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:none;" aria-label="Read Does Reasoning Preserve Alignment? On the Trustworthiness of Large Reasoning Models">OpenReview ↗</a></p>
+        <p class="pub-venue"><span class="vname">Findings of the Association for Computational Linguistics: EMNLP 2026</span> · <a href="https://openreview.net/forum?id=aXZRXE8EZR" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:underline;" aria-label="OpenReview ↗: Read Does Reasoning Preserve Alignment? On the Trustworthiness of Large Reasoning Models">OpenReview ↗</a></p>
       </div>
     </div>
     <div class="pub-item" data-publication-id="reddy-2026-dccd">
@@ -486,7 +512,7 @@
       <div class="pub-body">
         <h3>Draft-Conditioned Constrained Decoding for Structured Generation in LLMs</h3>
         <p class="pub-authors">A. Reddy, T. T. Walker, J. S. Ide, and <strong>A. S. Bedi</strong></p>
-        <p class="pub-venue"><span class="vname">International Conference on Machine Learning (ICML 2026)</span> · <a href="https://arxiv.org/abs/2603.03305" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:none;" aria-label="Read Draft-Conditioned Constrained Decoding for Structured Generation in LLMs">arXiv ↗</a></p>
+        <p class="pub-venue"><span class="vname">International Conference on Machine Learning (ICML 2026)</span> · <a href="https://arxiv.org/abs/2603.03305" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:underline;" aria-label="arXiv ↗: Read Draft-Conditioned Constrained Decoding for Structured Generation in LLMs">arXiv ↗</a></p>
       </div>
     </div>
     <div class="pub-item" data-publication-id="singh-2026-binac">
@@ -497,7 +523,7 @@
       <div class="pub-body">
         <h3>Natural Language Actor–Critic Is Bilevel: Learning to Reason with Textual Feedback</h3>
         <p class="pub-authors">U. Singh, S. S. Murali, S. Chakraborty, and <strong>A. S. Bedi</strong></p>
-        <p class="pub-venue"><span class="vname">International Conference on Machine Learning (ICML 2026)</span> · <a href="https://arxiv.org/abs/2605.24547" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:none;" aria-label="Read Natural Language Actor–Critic Is Bilevel: Learning to Reason with Textual Feedback">arXiv ↗</a></p>
+        <p class="pub-venue"><span class="vname">International Conference on Machine Learning (ICML 2026)</span> · <a href="https://arxiv.org/abs/2605.24547" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:underline;" aria-label="arXiv ↗: Read Natural Language Actor–Critic Is Bilevel: Learning to Reason with Textual Feedback">arXiv ↗</a></p>
       </div>
     </div>
     <div class="pub-item" data-publication-id="bornstein-2026-efficiency">
@@ -508,7 +534,7 @@
       <div class="pub-body">
         <h3>Position: We Need AI Efficiency Incentives for Accessibility and Sustainability</h3>
         <p class="pub-authors">M. Bornstein and <strong>A. S. Bedi</strong></p>
-        <p class="pub-venue"><span class="vname">International Conference on Machine Learning (ICML 2026)</span> · <a href="https://arxiv.org/abs/2601.19886" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:none;" aria-label="Read Position: We Need AI Efficiency Incentives for Accessibility and Sustainability">arXiv ↗</a></p>
+        <p class="pub-venue"><span class="vname">International Conference on Machine Learning (ICML 2026)</span> · <a href="https://arxiv.org/abs/2601.19886" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:underline;" aria-label="arXiv ↗: Read Position: We Need AI Efficiency Incentives for Accessibility and Sustainability">arXiv ↗</a></p>
       </div>
     </div>
     <div class="pub-item" data-publication-id="ghosal-2026-safety">
@@ -519,7 +545,7 @@
       <div class="pub-body">
         <h3>Safety Recovery in Reasoning Models Is Only a Few Early Steering Steps Away</h3>
         <p class="pub-authors">S. S. Ghosal, S. Chakraborty, V. Singh, F. Huang, D. Manocha, and <strong>A. S. Bedi</strong></p>
-        <p class="pub-venue"><span class="vname">International Conference on Machine Learning (ICML 2026)</span> · <a href="https://arxiv.org/abs/2602.11096" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:none;" aria-label="Read Safety Recovery in Reasoning Models Is Only a Few Early Steering Steps Away">arXiv ↗</a></p>
+        <p class="pub-venue"><span class="vname">International Conference on Machine Learning (ICML 2026)</span> · <a href="https://arxiv.org/abs/2602.11096" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:underline;" aria-label="arXiv ↗: Read Safety Recovery in Reasoning Models Is Only a Few Early Steering Steps Away">arXiv ↗</a></p>
       </div>
     </div>
     <div class="pub-item" data-publication-id="bornstein-2026-regulation">
@@ -530,7 +556,7 @@
       <div class="pub-body">
         <h3>Advancing Regulation in Artificial Intelligence: An Auction-Based Approach</h3>
         <p class="pub-authors">M. Bornstein, Z. Che, S. Julapalli, A. Mohamed, <strong>A. S. Bedi</strong>, and F. Huang</p>
-        <p class="pub-venue"><span class="vname">ACM Conference on Fairness, Accountability, and Transparency (FAccT 2026)</span> · <a href="https://doi.org/10.1145/3805689.3812397" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:none;" aria-label="Read Advancing Regulation in Artificial Intelligence: An Auction-Based Approach">Paper ↗</a></p>
+        <p class="pub-venue"><span class="vname">ACM Conference on Fairness, Accountability, and Transparency (FAccT 2026)</span> · <a href="https://doi.org/10.1145/3805689.3812397" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:underline;" aria-label="Paper ↗: Read Advancing Regulation in Artificial Intelligence: An Auction-Based Approach">Paper ↗</a></p>
       </div>
     </div>
     <div class="pub-item" data-publication-id="lee-2026-hex">
@@ -541,7 +567,7 @@
       <div class="pub-body">
         <h3>Test-Time Scaling in Diffusion LLMs via Hidden Semi-Autoregressive Experts</h3>
         <p class="pub-authors">J. Lee, H. Moon, K. Zhai, A. K. Chithanar, A. K. Sahu, S. Kar, C. Lee, S. Chakraborty, and <strong>A. S. Bedi</strong></p>
-        <p class="pub-venue"><span class="vname">International Conference on Learning Representations (ICLR 2026)</span> · <a href="https://proceedings.iclr.cc/paper_files/paper/2026/hash/4e26e507810246a2e4e86d4f99da7831-Abstract-Conference.html" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:none;" aria-label="Read Test-Time Scaling in Diffusion LLMs via Hidden Semi-Autoregressive Experts">Paper ↗</a></p>
+        <p class="pub-venue"><span class="vname">International Conference on Learning Representations (ICLR 2026)</span> · <a href="https://proceedings.iclr.cc/paper_files/paper/2026/hash/4e26e507810246a2e4e86d4f99da7831-Abstract-Conference.html" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:underline;" aria-label="Paper ↗: Read Test-Time Scaling in Diffusion LLMs via Hidden Semi-Autoregressive Experts">Paper ↗</a></p>
       </div>
     </div>
     <div class="pub-item" data-publication-id="singh-2026-dipper">
@@ -552,7 +578,7 @@
       <div class="pub-body">
         <h3>Direct Preference Optimization for Primitive-enabled Hierarchical RL: A Bilevel Approach</h3>
         <p class="pub-authors">U. Singh, S. Chakraborty, W. A. Suttle, B. M. Sadler, D. E. Asher, A. K. Sahu, M. Shah, V. P. Namboodiri, and <strong>A. S. Bedi</strong></p>
-        <p class="pub-venue"><span class="vname">International Conference on Learning Representations (ICLR 2026)</span> · <a href="https://arxiv.org/abs/2411.00361" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:none;" aria-label="Read Direct Preference Optimization for Primitive-enabled Hierarchical RL: A Bilevel Approach">arXiv ↗</a></p>
+        <p class="pub-venue"><span class="vname">International Conference on Learning Representations (ICLR 2026)</span> · <a href="https://arxiv.org/abs/2411.00361" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:underline;" aria-label="arXiv ↗: Read Direct Preference Optimization for Primitive-enabled Hierarchical RL: A Bilevel Approach">arXiv ↗</a></p>
       </div>
     </div>
     <div class="pub-item" data-publication-id="beetham-2026-liar">
@@ -563,7 +589,7 @@
       <div class="pub-body">
         <h3>LIAR: Leveraging Inference Time Alignment (Best-of-N) to Jailbreak LLMs in Seconds</h3>
         <p class="pub-authors">J. Beetham, S. Chakraborty, M. Wang, F. Huang, <strong>A. S. Bedi</strong>, and M. Shah</p>
-        <p class="pub-venue"><span class="vname">European Chapter of the Association for Computational Linguistics (EACL 2026)</span> · <a href="https://aclanthology.org/2026.eacl-long.360/" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:none;" aria-label="Read LIAR: Leveraging Inference Time Alignment (Best-of-N) to Jailbreak LLMs in Seconds">Published version ↗</a></p>
+        <p class="pub-venue"><span class="vname">European Chapter of the Association for Computational Linguistics (EACL 2026)</span> · <a href="https://aclanthology.org/2026.eacl-long.360/" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:underline;" aria-label="Published version ↗: Read LIAR: Leveraging Inference Time Alignment (Best-of-N) to Jailbreak LLMs in Seconds">Published version ↗</a></p>
       </div>
     </div>
     <div class="pub-item" data-publication-id="yousaf-2026-saferclip">
@@ -574,7 +600,7 @@
       <div class="pub-body">
         <h3>SafeR-CLIP: Mitigating NSFW Content in Vision-Language Models While Preserving Pre-Trained Knowledge</h3>
         <p class="pub-authors">A. Yousaf, J. Fioresi, J. Beetham, <strong>A. S. Bedi</strong>, and M. Shah</p>
-        <p class="pub-venue"><span class="vname">Proceedings of the AAAI Conference on Artificial Intelligence (AAAI 2026)</span>, vol. 40, no. 42, pp. 36012–36020, Mar 2026 · <a href="https://ojs.aaai.org/index.php/AAAI/article/view/40917" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:none;" aria-label="Read SafeR-CLIP: Mitigating NSFW Content in Vision-Language Models While Preserving Pre-Trained Knowledge">Paper ↗</a></p>
+        <p class="pub-venue"><span class="vname">Proceedings of the AAAI Conference on Artificial Intelligence (AAAI 2026)</span>, vol. 40, no. 42, pp. 36012–36020, Mar 2026 · <a href="https://ojs.aaai.org/index.php/AAAI/article/view/40917" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:underline;" aria-label="Paper ↗: Read SafeR-CLIP: Mitigating NSFW Content in Vision-Language Models While Preserving Pre-Trained Knowledge">Paper ↗</a></p>
       </div>
     </div>
     <div class="pub-item">
