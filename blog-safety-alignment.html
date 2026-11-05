@@ -3,39 +3,214 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Safety Alignment via Weight-Space Programming — Amrit Singh Bedi</title>
+  <title>Safety Alignment via Weight-Space Programming — SafeRR AI Lab</title>
   <meta name="description" content="Initial experiments in which Claude directly edits Qwen and Llama vision-language model weights to improve safety without fine-tuning, with results and editing histories.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="blog-assets/blog.css">
-  <script>
-    window.MathJax = {
-      tex: {inlineMath: [['$', '$'], ['\\(', '\\)']], processEnvironments: true},
-      svg: {fontCache: 'global'}
-    };
+  <meta name="author" content="Amrit Singh Bedi, Adeel, Anirudh Narayan Devanathan, Gabriel Garcia, Hongjie Tian, Jivjot Singh, Utsav Singh">
+  <link rel="canonical" href="https://amrit-singh-bedi.github.io/blog-safety-alignment.html">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.png" type="image/png" sizes="96x96">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
+  <meta name="theme-color" content="#1a3a6e">
+  <meta property="og:site_name" content="Amrit Singh Bedi · SafeRR AI Lab">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Safety Alignment via Weight-Space Programming — SafeRR AI Lab">
+  <meta property="og:description" content="Initial experiments in which Claude directly edits Qwen and Llama vision-language model weights to improve safety without fine-tuning, with results and editing histories.">
+  <meta property="og:url" content="https://amrit-singh-bedi.github.io/blog-safety-alignment.html">
+  <meta property="og:image" content="https://amrit-singh-bedi.github.io/blog-assets/qwen3-vl-safety-utility.png">
+  <meta property="og:image:width" content="3900">
+  <meta property="og:image:height" content="1470">
+  <meta property="og:image:alt" content="Qwen3-VL safety and utility before and after weight editing">
+  <meta name="twitter:card" content="summary_large_image">
+  <style data-source="assets/fonts.css">
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 300 500;
+  font-display: swap;
+  src: url(assets/fonts/dm-sans-normal-web.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/eb-garamond-italic-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url(assets/fonts/eb-garamond-normal-web.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Georgia fallback matches the web font's heading-weighted advance widths
+   and vertical metrics. The original font is displayed once downloaded. */
+@font-face {
+  font-family: 'EB Garamond Fallback';
+  src: local('Georgia');
+  font-style: normal;
+  font-weight: 400 600;
+  size-adjust: 90.7659%;
+  ascent-override: 110.9447%;
+  descent-override: 32.8317%;
+  line-gap-override: 0%;
+}
+  </style>
+  <style data-source="blog-assets/blog.css">
+/* Shared only by the new blog pages; colors and typography follow news.html. */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#1a1814;--ink-mid:#4a4640;--ink-faint:#706a65;--paper:#faf9f7;--cream:#f2efe9;--rule:#dedad4;--blue:#1a3a6e;--blue-lt:#e8eef8;--gold:#b8880a;--serif:'EB Garamond','EB Garamond Fallback',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--max:820px}
+html{scroll-behavior:smooth;font-size:17px}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.65}
+header{position:sticky;top:0;z-index:100;background:rgba(250,249,247,0.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.header-inner{max-width:var(--max);margin:0 auto;padding:0 2rem;min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.back-link,nav a{font-size:0.82rem;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-mid);text-decoration:none}
+.back-link:hover,nav a:hover,nav a[aria-current="page"]{color:var(--blue)}
+nav{display:flex;gap:2rem;flex-shrink:0}
+main{max-width:var(--max);margin:0 auto;padding:3rem 2rem 6rem}
+a{color:var(--blue);text-underline-offset:0.18em}
+a:hover{text-decoration-thickness:2px}
+a:focus-visible,summary:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+.skip-link{position:absolute;left:1rem;top:-5rem;z-index:200;padding:0.5rem 1rem;background:var(--paper)}
+.skip-link:focus{top:0.5rem}
+.blog-search{margin-bottom:2.5rem}
+.blog-search label{display:block;font-size:0.85rem;font-weight:500;margin-bottom:0.5rem}
+.blog-search input{display:block;width:100%;min-height:44px;border:1px solid #706a65;border-radius:4px;padding:0.65rem 0.8rem;background:var(--paper);color:var(--ink);font:inherit;font-size:0.88rem}
+.blog-search input::placeholder{color:var(--ink-faint);opacity:1}
+#search-status{font-size:0.8rem;color:var(--ink-faint);margin-top:0.5rem}
+.math-inline{display:inline-block;max-width:100%;vertical-align:middle;overflow-x:auto;overflow-y:hidden}
+.math-inline math{font-size:1.05em}
+.page-head{margin-bottom:2.5rem;padding-bottom:1.25rem;border-bottom:1px solid var(--rule)}
+h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-0.01em;color:var(--ink);line-height:1.25}
+.page-head h1{font-size:1.9rem}
+.blog-list{list-style:none}
+.blog-entry{padding:0 0 2rem;border-bottom:1px solid var(--rule)}
+.blog-entry h2{font-size:1.5rem;margin-bottom:0.8rem}
+.blog-entry h2 a{color:var(--ink);text-decoration:none}
+.blog-entry h2 a:hover{color:var(--blue)}
+.blog-entry p{font-size:0.88rem;color:var(--ink-mid);line-height:1.8;margin-bottom:1rem}
+.read-link,.article-back{font-size:0.82rem}
+.article-back{display:inline-block;margin-bottom:1.5rem;text-decoration:none}
+.article-back:hover{text-decoration:underline}
+.article-body{font-size:0.94rem;color:var(--ink-mid);line-height:1.8;overflow-wrap:anywhere}
+.article-body h1{font-size:2.2rem;padding-bottom:1.25rem;border-bottom:1px solid var(--rule);margin-bottom:2rem}
+.article-body h2{font-size:1.65rem;margin:2.75rem 0 1.2rem;scroll-margin-top:5rem}
+/* Keep offscreen article sections in the document and browser search while
+   postponing their layout/paint. The opening summary is always rendered. */
+.article-section{content-visibility:auto;contain-intrinsic-size:auto 800px;margin:2.75rem 0 1.2rem}
+.article-section>h2:first-child{margin-top:0}
+.article-section>:last-child{margin-bottom:0}
+.article-body h3{font-size:1.25rem;margin:2rem 0 1rem}
+.article-body p{margin-bottom:1.2rem}
+.article-body strong{font-weight:500;color:var(--ink)}
+.article-body ul,.article-body ol{padding-left:1.4rem;margin:0 0 1.5rem}
+.article-body li{padding-left:0.15rem;margin-bottom:0.45rem}
+.article-body blockquote{border-left:2px solid var(--gold);padding:0.2rem 0 0.2rem 1.25rem;margin:1.5rem 0}
+.article-body blockquote p:last-child{margin-bottom:0}
+.article-body figure{margin:2rem 0}
+.article-body figure a{display:block}
+.article-body img{display:block;width:100%;height:auto;border:1px solid var(--rule);border-radius:4px;background:#fff}
+.article-body figcaption{font-size:0.8rem;line-height:1.7;margin-top:0.85rem}
+.article-body details{background:var(--cream);border:1px solid var(--rule);border-radius:4px;padding:1rem 1.25rem;margin:1.75rem 0}
+.article-body summary{cursor:pointer;color:var(--blue);font-weight:500}
+.article-body details[open] summary{margin-bottom:1.2rem}
+.article-body details>:last-child{margin-bottom:0}
+.table-wrap{max-width:100%;overflow-x:auto;margin:1.75rem 0}
+.article-body table{width:100%;border-collapse:collapse;font-size:0.8rem;line-height:1.6}
+.article-body th,.article-body td{padding:0.75rem;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top;min-width:7rem}
+.article-body th{font-weight:500;color:var(--ink);background:var(--cream)}
+.article-body th:first-child,.article-body td:first-child{min-width:15rem}
+.article-body pre{overflow-x:auto;padding:1rem;background:var(--cream);border:1px solid var(--rule);border-radius:4px;margin:1.5rem 0}
+.article-body code{font-size:0.85em;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+.math-display{overflow-x:auto;max-width:100%;margin:1.5rem 0;padding:0.25rem 0;text-align:center}
+.math-display mjx-container[display="true"]{margin:0.5rem 0!important}
+.article-end{margin-top:3rem;padding-top:1.25rem;border-top:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:1rem 2rem;font-size:0.82rem}
+footer{border-top:1px solid var(--rule);background:var(--cream);margin-top:4rem}
+.footer-inner{max-width:var(--max);margin:0 auto;padding:1.4rem 2rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0.5rem}
+.footer-inner p{font-size:0.8rem;color:var(--ink-faint)}
+@media(max-width:600px){.header-inner{padding:0 1.25rem}.back-link,nav a{font-size:0.72rem}main{padding:2rem 1.25rem 4rem}.article-body h1{font-size:1.9rem}.article-body h2{font-size:1.5rem}.article-body details{padding:0.9rem 1rem}.footer-inner{padding:1.4rem 1.25rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{.article-section{content-visibility:visible;contain-intrinsic-size:none}}
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Safety Alignment via Weight-Space Programming",
+  "description": "Initial experiments in which Claude directly edits Qwen and Llama vision-language model weights to improve safety without fine-tuning, with results and editing histories.",
+  "url": "https://amrit-singh-bedi.github.io/blog-safety-alignment.html",
+  "mainEntityOfPage": "https://amrit-singh-bedi.github.io/blog-safety-alignment.html",
+  "image": "https://amrit-singh-bedi.github.io/blog-assets/qwen3-vl-safety-utility.png",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Amrit Singh Bedi",
+      "url": "https://amrit-singh-bedi.github.io/"
+    },
+    {
+      "@type": "Person",
+      "name": "Adeel"
+    },
+    {
+      "@type": "Person",
+      "name": "Anirudh Narayan Devanathan"
+    },
+    {
+      "@type": "Person",
+      "name": "Gabriel Garcia",
+      "url": "https://gpgabriel25.github.io/"
+    },
+    {
+      "@type": "Person",
+      "name": "Hongjie Tian"
+    },
+    {
+      "@type": "Person",
+      "name": "Jivjot Singh"
+    },
+    {
+      "@type": "Person",
+      "name": "Utsav Singh"
+    }
+  ],
+  "publisher": {
+    "@type": "ResearchOrganization",
+    "name": "SafeRR AI Lab",
+    "url": "https://amrit-singh-bedi.github.io/lab.html"
+  },
+  "inLanguage": "en",
+  "datePublished": "2026-11-04"
+}
   </script>
-  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
 <header>
   <div class="header-inner">
     <a class="back-link" href="index.html">← Amrit Singh Bedi</a>
     <nav aria-label="Blog navigation"><a href="blog.html" aria-current="location">Blog</a></nav>
   </div>
 </header>
-<main>
+<main id="main-content" tabindex="-1">
   <a class="article-back" href="blog.html">← Back to Blog</a>
-  <!-- Article rendered from blog-assets/safety-alignment.md. Wording is preserved. -->
+  <!-- Source wording: blog-assets/safety-alignment.md. Equations are native MathML; retain the TeX annotations when editing. -->
   <article class="article-body">
 <h1>Safety Alignment via Weight-Space Programming</h1>
 <blockquote>
 <p><strong>TL;DR.</strong> We asked Claude Fable 5.1 to make a vision-language model safer by editing its weights directly, without fine-tuning. Claude found that the model’s internal activations still carried information about harmful content even when it answered the request. It then designed two targeted weight edits to help the model use that information to refuse. Qwen3-VL-8B-Instruct (see Figure 1), attack success rate fell from 49% to 2% on held-out FigStep examples and from 22% to 4% on MM-SafetyBench. Average accuracy on ScienceQA and MathVista stayed close to the original model’s performance (72% → 71%). These are encouraging initial results showing the promise of weight-space programming, and we’ll share more experiments and analysis soon.</p>
 </blockquote>
-<figure><a href="blog-assets/qwen3-vl-safety-utility.png" aria-label="View Figure 1 at full size"><img src="blog-assets/qwen3-vl-safety-utility.png" alt="Qwen3-VL-8B-Instruct safety and utility before and after weight editing" width="3900" height="1470" loading="eager" decoding="async"></a><figcaption><em>Figure 1. Safety and utility performance of Qwen3-VL-8B-Instruct before and after weight editing. Attack success rate (ASR) decreased from <strong>49% to 2%</strong> on held-out FigStep attacks and from <strong>22% to 4%</strong> on the unseen MM-SafetyBench benchmark. Meanwhile, average accuracy on ScienceQA and MathVista remained nearly unchanged (<strong>72% to 71%</strong>). Lower ASR and higher utility are better.</em></figcaption></figure>
+<figure><a href="blog-assets/qwen3-vl-safety-utility.png" aria-label="View Figure 1 at full size"><img src="blog-assets/qwen3-vl-safety-utility-960.webp" srcset="blog-assets/qwen3-vl-safety-utility-480.webp 480w, blog-assets/qwen3-vl-safety-utility-768.webp 768w, blog-assets/qwen3-vl-safety-utility-960.webp 960w, blog-assets/qwen3-vl-safety-utility-1600.webp 1600w" sizes="(max-width: 600px) calc(100vw - 2.5rem), (max-width: 820px) calc(100vw - 4rem), 752px" alt="Qwen3-VL-8B-Instruct safety and utility before and after weight editing" width="3900" height="1470" loading="eager" decoding="async"></a><figcaption><em>Figure 1. Safety and utility performance of Qwen3-VL-8B-Instruct before and after weight editing. Attack success rate (ASR) decreased from <strong>49% to 2%</strong> on held-out FigStep attacks and from <strong>22% to 4%</strong> on the unseen MM-SafetyBench benchmark. Meanwhile, average accuracy on ScienceQA and MathVista remained nearly unchanged (<strong>72% to 71%</strong>). Lower ASR and higher utility are better.</em></figcaption></figure>
+<section class="article-section">
 <h2>Motivation and problem setup</h2>
 <p>A recent interesting work, <a href="https://rikiyat.github.io/blog/weight-space-programming/">Weight-Space Programming</a>, showed that a frontier model can inspect and edit neural-network weights in response to natural-language instructions. Across its experiments, GPT-6 Astra identified what neural networks had learned from their weights, repaired a reinforcement-learning policy that had become stuck, and substantially improved a small language model&#39;s mathematical reasoning performance by identifying and removing a direction associated with repetitive outputs. </p>
 <p>These results raise a natural question: <strong>can an agent make an AI model safer by editing its weights directly?</strong> Safety alignment aims to make models refuse harmful requests while remaining helpful on legitimate ones. However, achieving this balance remains challenging. Because carefully crafted prompts or images can bypass a model’s safeguards (called jailbreaking). At the same time, stronger safeguards can also make cause models to reject harmless questions (utility drop). Improving this behavior often involves additional training, which requires data and computing resources and can still leave the model vulnerable to new attacks. We explore whether an AI agent can identify and address a specific <strong>safety failure</strong> through targeted weight edits, without further training. Below, we share our initial proof-of-concept findings.</p>
+</section>
+<section class="article-section">
 <h2>Experimental setup</h2>
 <p><strong>Target model.</strong> Qwen3-VL-8B-Instruct, evaluated using BF16 precision and greedy decoding.</p>
 <p><strong>Attack and development data.</strong> We use <a href="https://arxiv.org/abs/2311.05608">FigStep</a>, which places a harmful request inside an image with an unfinished numbered list and asks the model to fill in the missing items. We provided Claude with 50 FigStep samples for development. </p>
@@ -79,45 +254,56 @@
 </details>
 
 
+</section>
+<section class="article-section">
 <h2>What the agent did</h2>
 <p>The <a href="https://github.com/Adeelyousaf/weight-space-safety-editing/blob/main/qwen3_vl_8b_weight_editing_log.pdf">experiment log (PDF)</a> records the measurements and editing decisions. The main steps are fairly intuitive.</p>
+</section>
+<section class="article-section">
 <h2>How the Agent Edited the Model&#39;s Weights</h2>
 <p><strong>Step 1: Diagnosing the Problem (19 forward passes).</strong></p>
 <p>Starting with the 50 <a href="https://arxiv.org/abs/2311.05608">FigStep</a> samples, Claude independently created additional text-only versions of the harmful requests and benign questions, and used harmless images in the same FigStep layout for comparison. It then examined the target model&#39;s responses and internal activations across all 36 decoder layers.</p>
 <p>Interestingly, the model was more likely to refuse harmful requests written as plain text (43/50) than the same requests formatted as incomplete numbered lists (22/50). This suggested that the attack&#39;s effectiveness was not solely due to the image modality; the numbered-list format itself encouraged the model to complete the list rather than refuse. This is also consistent with the finding in the original <a href="https://arxiv.org/pdf/2311.05608">FigStep paper</a> Table 2.</p>
 <p><strong>Step 2: Locating the Refusal Mechanism (0 additional forward passes).</strong></p>
 <p>Using the previously recorded activations, Claude analyzed the model&#39;s responses to FigStep jailbreak attempts. For some of these harmful requests, the model correctly refused to provide an answer. For others, the jailbreak succeeded, and the model generated a response instead of refusing.</p>
-<p>Claude compared the model&#39;s internal activations for FigStep requests it refused versus those where the jailbreak succeeded. It then calculated a refusal direction by taking the difference between their average activation vectors: <span class="math-inline">$u = \operatorname{normalize}\left(\bar{h}_{\mathrm{refused}} - \bar{h}_{\mathrm{complied}}\right)$</span>, where <span class="math-inline">$\bar{h}_{\mathrm{refused}}$</span> and <span class="math-inline">$\bar{h}_{\mathrm{complied}}$</span> represent the average activations of refused and successfully jailbroken requests, respectively. Interestingly, this refusal direction was highly consistent across image and text inputs and became clearly distinguishable around decoder layers 17–20.</p>
+<p>Claude compared the model&#39;s internal activations for FigStep requests it refused versus those where the jailbreak succeeded. It then calculated a refusal direction by taking the difference between their average activation vectors: <span class="math-inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo>=</mo><mi mathvariant="normal">normalize</mi><mo>(</mo><msub><mover accent="true"><mi>h</mi><mo>¯</mo></mover><mtext>refused</mtext></msub><mo>−</mo><msub><mover accent="true"><mi>h</mi><mo>¯</mo></mover><mtext>complied</mtext></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">u = \operatorname{normalize}\left(\bar{h}_{\mathrm{refused}} - \bar{h}_{\mathrm{complied}}\right)</annotation></semantics></math></span>, where <span class="math-inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover accent="true"><mi>h</mi><mo>¯</mo></mover><mtext>refused</mtext></msub></mrow><annotation encoding="application/x-tex">\bar{h}_{\mathrm{refused}}</annotation></semantics></math></span> and <span class="math-inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover accent="true"><mi>h</mi><mo>¯</mo></mover><mtext>complied</mtext></msub></mrow><annotation encoding="application/x-tex">\bar{h}_{\mathrm{complied}}</annotation></semantics></math></span> represent the average activations of refused and successfully jailbroken requests, respectively. Interestingly, this refusal direction was highly consistent across image and text inputs and became clearly distinguishable around decoder layers 17–20.</p>
 <p><strong>Key insight:</strong> Even when the model complied with a FigStep attack, its internal activations still contained information that distinguished harmful requests from harmless ones. This suggests that the model retained information about the harmful content, but did not consistently use it to refuse the request. Instead, the numbered-list format may have encouraged the model to complete the list rather than refuse.</p>
 <p><strong>Step 3: Designing the Weight Edit (18 forward passes).</strong></p>
-<p>Based on these findings, Claude proposed a targeted intervention: strengthen the model&#39;s refusal signal when harmful content is detected, while minimizing changes to benign requests. Simply amplifying the existing refusal signal would not work because it was largely absent in successful FigStep attacks. Instead, Claude designed a conditional rank-1 weight update: <span class="math-inline">$W' = W + \alpha u v^\top$</span>. Here:</p>
+<p>Based on these findings, Claude proposed a targeted intervention: strengthen the model&#39;s refusal signal when harmful content is detected, while minimizing changes to benign requests. Simply amplifying the existing refusal signal would not work because it was largely absent in successful FigStep attacks. Instead, Claude designed a conditional rank-1 weight update: <span class="math-inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>W</mi><mo>′</mo></msup><mo>=</mo><mi>W</mi><mo>+</mo><mi>α</mi><mi>u</mi><msup><mi>v</mi><mo>⊤</mo></msup></mrow><annotation encoding="application/x-tex">W&#x27; = W + \alpha u v^\top</annotation></semantics></math></span>. Here:</p>
 <ul>
-<li><span class="math-inline">$u$</span> is the refusal direction identified in Step 2.</li>
-<li><span class="math-inline">$v$</span> is a harm-related direction, obtained by comparing internal activations of successful FigStep attacks with harmless images in the same format.</li>
-<li><span class="math-inline">$α$</span> controls the strength of the edit.</li>
-<li><span class="math-inline">$W$</span> denotes the original weight matrix of a transformer layer, and <span class="math-inline">$W^{'}$</span> denotes the modified weight matrix after the edit.</li>
+<li><span class="math-inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span> is the refusal direction identified in Step 2.</li>
+<li><span class="math-inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span> is a harm-related direction, obtained by comparing internal activations of successful FigStep attacks with harmless images in the same format.</li>
+<li><span class="math-inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">α</annotation></semantics></math></span> controls the strength of the edit.</li>
+<li><span class="math-inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span> denotes the original weight matrix of a transformer layer, and <span class="math-inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>W</mi><mo>′</mo></msup></mrow><annotation encoding="application/x-tex">W^{&#x27;}</annotation></semantics></math></span> denotes the modified weight matrix after the edit.</li>
 </ul>
-<p>The idea is simple: when the model&#39;s activations align strongly with <span class="math-inline">$v$</span>, the edit strengthens the signal along <span class="math-inline">$u$</span>, encouraging the model to refuse. Claude further adjusted <span class="math-inline">$v$</span> to minimize its activation on benign examples, making the modification more selective. Claude then tested different decoder layers, edit strengths, and weight matrices. Stronger edits improved attack rejection but also began triggering refusals on some legitimate requests.</p>
+<p>The idea is simple: when the model&#39;s activations align strongly with <span class="math-inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span>, the edit strengthens the signal along <span class="math-inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span>, encouraging the model to refuse. Claude further adjusted <span class="math-inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span> to minimize its activation on benign examples, making the modification more selective. Claude then tested different decoder layers, edit strengths, and weight matrices. Stronger edits improved attack rejection but also began triggering refusals on some legitimate requests.</p>
 <p><strong>Key insight:</strong> Claude ultimately selected just two targeted rank-1 weight updates, one each in decoder layers 17 and 18. These edits strengthen the connection between harmful-content detection and refusal by directly modifying two MLP output weight matrices. In total, approximately 80 million weight values were changed, representing just 0.9% of the model&#39;s 8.8 billion parameters, without gradients or fine-tuning.</p>
 <p><strong>Step 4: Verifying the Edited Model (18 forward passes).</strong></p>
 <p>Claude tested the selected edits on the 50 FigStep working samples, where refusals increased from <strong>26/50 to 47/50</strong>, reducing the preliminary ASR estimate from <strong>48% to 6%</strong>. Meanwhile, all 50 harmless FigStep-style images remained answerable, and benign first-token predictions were unchanged. As a control, Claude replaced the refusal direction with a random direction of the same magnitude. This resulted in only <strong>28/50 refusals</strong>, compared with <strong>47/50</strong> for the targeted edit.</p>
 <p><strong>Key insight:</strong> The improvement was specific to the identified refusal direction, rather than simply modifying the model&#39;s weights. Overall, Claude used <strong>55 of the 100 available forward passes</strong> before freezing the edited model for held-out evaluation.</p>
+</section>
+<section class="article-section">
 <h2>Main results and insights</h2>
-<figure><a href="blog-assets/qwen-edit-history.png" aria-label="View Figure 2 at full size"><img src="blog-assets/qwen-edit-history.png" alt="FigStep proxy ASR across weight edits tested on Qwen3-VL-8B-Instruct" width="3750" height="1500" loading="lazy" decoding="async"></a><figcaption><em>Figure 2. FigStep proxy ASR across different weight edits tested by Claude on the 50 FigStep examples used during editing. Proxy ASR measures the percentage of requests where the model did not refuse, based on short responses or the first predicted token. Lower is better.</em></figcaption></figure>
+<figure><a href="blog-assets/qwen-edit-history.png" aria-label="View Figure 2 at full size"><img src="blog-assets/qwen-edit-history-960.webp" srcset="blog-assets/qwen-edit-history-480.webp 480w, blog-assets/qwen-edit-history-768.webp 768w, blog-assets/qwen-edit-history-960.webp 960w, blog-assets/qwen-edit-history-1600.webp 1600w" sizes="(max-width: 600px) calc(100vw - 2.5rem), (max-width: 820px) calc(100vw - 4rem), 752px" alt="FigStep proxy ASR across weight edits tested on Qwen3-VL-8B-Instruct" width="3750" height="1500" loading="lazy" decoding="async"></a><figcaption><em>Figure 2. FigStep proxy ASR across different weight edits tested by Claude on the 50 FigStep examples used during editing. Proxy ASR measures the percentage of requests where the model did not refuse, based on short responses or the first predicted token. Lower is better.</em></figcaption></figure>
 <p><strong>Different weight edits produced different safety improvements.</strong> As shown in Figure 2, Claude explored several editing strategies by varying the target layers, refusal directions, and edit strengths. On the 50 FigStep examples used during editing, the selected two-layer edit (<strong>Edit 6, layers 17 and 18</strong>) reduced the proxy ASR from <strong>48% to 6%</strong>. These results highlight how the choice of weight modification affected the model&#39;s refusal behavior.</p>
 <p><strong>The improvement depended on the specific direction chosen by the agent.</strong> To test whether the gains came from the identified refusal direction rather than arbitrary weight changes, Claude replaced it with a random direction in <strong>decoder layer 18</strong>, keeping the other editing settings unchanged. As shown in Figure 2, the random-direction edit (<strong>Edit 4</strong>) increased the FigStep proxy ASR from <strong>48% to 66%</strong>, whereas the targeted refusal-direction edit at the same layer (<strong>Edit 1</strong>) reduced it to <strong>30%</strong>. This suggests that the improvement came from modifying a meaningful refusal-related direction rather than simply perturbing the model&#39;s weights.</p>
 <p><strong>The agent balanced attack resistance and over-refusal.</strong> As shown in the Figure 2, one candidate edit (<strong>Edit 5</strong>) achieved a <strong>2%  proxy ASR</strong>, refusing 49 out of 50 FigStep attacks. However, it also incorrectly refused 2 out of 30 harmless requests. Claude therefore selected the two-layer edit (<strong>Edit 6</strong>), which achieved a <strong>6%  proxy ASR</strong> (47/50 refusals) without refusing any of those harmless requests. </p>
 <p>This highlights how the agent considered both attack resistance and over-refusal when selecting the final weight edit, rather than simply choosing the candidate with the lowest ASR.</p>
+</section>
+<section class="article-section">
 <h2>Additional evaluations and next steps</h2>
 <p>To investigate whether weight-space programming can improve safety across different models (see Figure 3), we further evaluated two additional models. For <strong>Qwen3.5-0.8B</strong>, ASR decreased from <strong>18% to 10%</strong> on held-out FigStep and from <strong>10% to 3%</strong> on unseen MM-SafetyBench. For <strong>Llama-3.2-11B-Vision-Instruct</strong>, whose base safety on these attacks is much weaker, ASR dropped from <strong>95% to 12%</strong> on held-out FigStep and from <strong>58% to 29%</strong> on unseen MM-SafetyBench. For both models, utility on ScienceQA and MathVista was preserved after weight editing.</p>
-<figure><a href="blog-assets/additional-model-safety-utility.png" aria-label="View Figure 3 at full size"><img src="blog-assets/additional-model-safety-utility.png" alt="Qwen3.5-0.8B and Llama-3.2-11B-Vision-Instruct safety and utility before and after weight editing" width="4050" height="1680" loading="lazy" decoding="async"></a><figcaption><em>Figure 3. Safety and utility performance of Qwen3.5-0.8B and Llama-3.2-11B-Vision-Instruct before and after weight editing. On held-out FigStep attacks, ASR decreased from 18% to 10% for Qwen3.5-0.8B and from 95% to 12% for Llama-3.2-11B-Vision. On the unseen MM-SafetyBench benchmark, ASR decreased from 10% to 3% and from 58% to 29% respectively. Average accuracy on ScienceQA and MathVista was unchanged for both models (83.3% and 66%). Lower ASR and higher utility are better.</em></figcaption></figure>
+<figure><a href="blog-assets/additional-model-safety-utility.png" aria-label="View Figure 3 at full size"><img src="blog-assets/additional-model-safety-utility-960.webp" srcset="blog-assets/additional-model-safety-utility-480.webp 480w, blog-assets/additional-model-safety-utility-768.webp 768w, blog-assets/additional-model-safety-utility-960.webp 960w, blog-assets/additional-model-safety-utility-1600.webp 1600w" sizes="(max-width: 600px) calc(100vw - 2.5rem), (max-width: 820px) calc(100vw - 4rem), 752px" alt="Qwen3.5-0.8B and Llama-3.2-11B-Vision-Instruct safety and utility before and after weight editing" width="4050" height="1680" loading="lazy" decoding="async"></a><figcaption><em>Figure 3. Safety and utility performance of Qwen3.5-0.8B and Llama-3.2-11B-Vision-Instruct before and after weight editing. On held-out FigStep attacks, ASR decreased from 18% to 10% for Qwen3.5-0.8B and from 95% to 12% for Llama-3.2-11B-Vision. On the unseen MM-SafetyBench benchmark, ASR decreased from 10% to 3% and from 58% to 29% respectively. Average accuracy on ScienceQA and MathVista was unchanged for both models (83.3% and 66%). Lower ASR and higher utility are better.</em></figcaption></figure>
 <p>Next, Figure 4 shows the editing history for the Llama model and it&#39;s effect of the attack success rate. </p>
-<figure><a href="blog-assets/llama-edit-history.png" aria-label="View Figure 4 at full size"><img src="blog-assets/llama-edit-history.png" alt="FigStep proxy ASR across weight edits tested on Llama-3.2-11B-Vision-Instruct" width="3750" height="1500" loading="lazy" decoding="async"></a><figcaption><em>Figure 4. FigStep proxy ASR across different weight edits tested by Claude on Llama-3.2-11B-Vision-Instruct, measured on the 50 FigStep examples used during editing. Proxy ASR measures the percentage of requests the model did not refuse, based on a keyword check of its responses. The selected edit, in a single cross-attention layer (layer 23), reduced the proxy ASR from 94% to 2%. Edits with lower ASR were rejected because they refused harmless requests or weakened refusals of harmful text. Lower is better.</em></figcaption></figure>
+<figure><a href="blog-assets/llama-edit-history.png" aria-label="View Figure 4 at full size"><img src="blog-assets/llama-edit-history-960.webp" srcset="blog-assets/llama-edit-history-480.webp 480w, blog-assets/llama-edit-history-768.webp 768w, blog-assets/llama-edit-history-960.webp 960w, blog-assets/llama-edit-history-1600.webp 1600w" sizes="(max-width: 600px) calc(100vw - 2.5rem), (max-width: 820px) calc(100vw - 4rem), 752px" alt="FigStep proxy ASR across weight edits tested on Llama-3.2-11B-Vision-Instruct" width="3750" height="1500" loading="lazy" decoding="async"></a><figcaption><em>Figure 4. FigStep proxy ASR across different weight edits tested by Claude on Llama-3.2-11B-Vision-Instruct, measured on the 50 FigStep examples used during editing. Proxy ASR measures the percentage of requests the model did not refuse, based on a keyword check of its responses. The selected edit, in a single cross-attention layer (layer 23), reduced the proxy ASR from 94% to 2%. Edits with lower ASR were rejected because they refused harmless requests or weakened refusals of harmful text. Lower is better.</em></figcaption></figure>
 <p>What we find exciting is the sequence of decisions: the agent compared formats, identified useful activation patterns, revised its editing strategy, and checked the consequences for benign requests. These are initial proof-of-concept findings. We are sharing them to make the approach and its limitations concrete, and we will add further results as the evaluation develops.</p>
+</section>
+<section class="article-section">
 <h2>Acknowledgements</h2>
 <p>We thank the members of <a href="https://amrit-singh-bedi.github.io/lab.html">SafeRR AI Lab</a> at the Institute of Artificial Intelligence, University of Central Florida.</p>
 
-  </article>
+  </section>
+</article>
   <div class="article-end"><a href="blog.html">← Back to Blog</a><a href="index.html">Homepage</a></div>
 </main>
 <footer>

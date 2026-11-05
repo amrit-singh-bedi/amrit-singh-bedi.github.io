@@ -3,6 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <title>Videos — Amrit Singh Bedi</title>
+  <meta name="description" content="Research videos and animated demonstrations shared by Amrit Singh Bedi at the University of Central Florida.">
+  <link rel="canonical" href="https://amrit-singh-bedi.github.io/videos.html">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.png" type="image/png" sizes="96x96">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
+  <meta name="theme-color" content="#1a3a6e">
+  <meta property="og:site_name" content="Amrit Singh Bedi · SafeRR AI Lab">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Videos — Amrit Singh Bedi">
+  <meta property="og:description" content="Research videos and animated demonstrations shared by Amrit Singh Bedi at the University of Central Florida.">
+  <meta property="og:url" content="https://amrit-singh-bedi.github.io/videos.html">
+  <meta property="og:image" content="https://amrit-singh-bedi.github.io/assets/site-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Amrit Singh Bedi, SafeRR AI Lab, University of Central Florida">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -36,21 +53,15 @@
     }
 
     .video-wrapper {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
       overflow: hidden;
       border-radius: 8px;
       background: #000;
     }
 
-    .video-wrapper iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
+    .video-wrapper video {
+      display: block;
       width: 100%;
-      height: 100%;
-      border: 0;
+      height: auto;
     }
 
     .description {
@@ -58,50 +69,55 @@
       font-size: 15px;
       color: #444;
     }
+    .skip-link{position:absolute;left:-10000px}
+    .skip-link:focus{left:20px;top:5px;padding:8px;background:#fff;outline:2px solid #0047ab}
   </style>
 </head>
 
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <nav>
+  <nav aria-label="Main navigation">
     <a href="index.html">Home</a>
     <a href="news.html">News</a>
     <a href="publications.html">Publications</a>
     <a href="teaching.html">Teaching</a>
-    <a href="videos.html">Videos</a>
+    <a href="videos.html" aria-current="page">Videos</a>
   </nav>
 
+  <main id="main-content" tabindex="-1">
   <h1>Videos</h1>
-  <p>Selected research and educational videos.</p>
+  <p>Research videos and animated demonstrations.</p>
 
   <div class="video-card">
-    <h2>Video Title 1</h2>
+    <h2>Decentralized Communication and Coordination Among AI Agents</h2>
     <div class="video-wrapper">
-      <iframe 
-        src="https://drive.google.com/file/d/1E7eK28Sx58YFSFstUlxw6lleE4_vL41C/view?usp=sharing"
-        allow="autoplay; fullscreen"
-        allowfullscreen>
-      </iframe>
+      <video controls muted loop playsinline preload="none" poster="media/agent-coordination.webp" width="1000" height="800" aria-label="Animation of decentralized communication and coordination among AI agents">
+        <source src="media/agent-coordination.mp4" type="video/mp4">
+        <a href="media/agent-coordination.mp4">Download the animation</a>
+      </video>
     </div>
     <p class="description">
-      This video introduces our work on decentralized communication and coordination among AI agents.
+      An animated demonstration of decentralized communication and coordination among AI agents.
     </p>
+    <p><a href="https://drive.google.com/file/d/1E7eK28Sx58YFSFstUlxw6lleE4_vL41C/view">View animation in Google Drive</a></p>
   </div>
 
   <div class="video-card">
-    <h2>Video Title 2</h2>
+    <h2>Real Robot Experiment</h2>
     <div class="video-wrapper">
-      <iframe 
-        src="https://drive.google.com/file/d/1kqRJxivCxbWVkWqbiQTe9wQK8Jo1OCyk/view?usp=sharing"
-        allow="autoplay; fullscreen"
-        allowfullscreen>
-      </iframe>
+      <video controls playsinline preload="none" poster="media/robot-experiment.webp" width="960" height="540" aria-label="Real robot experiment">
+        <source src="media/robot-experiment.mp4" type="video/mp4">
+        <a href="media/robot-experiment.mp4">Download the video</a>
+      </video>
     </div>
     <p class="description">
       Real robot experiment.
     </p>
+    <p><a href="https://drive.google.com/file/d/1kqRJxivCxbWVkWqbiQTe9wQK8Jo1OCyk/view">Watch in Google Drive</a></p>
   </div>
 
+  </main>
   <footer>
     <p>© 2026 Amrit Singh Bedi · University of Central Florida</p>
   </footer>

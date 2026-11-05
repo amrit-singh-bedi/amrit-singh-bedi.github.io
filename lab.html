@@ -3,13 +3,64 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SafeRR AI Lab at the University of Central Florida. Research in safe, robust, and reliable AI, reinforcement learning, and AI alignment." />
 
   <title>SafeRR AI Lab — Amrit Singh Bedi</title>
+  <meta name="description" content="Meet the SafeRR AI Lab at UCF, led by Amrit Singh Bedi. We study safe, robust, and reliable AI, reinforcement learning, and AI alignment.">
+  <link rel="canonical" href="https://amrit-singh-bedi.github.io/lab.html">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.png" type="image/png" sizes="96x96">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
+  <meta name="theme-color" content="#1a3a6e">
+  <meta property="og:site_name" content="Amrit Singh Bedi · SafeRR AI Lab">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SafeRR AI Lab — Amrit Singh Bedi">
+  <meta property="og:description" content="Meet the SafeRR AI Lab at UCF, led by Amrit Singh Bedi. We study safe, robust, and reliable AI, reinforcement learning, and AI alignment.">
+  <meta property="og:url" content="https://amrit-singh-bedi.github.io/lab.html">
+  <meta property="og:image" content="https://amrit-singh-bedi.github.io/assets/site-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Amrit Singh Bedi, SafeRR AI Lab, University of Central Florida">
+  <meta name="twitter:card" content="summary_large_image">
+  <style data-source="assets/fonts.css">
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 300 500;
+  font-display: swap;
+  src: url(assets/fonts/dm-sans-normal-web.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/eb-garamond-italic-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url(assets/fonts/eb-garamond-normal-web.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
+/* Georgia fallback matches the web font's heading-weighted advance widths
+   and vertical metrics. The original font is displayed once downloaded. */
+@font-face {
+  font-family: 'EB Garamond Fallback';
+  src: local('Georgia');
+  font-style: normal;
+  font-weight: 400 600;
+  size-adjust: 90.7659%;
+  ascent-override: 110.9447%;
+  descent-override: 32.8317%;
+  line-gap-override: 0%;
+}
+  </style>
 
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -23,7 +74,7 @@
       --rule:#dedad4;
       --blue:#1a3a6e;
       --gold:#b8880a;
-      --serif:'EB Garamond',Georgia,serif;
+      --serif:'EB Garamond','EB Garamond Fallback',Georgia,serif;
       --sans:'DM Sans',system-ui,sans-serif;
       --max:860px;
     }
@@ -266,7 +317,7 @@
 
     /* Mobile */
     @media(max-width:560px){
-      .header-inner{padding:0.8rem 1.25rem}
+      .header-inner{padding:0.8rem 1.25rem;column-gap:0.5rem}
       nav{gap:1.2rem}
       main{padding:2.25rem 1.25rem 3rem}
       h1{font-size:1.9rem}
@@ -283,7 +334,26 @@
 
       .footer-inner{padding:1.2rem 1.25rem}
     }
+
+    /* Keep the contact links on stable rows while the web font arrives. */
+    @media(max-width:420px){
+      .intro-links{flex-direction:column;align-items:flex-start}
+    }
   </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ResearchOrganization",
+  "name": "SafeRR AI Lab",
+  "url": "https://amrit-singh-bedi.github.io/lab.html",
+  "description": "Meet the SafeRR AI Lab at UCF, led by Amrit Singh Bedi. We study safe, robust, and reliable AI, reinforcement learning, and AI alignment.",
+  "parentOrganization": {
+    "@type": "CollegeOrUniversity",
+    "name": "University of Central Florida",
+    "url": "https://www.ucf.edu/"
+  }
+}
+  </script>
 </head>
 
 <body>
@@ -411,7 +481,7 @@
         <div class="person-photo">
           <span class="photo-placeholder" aria-hidden="true">AN</span>
           <img
-            src="students/anirudh.jpeg"
+            src="students/anirudh-176.webp" srcset="students/anirudh-176.webp 176w, students/anirudh-264.webp 264w" sizes="(max-width: 560px) 72px, 88px"
             alt="Anirudh Narayan"
             width="88"
             height="88"
@@ -436,7 +506,7 @@
         <div class="person-photo">
           <span class="photo-placeholder" aria-hidden="true">TM</span>
           <img
-            src="students/timothy.jpeg"
+            src="students/timothy-176.webp" srcset="students/timothy-176.webp 176w, students/timothy-264.webp 264w" sizes="(max-width: 560px) 72px, 88px"
             alt="Timothy Mcallister"
             width="88"
             height="88"
@@ -549,7 +619,24 @@
     </ul>
   </section>
 
-  <!-- Collaborators: fill in later -->
+  <section id="undergraduate-researchers" aria-labelledby="undergraduate-heading">
+    <h2 id="undergraduate-heading">Undergraduate Researchers</h2>
+    <ul class="people">
+      <li class="person person-with-photo">
+        <div class="person-photo">
+          <span class="photo-placeholder" aria-hidden="true">GG</span>
+          <img src="students/gabriel-garcia-176.webp" srcset="students/gabriel-garcia-176.webp 176w, students/gabriel-garcia-264.webp 264w" sizes="(max-width: 560px) 72px, 88px" alt="Gabriel Garcia" width="88" height="88" loading="lazy" decoding="async" onerror="this.hidden=true;">
+        </div>
+        <div class="person-details">
+          <h3><a href="https://gpgabriel25.github.io/">Gabriel Garcia</a></h3>
+          <p class="person-meta">Undergraduate researcher</p>
+          <p class="person-links"><a href="https://gpgabriel25.github.io/">Website</a> · <a href="https://github.com/Gpgabriel25">GitHub</a></p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Collaborators -->
   <section id="collaborators" aria-labelledby="collaborator-heading">
     <h2 id="collaborator-heading">Collaborators</h2>
 
